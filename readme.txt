@@ -28,20 +28,7 @@ IMPORTANT NOTE:
 We strongly recommend  you using themes that the front page will be displayed in one column otherwise you use our theme wpcareers.
 This plugin is for a standalone WordPress site.
 
-http://www.wpcareers.com
-
-
-== Frequently Asked Questions ==
-
-For Uninstalling the plugin please run the plugin Uninstaller utility
-
-
-== Screenshots ==
-
-http://www.wpcareers.com
-
-1. /tag/1.0/screenshot-1.png
-2. /tag/1.0/screenshot-2.png
+Demo link: http://www.wpcareers.com
 
 
 
@@ -72,6 +59,20 @@ You will need to make the following folders writeable (chmod 777) :
 /wpcareers/images
 /wpcareers/public
 /wpcareers/resume
+
+
+
+== Frequently Asked Questions ==
+
+For Uninstalling the plugin please run the plugin Uninstaller utility
+
+
+== Screenshots ==
+
+http://www.wpcareers.com (1.0) 
+
+1. /tag/1.0/screenshot-1.png
+2. /tag/1.0/screenshot-2.png
 
 
 == Upgrade Notice ==
