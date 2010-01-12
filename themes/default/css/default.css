@@ -1,0 +1,312 @@
+/*	
+* default
+* Description: wpCareers wordpress plugin
+* Author:M. Forgani
+* Author URI:http://www.forgani.com/
+*/
+
+.top_title{
+	position:absolute;
+	top:10px;
+	left:750px;
+	color:#027ac6;
+}
+
+
+table.middelTabelle{
+	table-layout:fixed;
+	border-collapse:separate;
+	padding:0;margin:2px;
+	border-spacing:0px;
+	empty-cells:show;
+	caption-side:top;
+	border-top:1px solid #d4e7ed;
+}
+
+table.categoryTable{
+	border-spacing:0;
+	empty-cells:show;
+	border-collapse:separate;
+	margin:0;
+	background-color:#fff;
+	border-top:1px solid #d4e7ed;
+}
+
+table.otherTable{
+	border-spacing:0;
+	empty-cells:show;
+	border-collapse:separate;
+	margin:0;
+	background-color:#fff;
+	border:1px solid #d4e7ed;
+}
+
+.jp_category{
+width: 100%;
+}
+
+table.siderbarTable{
+	border-spacing:0;
+	padding:2px;
+	empty-cells:show;
+	margin:0;
+	border:1px solid #d4e7ed;
+	/*background-color:#fff;*/
+}
+
+table.categoryTable td {padding:2px;margin:2px;border-spacing:0;}
+table.siderbarTable td {padding:2px;margin:2px;border-spacing:0;}
+table.otherTable td {padding:2px 0; margin:2px;border-spacing:0;}
+
+td{padding:2px 0; margin:2px;border-spacing:0;}
+table{padding:0;margin:0;border-spacing:0px;}
+
+.center{text-align:center;}
+.right{text-align:right;}
+.clearfix{display:inline-block;}/* Hides from IE-mac \*/ 
+* html .clearfix{height:1%;}/* End hide from IE-mac */ 
+.columnsf-1{width:480px;margin:5px 0 5px 15px; float:left;}
+.columnsf-2{width:255px;margin:5px 0 5px 15px; float:left;}
+.columnsf-3{width:165px;margin:5px 0 5px 15px; float:right;}
+.columns-2{margin:0 auto;float:right;}
+.columns-4{width:264px;padding:0 2px;float:left;background-color:#fff;}
+.columns-6{padding:0 2px;float:left;}
+.columns-8{width:515px;float:left;}
+.columns-7{padding:0 2px;float:left;}
+
+table.col7{width:807px; border-spacing:0;}
+table.col6{width:520px; border-spacing:0;margin-left:10px; padding:5px 0 10px 3px;}
+table.col4{width:255px; border-spacing:0;padding:20px 2px;}
+table.col2{width:150px; border-spacing:0}
+
+div.featured-content{padding:0; margin:0; float:left;}
+div.featured-content h3{padding:0; margin:10px 0;font-size:13pt;}
+div.featured-content p {margin: 0 0 15px 5px;}
+
+.tight{margin:0 !important;padding:0!important;text-align:left;}
+.block{width:100%;}
+.first{margin-top:0!important;}
+.last{margin-right:0;}
+
+.float-left{float:left;}
+.float-right{float:right;}
+.left{text-align:left;}
+.right{text-align:right;}
+tr.last td,li.last{border-bottom:1px solid white;}
+.textHighlight{font-weight:bold;}
+.inactive{color:#888;}
+.controls{float:right;}
+.fullWidth{width:100%;}
+.hide{display:none!important;visibility:hidden;clear:none;}
+.show{visibility:visible;display:block;}
+
+.viewlink{
+	background-color:#fafafa;
+	border:1px solid #d4e7ed;
+	padding:0.5em;
+	margin-top:0.5em;
+}
+
+.jp_head{padding-top:.5em;}
+
+.jp_head img{
+	float:left;
+	border:0;
+}
+.jp_head_desc{
+	padding:0;
+	margin:0;
+}
+.jp_googleAd{
+	padding:5px 0;
+	float:left;
+	text-align:center;
+}
+.tbody{
+	background-color:#fafafa;
+	border:1px solid #d4e7ed;
+} 
+.catphoto{
+	float:left;
+	margin-right:15px;
+	border:0;
+}
+div.info{text-align:right;margin:1em 0;padding:0; float:left;}
+div.info div{display:inline;white-space:nowrap; float:left;}
+div.info div.left{float:left} 
+.info img{
+	vertical-align:middle;
+	padding:0 2px;
+	border:none;
+}
+.rightTxt{text-align:right;}
+.rssCell{
+	color:#32527a;
+	margin:0;
+	padding:0 5px 0 0;
+	text-align:right;
+	vertical-align:middle;
+	font-weight:bold;
+} 
+.rssIcon,
+.rssIcon p, .rssIcon img{
+	border:none;
+	font-weight:bold;
+	text-decoration:none;
+	vertical-align:middle;
+} 
+.smallRed{color:red;font-size:80%;}
+.imgMiddle{
+	vertical-align:middle;
+	padding:0 2px;
+	border:none;
+}
+
+div.jp_message{
+	margin:0 0 0 80px;
+	padding:10px;
+}
+.smallTxt{
+	font-size:80%;
+	color:#555;
+	display:inline;
+}
+.fieldset{
+	margin-bottom:1em;
+	padding:.5em;
+	border:1px solid #d4e7ed;
+} 
+.jp_navigation_description{
+	top:-8px;
+	Position:relative;
+}
+.loginform{
+	margin:0 2px;
+	padding-left:5px;
+	width:100%;
+	background-image: none; 
+	background-color: #fff;
+}
+#login{
+	text-align:left; 
+	padding:20px; 
+	width:100%;
+	margin:25px 0;
+}
+#login label{ 
+	display:block;
+	float:left;
+	width:120px;
+}
+.jp_login{
+	margin:0 0 5px 0;
+	width:280px;
+	height:115px;
+	padding:8px;
+	border:1px solid #d4e7ed; 
+}
+.jp_login p{
+	padding:0;
+	font-size:80%;
+	margin:7px 0;
+}
+.jp_login label{
+	float:left;
+	font-weight:normal;
+	width:120px;
+}
+.jp_search{
+	margin:10px 0;
+	padding:5px 0;
+	font-size:80%;
+}
+.message{font-weight:normal;}
+.jp_footer{
+	float:left;
+	margin:0;
+	padding:3px 0;
+	width:100%;
+	border-top:1px solid #d4e7ed;
+	font-size:80%;
+	background-color:#fff;
+}
+.rss_footer{
+	float:left;
+	margin:0;
+	padding:3px 0;
+	width:100%;
+	font-size:80%;
+	background-color:#fff;
+}
+
+.jp_footer a{color:#1569C7;}
+.jp_footer a:hover{text-decoration:underline;}
+.jp_footer a:focus{text-decoration:underline;}
+.jp_footer dt{
+	font-weight:bold;
+	color:#999999;
+	margin-top:6px;
+}
+.jp_footer dd{
+	margin-left:5px;
+}
+.jp_footer img{
+	vertical-align:middle;
+	padding:0 2px;
+	border:none;
+}
+
+.foot{
+	background-color:transparent;
+	padding:2px;
+	font-weight:normal;
+}
+.td_left{ 
+	text-align:right;
+	font-weight:bold;
+	vertical-align:top;
+	margin-right:7px;
+	width:270px;
+}
+
+.view_left{
+	text-align:left;
+	font-weight:bold;
+	vertical-align: top;
+	width:160px;
+}
+
+.td_right{ 
+	text-align:left;
+	vertical-align: top;
+	margin-left:5px;
+	width:530px;
+	border-spacing:0px;
+}
+
+
+.logo {
+	float: left;
+	margin:0 8px 1px 5px;
+	border:1px solid #bbb;
+}
+
+.icon {
+	float: left;
+	margin:0 8px 0 5px;
+	border:0;
+}
+
+.top {text-align: top; vertical-align: top;}
+.middle {text-align: middle; vertical-align: middle;}
+.strong{font-weight:bold;}
+.normal{font-weight:normal;}
+.jp_error{
+	margin:0;
+	padding:0 0 10px 0;
+	color:#993300;
+	font-weight:bold;
+}
+.gray{font-weight:normal;color:#999;}
+.red{color:#993300;margin-bottom:0.5em;font-weight:bold;}
+.green{color:#006600;margin-bottom:0.5em;font-weight:bold;}

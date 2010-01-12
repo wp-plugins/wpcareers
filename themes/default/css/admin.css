@@ -1,0 +1,57 @@
+/*  
+* default
+* Description:wpCareers wordpress plugin
+* Author: M. Forgani
+* Author URI: http://forgani.com/
+*/
+
+.wpca {
+	margin: 20px 0;
+	width: 90%;
+}
+
+.wpca fieldset {
+	padding: 2px;
+	font:12px;
+	font-weight:bold;
+	border:1px solid #ddd;
+}
+.wpca label {
+	float:left;
+	width:25%;
+	margin-right:0.5em;
+	padding-top:0.2em;
+	text-align:right;
+	font-weight:bold;
+}
+
+.wpca legend{
+	font-weight:bold; 
+	padding: 2px;
+	color:#900;
+}
+
+.wpca hr{
+	display: block;
+	border:1px solid #e18a00;
+}
+
+.wpca table {
+	width: 100%;
+	background-color:#fafafa; 
+	/*border:1px #C0C0C0 solid; */
+	border-spacing:1px;
+}
+.wpca th {
+	border:1px #bbb solid;
+	padding-left:2px;
+	text-align:left;
+	font-weight: bold;
+	background-color:#eee;
+}
+
+.wpca td {
+	border:1px #bbb solid;
+	padding-left:2px; 
+	font-weight:normal;
+}
