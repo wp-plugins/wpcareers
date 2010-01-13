@@ -13,7 +13,7 @@
 
 function wpcareers_admin_page(){
    global $_GET, $_POST, $PHP_SELF, $user_level, $pagelabel,
-      $wpdb, $wpca_suser_level, $wpca_sversion, $_REQUEST, $wpcarrer;
+      $wpdb, $wpca_suser_level, $wpca_sversion, $_REQUEST, $wpcareers;
 
    get_currentuserinfo();
 
@@ -26,7 +26,7 @@ function wpcareers_admin_page(){
    switch ($_REQUEST['admin_page_arg']){
       case "wpcareer_settings":
          default:
-         $wpcarrer->process_option_settings();
+         $wpcareers->process_option_settings();
       break;
       case "wpcareer_structure":
          process_structure();
