@@ -637,10 +637,10 @@ function jp_email_notifications($title, $description, $email, $id, $mode = 0){
 
 // function that echo's the textarea/whatever for post input
 function create_description($content="", $field, $form){
-	global $wpdb, $table_prefix, $wp_filesystem, $wpcareers;
+	global $wpdb, $table_prefix, $wp_filesystem;
 	$wpca_settings = get_option('wpcareers');
 	if (!isset($wpca_settings['edit_style'])) $wpca_settings['edit_style']= 'plain';
-	echo '<script type="text/javascript" src="' . $wpcareers->cache_dir . '/include/js/jquery.limit.js"></script>';
+	echo '<script type="text/javascript" src="' . JP_PLUGIN_URL .  '/include/js/jquery.limit.js"></script>';
 	?>
 	<script type='text/javascript'>
  var intMaxLength="<?php echo $wpca_settings['excerpt_length'] ?>";

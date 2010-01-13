@@ -11,7 +11,7 @@
 
 
 
-function wpcareer_admin_page(){
+function wpcareers_admin_page(){
    global $_GET, $_POST, $PHP_SELF, $user_level, $pagelabel,
       $wpdb, $wpca_suser_level, $wpca_sversion, $_REQUEST, $wpcarrer;
 
@@ -45,7 +45,7 @@ function wpcareer_admin_page(){
 }
 
 
-function wpcareer_admin_menu(){
+function wpcareers_admin_menu(){
   global $admin_menu, $PHP_SELF;
   $head = '<div class="wrap"><h2>Wordpress Career</h2><p>';
   $head .= '<div style="text-align: right;"><a href="http://www.forgani.com/">Support this software</a><br>Read my opinion</div>';
