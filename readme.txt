@@ -24,11 +24,12 @@ In addition, user can also add/delete/change descriptions, upload images/photos.
 
 It is a complete ready to use as Job Board System
 
+Demo link: www.wpcareers.com
+
 IMPORTANT NOTE:
 We strongly recommend  you using themes that the front page will be displayed in one column otherwise you use our theme wpcareers.
 This plugin is for a standalone WordPress site.
 
-Demo link: http://www.wpcareers.com
 
 
 
@@ -69,7 +70,7 @@ For Uninstalling the plugin please run the plugin Uninstaller utility
 
 == Screenshots ==
 
-http://www.wpcareers.com (1.0) 
+www.wpcareers.com (1.0) 
 
 1. /tag/1.0/screenshot-1.png
 2. /tag/1.0/screenshot-2.png

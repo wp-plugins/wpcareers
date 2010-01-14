@@ -46,12 +46,12 @@ function wpcareers_admin_page(){
 
 
 function wpcareers_admin_menu(){
-  global $admin_menu, $PHP_SELF;
+  global $wpcareers, $PHP_SELF;
   $head = '<div class="wrap"><h2>Wordpress Career</h2><p>';
   $head .= '<div style="text-align: right;"><a href="http://www.forgani.com/">Support this software</a><br>Read my opinion</div>';
   $menu = '<a href=' . $PHP_SELF . '?page=' . 'wpcareer_settings' . '>Settings & Options</a> | ';
-  for ($i=0; $i<count($admin_menu); $i++){
-    $tlink = $admin_menu[$i];
+  for ($i=0; $i<count($wpcareers->admin_menu); $i++){
+    $tlink = $wpcareers->admin_menu[$i];
     if (!isset($_GET['adm_arg'])) $_GET['adm_arg']='';
     
     $sel = "";
