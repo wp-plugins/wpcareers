@@ -35,7 +35,6 @@ class wpca_smarty_compiler_class extends WPCA_Smarty {
 	}
 }
 
-
 function wpcareers_rewrite_rules_wp($wp_rewrite){
 	global $wp_rewrite;
 	$wpca_settings = get_option('wpcareers');
@@ -124,15 +123,12 @@ function wpcareers_get_breadcrumbs($sidebar){
 
 function wpcareers_create_link($action, $vars){
 	global $wpdb, $table_prefix, $wp_rewrite, $wpcareers;
-
 	$wpca_settings = get_option('wpcareers');
-
 	$page_id = $wpcareers->pageinfo['ID'];
 	if($wp_rewrite->using_permalinks()) $delim = "?";
 	else $delim = "&amp;";
 	$perm = get_permalink($page_id);
 	$main_link = $perm . $delim;
-
 
 	if (isset($vars['name'])) $name = trim($vars["name"]);
 	if (isset($vars['id'])) $id = trim($vars["id"]);
@@ -255,33 +251,41 @@ function jp_create_navigation($id,$links,$addJobLink, $desc){
 	}
 }
 
-
 function wpcareers_do_login(){
-	global $wpdb, $error, $wp_query, $_REQUEST, $_GET, $_POST, $lang, $wpcareers;
-
+	global $wpdb, $error, $wp_query, $_REQUEST, $_GET, $_POST, $lang, $wpcareers, $wp_rewrite;
 	$tpl = wpcareers_display_header($message);
 	if (!is_array($wp_query->query_vars))	$wp_query->query_vars = array();
-
+	$wpca_settings = get_option('wpcareers');
 	$action = '';
 	$message = '';
-	if (isset($_REQUEST['action'])) $action = $_REQUEST['action'];
+	$home = wpcareers_create_link("indexLink", 'undef');
+	
+	if ($wp_rewrite->get_page_permastruct()=="") 
+		$selflink = "/index.php?pagename=".$wpca_settings['slug'];
+	else $selflink =  $wpca_settings['slug'];
+	
+	if (isset($_REQUEST['action'])) { 
+		$action = $_REQUEST['action'];
+	} 	else {
+		wp_redirect('/' . $selflink . '/');
+		exit();
+	}
 	$error = '';
 	nocache_headers();
-
-	switch($action)	{
+	
+	switch($action) {
 	//logout
 	case "logout":
 		wp_clearcookie();
 		do_action('wp_logout');
 		nocache_headers();
-		$redirect_to = wpcareers_create_link("indexLink", 'undef');
-		wp_safe_redirect($redirect_to);
+		wp_redirect('/' . $selflink . '/');
 		exit();
 	break;
 	case 'lostpassword':
 		//do_action('lost_password');
 		get_header();
-			$oVisualCaptcha=new _jp_captcha();
+		$oVisualCaptcha=new _jp_captcha();
 		$captcha=rand(1, 50).".png";
 		$oVisualCaptcha->create($wpcareers->cache_dir ."/" . $captcha);
 			$message .= '<p>Please enter your information here. We will send you a new password</p>';
@@ -298,14 +302,14 @@ function wpcareers_do_login(){
 		$message .= '<p><lable></lable> <input type="text" name="wpcareers[jp_captcha]" id="wpcareers[jp_captcha]" size="10"></p>';
 		$message .= '</p><p class="submit"> <input type="submit" name="submit" id="submit" value="Retrieve Password" tabindex="3" /></p>';
 		$message .= '</form><ul>';
-		$message .= '<li><a href="'. get_bloginfo('wpurl') .'/" title="Are you lost?">Home</a></li>';
+		$message .= '<li><a href="'. $home . '" title="Are you lost?">Home</a></li>';
 		$message .= '<li><a href="'. get_bloginfo('wpurl') .'/wp-register.php" title="Register">Register</a></li>';
 		$message .= '</ul>';
 		$tpl->assign('title', 'Retrieve Password');
 		$tpl->assign('form', $message);
 		$tpl->display('register.tpl');
 		die();
-		break;
+	break;
 	case 'retrievepassword':
 		get_header();
 		$user_data = get_userdatabylogin($_POST['user_login']);
@@ -398,15 +402,16 @@ function wpcareers_do_login(){
 			$user_login = sanitize_user( $user_login );
 			$user_pass	= $_POST['pwd'];
 			$rememberme = $_POST['rememberme'];
+			$redirect_to = $_POST['redirect_to'];
 		} else {
 			if (function_exists('wp_get_cookie_login')) {
 				$cookie_login = wp_get_cookie_login();
-				if ( ! empty($cookie_login) ) {
+				if ( !empty($cookie_login) ) {
 					$using_cookie = true;
 					$user_login = $cookie_login['login'];
 					$user_pass = $cookie_login['password'];
 				}
-			}	elseif ( !empty($_COOKIE) ) {
+			} elseif ( !empty($_COOKIE) ) {
 			if ( !empty($_COOKIE[USER_COOKIE]) )
 				$user_login = $_COOKIE[USER_COOKIE];
 				if ( !empty($_COOKIE[PASS_COOKIE]) ) {
@@ -418,22 +423,21 @@ function wpcareers_do_login(){
 		do_action('wp_authenticate', array(&$user_login, &$user_pass));
 		if ( $user_login && $user_pass ) {
 			$user = new WP_User(0, $user_login);
-			$redirect_to = wpcareers_create_link("indexLink", 'undef');
 			if ( wp_login($user_login, $user_pass, $using_cookie) ) {
-				if ( !$using_cookie )	wp_setcookie($user_login, $user_pass, false, '', '', $rememberme);
+				if ( !$using_cookie ) wp_setcookie($user_login, $user_pass, false, '', '', $rememberme);
 				do_action('wp_login', $user_login);
 				wp_redirect($redirect_to);
 				exit;
 			} else {
-				if ( $using_cookie )	$error = __('Your session has expired.');
+				if ( $using_cookie ) $error = __('Your session has expired.');
 			}
 		} else if ( $user_login || $user_pass ) {
 			$error = __('<strong>Error</strong>: The password field is empty.');
 		}
 		return $error;
-		default:
-		$redirect_to = wpcareers_create_link("indexLink", 'undef');
-		wp_safe_redirect($redirect_to);
+	break;
+	default:
+		wp_redirect('/' . $selflink . '/');
 	break;
 	} 
 	exit();
@@ -444,6 +448,8 @@ function wpcareers_do_register(){
 	global $wpdb, $errors, $user_ID, $wp_query, $lang, $wpcareers;
 
 	$tpl = wpcareers_display_header($message);
+	$home = wpcareers_create_link("indexLink", 'undef');
+
 	if (!is_array($wp_query->query_vars)) $wp_query->query_vars = array();
 	switch( $_REQUEST["action"] ) {
 	case 'register':
@@ -524,7 +530,7 @@ function wpcareers_do_register(){
 		$message .= '<p><lable></lable> <input type="text" name="capcc_captchakey" id="capcc_captchakey" size="10"></p>';
 		$message .= '<p class="submit"><input type="submit" value="Register" id="submit" name="submit" /></p>';
 		$message .= '</form><ul>';
-		$message .= '<li><a href="'. get_bloginfo('wpurl') .'/" title="Are you lost?">Home</a></li>';
+		$message .= '<li><a href="'. $home .'" title="Are you lost?">Home</a></li>';
 		$message .= '<li><a href="'. get_bloginfo('wpurl') .'/wp-login.php?action=lostpassword" title="Password Lost and Found">Recover password?</a></li>';
 		$message .= '</ul>';	
 		$tpl->assign('title', 'Registration');

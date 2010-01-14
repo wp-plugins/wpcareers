@@ -6,7 +6,7 @@ Plugin Name: wpcareers
 Plugin URI: http://www.forgani.com/root/wordpress-careers-plugin/
 Description: wpCareers wordpress plugin
 Author: Mohammad forgani
-Version: 1.0
+Version: 1.0-a
 Author URI: http://www.forgani.com
 
 Copyright 2010 Mohammad Forgani 
@@ -34,7 +34,7 @@ if (!$table_prefix){$table_prefix = $wpdb->prefix;}
 /**
  * Constants
  */
-define('VERSION', '1.0');
+define('VERSION', '1.0-a');
 
 define('JP_PLUGIN_DIR', ABSPATH .  'wp-content/plugins/wpcareers');
 define('JP_PLUGIN_URL', plugins_url('wpcareers'));
