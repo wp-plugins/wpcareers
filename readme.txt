@@ -2,7 +2,7 @@
 name: Wordpress Careers plugin version 1.0
 Contributors: Mohammad Forgani
 Donate link: http://www.forgani.com/root/wordpress-careers-plugin/
-Tags: job portal, careers
+Tags: job portal, careers, wpcareers, career, Career Portal, JobPortal
 Requires at least: 2.8
 Tested up to: 2.9
 Stable tag: 1.0
@@ -24,7 +24,7 @@ In addition, user can also add/delete/change descriptions, upload images/photos.
 
 It is a complete ready to use as Job Board System
 
-Demo link: www.wpcareers.com
+Demo link (wpcareers.com)
 
 IMPORTANT NOTE:
 We strongly recommend  you using themes that the front page will be displayed in one column otherwise you use our theme wpcareers.
@@ -70,7 +70,7 @@ For Uninstalling the plugin please run the plugin Uninstaller utility
 
 == Screenshots ==
 
-www.wpcareers.com (1.0) 
+wpcareers.com (1.0) 
 
 1. /tag/1.0/screenshot-1.png
 2. /tag/1.0/screenshot-2.png
