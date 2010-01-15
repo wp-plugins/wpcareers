@@ -1,5 +1,5 @@
 === WPCareers ===
-name: Wordpress Careers plugin version 1.0
+name: Wordpress Careers plugin version 1.0-a
 Contributors: Mohammad Forgani
 Donate link: http://www.forgani.com/root/wordpress-careers-plugin/
 Tags: job portal, careers, wpcareers, career, Career Portal, JobPortal
@@ -18,7 +18,7 @@ In addition, user can also add/delete/change descriptions, upload images/photos.
 
 * In Admin Area the administrator will be able to:
 * View and manage records in terms of add/modify/remove of entries 
-* Approve or deny the posts. 
+* Approve or deny the posts.
 * Inactive Applicants Convert to Active
 * Delete Users profile, Delete Employer profiles
 
@@ -70,7 +70,7 @@ For Uninstalling the plugin please run the plugin Uninstaller utility
 
 == Screenshots ==
 
-wpcareers.com (1.0) 
+wpcareers.com (1.0)
 
 1. /tag/1.0/screenshot-1.png
 2. /tag/1.0/screenshot-2.png
