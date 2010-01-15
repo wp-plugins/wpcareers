@@ -11,9 +11,7 @@ Stable tag: 1.0
 == Description ==
 
 The plugin allows you to build an online jobs/resume website, where the applicants will be able to search, update, add/remove, and add or edit their resumes/profiles. 
-
 This plugin is for standalone WordPress sites.
-
 In addition, user can also add/delete/change descriptions, upload images/photos.
 
 * In Admin Area the administrator will be able to:
@@ -29,8 +27,6 @@ Demo link (wpcareers.com)
 IMPORTANT NOTE:
 We strongly recommend  you using themes that the front page will be displayed in one column otherwise you use our theme wpcareers.
 This plugin is for a standalone WordPress site.
-
-
 
 
 == Installation ==
@@ -70,10 +66,9 @@ For Uninstalling the plugin please run the plugin Uninstaller utility
 
 == Screenshots ==
 
-wpcareers.com (1.0)
 
-1. /tag/1.0/screenshot-1.png
-2. /tag/1.0/screenshot-2.png
+1. screenshot-1.png
+2. screenshot-2.png
 
 
 == Upgrade Notice ==
@@ -83,7 +78,7 @@ This is a the initial version of plugin.
 
 == Changelog ==
 
-= 1.0.0 =
+= 1.0 =
 
 * User friendly registration system
 * Apply for jobs and submit resumes. 
@@ -95,8 +90,3 @@ This is a the initial version of plugin.
 
 == To Do ==
 
-
-have fun
-Regards from Isfahan ;-)
-Mohammad Forgani, Oh Jung-Su
-Jan. 16/2010
