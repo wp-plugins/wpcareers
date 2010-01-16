@@ -5,8 +5,8 @@
 *}
 
 <div class="columns-4">
-	{* style="background: url({$plugin_url}/images/main/content.jpg) repeat-y;"*}
-   <table class="siderbarTable col4" style="background: url({$plugin_url}/images/main/content.jpg) repeat-y;"><tbody>
+	{* style="background: url({$plugin_url}/images/content.jpg) repeat-y;"*}
+   <table class="siderbarTable col4" style="background: url({$plugin_url}/images/content.jpg) repeat-y;"><tbody>
       <tr><td><h2>{$main_link}</h2><HR /></td></tr>
       <tr><td valign="top"><h3>Post your Job/Resume</h3><br /></td></tr>
       <tr valign="top"><td>

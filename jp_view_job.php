@@ -13,7 +13,8 @@
 
 //$mydir = basename( dirname( __FILE__ ) ) ;
 function wpcareers_view_job() {
-   global $_GET, $_POST, $table_prefix, $lang, $wpdb, $_FILES, $postinfo, $user_ID, $job_mustlogin;
+   global $_GET, $_POST, $table_prefix, $lang, $wpdb, $_FILES, $postinfo, $user_ID,
+		$job_mustlogin, $wpcareers;
 
    $tpl = wpcareers_display_header();
    $wpca_settings=get_option('wpcareers');
@@ -47,7 +48,7 @@ function wpcareers_view_job() {
       $ptype = $wpdb->get_var("SELECT p_nom FROM {$table_prefix}wpj_price WHERE p_id=".$result->l_typeprice);
       $photo = false;
       if (strlen($result->l_photo) > 3)
-         $photo = '<div class="logo"><img src="' .get_bloginfo('wpurl').'/wp-content/plugins/wpcareers/public/' . $result->l_photo . '"></a></div>';
+         $photo = '<div class="logo"><img src="' . $wpcareers->public_url . 'images/' . $result->l_photo . '"></a></div>';
       $job[]=array (
          'title'=>$title,
          'lid'=>$result->l_id,

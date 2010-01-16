@@ -38,7 +38,7 @@
 <br />
 
 <div class="rss_footer">
-   <p><img src="{$plugin_url}/images/main/rss.png"/>{$rssurl} WPCareers {$credit}</p>
+   <p><img src="{$plugin_url}/images/rss.png"/>{$rssurl} WPCareers {$credit}</p>
 </div>
 
 {$java}

@@ -18,7 +18,7 @@
             {assign var=cnt value=0}
             {foreach from=$jobCategories item=cat key=cats}
                {if $cat.cp_id == 0}
-                  <table style="background:url({$plugin_url}/images/main/back.gif) repeat-x;">
+                  <table style="background:url({$plugin_url}/images/back.gif) repeat-x;">
                      <tr><td width=10px>&nbsp;</td><td width=30px><a onClick="hide('j_{$cat.c_id}');"><img src="{$catImgSrc}" name="imgj_{$cat.c_id}" align="left"></a></td>
                         <td class="jp_category"><b>{$cat.category_link}</b>{if $cat.jcounTotal>0} <span class="smallTxt">&nbsp;({$cat.jcount}, total {$cat.jcounTotal})</span>{/if}</td></tr>
                   </table>
@@ -53,7 +53,7 @@
                       {assign var=cnt value=0}
                       {foreach from=$resCategories item=cat key=cats}
                          {if $cat.rcp_id == 0}
-                            <table style="background:url({$plugin_url}/images/main/back.gif) repeat;">
+                            <table style="background:url({$plugin_url}/images/back.gif) repeat;">
                             <tr>
                               <td width=10px>&nbsp;</td><td width=30px><a onClick="hide('r_{$cat.rc_id}');"><img src="{$catImgSrc}" name="imgr_{$cat.rc_id}" align="left"></a></td>
                               <td class="jp_category"><b>{$cat.resume_link}</b>{if $cat.rcounTotal>0} <span class="smallTxt">&nbsp;({$cat.rcount}, total {$cat.rcounTotal})</span>{/if}</td>

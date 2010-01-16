@@ -31,7 +31,7 @@ function wpcareers_list_job_categories($tpl, $id){
 					$subCategory_link=wpcareers_create_link("jlist", array("name"=>$title, "id"=>$subCategory->c_id));
 					$sql="SELECT count(*) FROM {$table_prefix}wpj_job WHERE lc_id=".$subCategory->c_id;
 					$jsubCount=$wpdb->get_var($sql);
-					$catSubImg='<div class="icon"><img src="'.JP_PLUGIN_URL.'/images/main/'.$category->c_img.'"></div>';
+					$catSubImg='<div class="icon"><img src="'.JP_PLUGIN_URL.'/images/'.$category->c_img.'"></div>';
 					$jobSubCategories[]=array (
 						'c_id'=>$subCategory->c_id,
 						'cp_id'=>$subCategory->cp_id,
@@ -41,8 +41,8 @@ function wpcareers_list_job_categories($tpl, $id){
 						'subCategory_link'=>$subCategory_link);
 					$jcounTotal = $jcounTotal + $jsubCount;
 				}
-				$catImg='<div class="icon"><img src="'.JP_PLUGIN_URL.'/images/main/'.$category->c_img.'" name="imgANOTHER" border="0" alt="arrow icon"></div>';
-				$catImgSrc= JP_PLUGIN_URL.'/images/main/'.$category->c_img;
+				$catImg='<div class="icon"><img src="'.JP_PLUGIN_URL.'/images/'.$category->c_img.'" name="imgANOTHER" border="0" alt="arrow icon"></div>';
+				$catImgSrc= JP_PLUGIN_URL.'/images/'.$category->c_img;
 				$jcounTotal = $jcounTotal + $jcount;
 				$jobCategories[]=array (
 					'c_id'=>$category->c_id,
@@ -55,7 +55,7 @@ function wpcareers_list_job_categories($tpl, $id){
 			}
 		}
    }
-	$tpl->assign('catImgSrc', JP_PLUGIN_URL . "/images/main/expand.gif"); 
+	$tpl->assign('catImgSrc', JP_PLUGIN_URL . "/images/expand.gif"); 
    $tpl->assign('jobCategories',$jobCategories); 
    $tpl->assign('jobSubCategories',$jobSubCategories); 
 }
@@ -81,7 +81,7 @@ function wpcareers_list_res_categories($tpl, $id){
 				$subResume_link=wpcareers_create_link("rlist", array("name"=>$title, "id"=>$subCategory->rc_id));
 				$sql="SELECT count(*) FROM {$table_prefix}wpj_resume WHERE rc_id=".$subCategory->rc_id;
 				$rsubCount=$wpdb->get_var($sql);
-				$catSubImg='<div class="icon"><img src="'.JP_PLUGIN_URL.'/images/main/'.$category->rc_img.'"></div>';
+				$catSubImg='<div class="icon"><img src="'.JP_PLUGIN_URL.'/images/'.$category->rc_img.'"></div>';
 				$resSubCategories[]=array (
 					'rc_id'=>$subCategory->rc_id,
 					'rcp_id'=>$subCategory->rcp_id,
@@ -91,7 +91,7 @@ function wpcareers_list_res_categories($tpl, $id){
 					'subResume_link'=>$subResume_link);
 				$rcounTotal = $rcounTotal + $rsubCount;
 			}
-			$catImg='<div class="icon"><img src="'.JP_PLUGIN_URL.'/images/main/'.$category->rc_img.'"></div>';
+			$catImg='<div class="icon"><img src="'.JP_PLUGIN_URL.'/images/'.$category->rc_img.'"></div>';
 			$rcounTotal = $rcounTotal + $rcount;
 			$resCategories[]=array (
 				'rc_id'=>$category->rc_id,

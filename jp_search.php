@@ -42,7 +42,7 @@ function wpcareers_display_search(){
          $title = $result->l_title;
          $sendJobLink=wpcareers_create_link("jsend", array("name"=>"Refer it to a Friend", "id"=>$result->l_id));
          $viewJoblink=wpcareers_create_link("jview", array("name"=>$title, "id"=>$result->l_id));
-         $modifyJobLink=wpcareers_create_link("jmodify", array("name"=>"<img src='".JP_PLUGIN_URL."/images/post/modify.gif' border=0 />", "id"=>$result->l_id));
+         $modifyJobLink=wpcareers_create_link("jmodify", array("name"=>"<img src='".JP_PLUGIN_URL."/images/modify.gif' border=0 />", "id"=>$result->l_id));
          $list[]=array (
             'title'=>$title,
             'lid'=>$result->l_id,

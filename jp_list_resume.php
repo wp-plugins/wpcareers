@@ -10,7 +10,7 @@
 */
 
 function wpcareers_list_resumes($message=''){
-   global $_GET, $_POST, $table_prefix, $wpdb, $lang, $_FILES, $user_ID, $job_mustlogin;;
+   global $_GET, $_POST, $table_prefix, $wpdb, $lang, $_FILES, $user_ID, $wpcareers, $job_mustlogin;;
 
    $tpl = wpcareers_display_header($message);
 	$permission = jp_check_permission();
@@ -25,11 +25,11 @@ function wpcareers_list_resumes($message=''){
       $category=$wpdb->get_var($sql);
       $tpl->assign('category', $category);
       $title = $result->r_title;
-      //$sendResumeLink=wpcareers_create_link("rsend", array("name"=>"<img src='".JP_PLUGIN_URL."/images/post/refer.gif' border=0 /> Refer it to a Friend", "id"=>$result->r_id));
+      //$sendResumeLink=wpcareers_create_link("rsend", array("name"=>"<img src='".JP_PLUGIN_URL."/images/refer.gif' border=0 /> Refer it to a Friend", "id"=>$result->r_id));
       
       $photo = false;
       if (strlen($result->r_photo) > 3)
-         $photo = '<div class="logo"><img src="' .get_bloginfo('wpurl').'/wp-content/plugins/wpcareers/public/' . $result->r_photo . '" style="width:40px;" /></a></div>';
+         $photo = '<div class="logo"><img src="' . $wpcareers->public_dir . '/images/' . $result->r_photo . '" style="width:40px;" /></a></div>';
 
 		$viewResume=wpcareers_create_link("rview", array("name"=>$title, "id"=>$result->r_id));
 		$viewResumeDetail=wpcareers_create_link("rview", array("name"=> $lang['J_VIEW_ICON'] . ' View', "id"=>$result->r_id));

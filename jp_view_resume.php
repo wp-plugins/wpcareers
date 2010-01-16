@@ -14,7 +14,8 @@
 //$mydir = basename( dirname( __FILE__ ) ) ;
 
 function wpcareers_view_resume(){
-   global $_GET, $_POST, $table_prefix, $lang, $wpdb, $_FILES, $postinfo, $user_ID, $job_mustlogin;
+   global $_GET, $_POST, $table_prefix, $lang, $wpdb, $_FILES, $postinfo, $user_ID, 
+		$job_mustlogin, $wpcareers;
 
    $tpl = wpcareers_display_header();
    $wpca_settings=get_option('wpcareers');
@@ -47,10 +48,10 @@ function wpcareers_view_resume(){
       $ptype = $wpdb->get_var("SELECT p_nom FROM {$table_prefix}wpj_price WHERE p_id=".$result->r_typesalary);
       $photo = false;
       if (strlen($result->r_photo) > 3)
-         $photo = '<div class="logo"><img src="' . get_bloginfo('wpurl') . '/wp-content/plugins/wpcareers/public/' . $result->r_photo . '"></a></div>';
+         $photo = '<div class="logo"><img src="' . $wpcareers->public_url . "images/" . $result->r_photo . '"></a></div>';
 
       if (strlen($result->r_resume) > 3)
-         $_upload = '&nbsp;&nbsp;<a target="_blank" href="' . get_bloginfo('wpurl') . '/wp-content/plugins/wpcareers/resume/' . $result->r_resume . '" return false;"><div class="logo"><img src="' . get_bloginfo('wpurl') . '/wp-content/plugins/wpcareers/images/post/doc.jpg"></div></a><br />&nbsp;&nbsp;<b>Included File: </b>' . $result->r_resume;
+         $_upload = '&nbsp;&nbsp;<a target="_blank" href="' . $wpcareers->public_url . '/resume/' . $result->r_resume . '" return false;"><div class="logo"><img src="' . get_bloginfo('wpurl') . '/wp-content/plugins/wpcareers/images/doc.jpg"></div></a><br />&nbsp;&nbsp;<b>Included File: </b>' . $result->r_resume;
       $resume[]=array (
          'title'=>$title,
          'rid'=>$result->r_id,

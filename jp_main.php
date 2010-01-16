@@ -79,7 +79,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
    $tpl->assign('main_link', $main_link);
    $tpl->assign('mainLink', $mainLink);
 
-   $headpic=wpcareers_create_link("index", array("name"=>'<img src="'.JP_PLUGIN_URL.'/images/main/'. $wpca_settings['page_image'] . '" align="left" vspace=10 hspace=20 border=0 />'));
+   $headpic=wpcareers_create_link("index", array("name"=>'<img src="'.JP_PLUGIN_URL.'/images/'. $wpca_settings['page_image'] . '" align="left" vspace=10 hspace=20 border=0 />'));
    $tpl->assign('headpic', $headpic);
    $tpl->assign('headtxt', $wpca_settings['description']);
 
@@ -104,8 +104,8 @@ function wpcareers_display_index($message){
 	   
 	imgout=new Image(9,9);
 	imgin=new Image(9,9);
-	imgout.src="<?php echo JP_PLUGIN_URL ?>/images/main/expand.gif";
-	imgin.src="<?php echo JP_PLUGIN_URL ?>/images/main/collapse.gif";
+	imgout.src="<?php echo JP_PLUGIN_URL ?>/images/expand.gif";
+	imgin.src="<?php echo JP_PLUGIN_URL ?>/images/collapse.gif";
 	//this switches expand collapse icons
 	function filter(imagename,objectsrc){
 		if (document.images){

@@ -56,12 +56,9 @@ You have now there a new tab called "wpcareers" to configure the plugin.
 
 You will need to make the following folders writeable (chmod 777) :
 
-= NEW in THIS RELEASE =
-
-Add a public directory and upload the resume and images resources (the public folder must have write permission)
-
-wp-content/public/wpcareers/resume
-wp-content/public/wpcareers/public
+/wpcareers/images
+/wpcareers/public
+/wpcareers/resume
 
 
 
@@ -69,14 +66,18 @@ wp-content/public/wpcareers/public
 
 = Is this compatible with the WP plugin auto-upgrade feature? =
 
+No. the WP plugin auto-upgrade does not do this. For this reason, please follow the manual Process.
+
+
 
 For Uninstalling the plugin please run the plugin Uninstaller utility
 
 
 == Screenshots ==
 
-1. Screenshot input Area 
-2. Screenshot main
+
+1. screenshot-1.png
+2. screenshot-2.png
 
 
 == Upgrade Notice ==
@@ -109,4 +110,3 @@ This is a the initial version of plugin.
 
 == To Do ==
 
-The WP plugin auto-upgrade 

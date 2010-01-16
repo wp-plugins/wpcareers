@@ -18,29 +18,33 @@ class WP_Careers {
 	var $menu_name = 'wpCareers';
 	var $plugin_name = 'wpcareers';
 	var $plugin_dir;
+	var $plugin_url;
 	var $template_dir;
 	var $compile_dir;
 	var $cache_dir;
 	var $config_dir;
 	var $pageinfo;
 	var $plugin_home_url;
-	var $plugin_url;
+	var $public_url;
+	var $public_dir;
 	var $userId;
 	var $password;
 
 	function WP_Careers() {
 		// initialize all the variables
 		$this->plugin_home_url = 'http://www.forgani.com/wpcareers';
-		$this->plugin_dir = JP_PLUGIN_DIR;
+		$this->plugin_url = get_option('siteurl').'/wp-content/plugins/wpcareers';
+		$this->plugin_dir = JP_PLUGIN_DIR . '/';
 		$this->version = VERSION;
 		$this->template_dir = $this->plugin_dir . '/themes/default';
 		$this->cache_dir = $this->plugin_dir . '/cache';
-		$this->compile_dir =  $this->plugin_dir . '/templates_c';
-		$this->plugin_url = get_option("siteurl").'/wp-content/plugins/wpcareers';
+		$this->compile_dir = $this->plugin_dir . '/templates_c';
 		$this->config_dir = $this->plugin_dir . '/include/Smarty/configs';
 		$this->affiliate_id = get_option('wpca_affiliate_id');
 		$this->userId = get_option('wpca_userId'); // TODO
 		$this->password = get_option('wpca_password');  // TODO
+		$this->public_dir = ABSPATH . 'wp-content/public/wpcareers/';
+		$this->public_url = get_option('siteurl') . '/wp-content/public/wpcareers/';
 
 		/**
 		* config_page() - Add WordPress action to show the admin configuration page
@@ -63,10 +67,9 @@ class WP_Careers {
 		add_action('widgets_init', array(&$this, 'widget_init'));
 		add_action('init', array(&$this, 'login_register_init'));
 		add_action('admin_menu', array(&$this, 'add_admin_pages'));
-		add_action('admin_menu', array(&$this, 'hide_dashboard'));
 		add_action('admin_head', array(&$this, 'add_admin_head'));
 		add_action('wp_head', array(&$this, 'add_head'));
-
+		add_action('admin_head', array(&$this, 'hide_dashboard'));
 	}
 
 	/**
@@ -182,13 +185,22 @@ class WP_Careers {
 		<?php
 		print wpcareers_admin_menu();
 		// dir setting checker
-		$arr = array('public', 'templates_c', 'resume', 'cache');
+		$arr = array('templates_c', 'cache');
 		foreach ($arr as $value) {
-			$dir =  $this->plugin_dir . '/' . $value. '/';
+			$dir = $this->plugin_dir . $value. '/';
 			if( ! is_writable( $dir ) || ! is_readable( $dir ) ) {
-				echo "<BR /><BR /><fieldset><legend style='font-weight: bold; color: #900;'>".$lang['J_CHECKER']."</legend>"; 
+				echo "<BR /><BR /><fieldset><legend style='font-weight: bold; color: #900;'>".$lang['J_CHECKER']."</legend>";
 				echo "<font color='#FF0000'>".$lang['J_DIRPERMS']."".$dir."</font><br />\n" ;
 				echo "</fieldset>"; 
+			}
+		}
+		$arr = array('images', 'resume');
+		foreach ($arr as $value) {
+			$dir = $this->public_dir . $value. '/';
+			if( ! is_writable( $dir ) || ! is_readable( $dir ) ) {
+				echo "<BR /><BR /><fieldset><legend style='font-weight: bold; color: #900;'>".$lang['J_CHECKER']."</legend>";
+				echo "<font color='#FF0000'>".$lang['J_DIRPERMS']."".$dir."</font><br />\n" ;
+				echo "</fieldset>";
 			}
 		}
 		jp_ShowImg('process_settings', 'page_image');
@@ -267,8 +279,8 @@ class WP_Careers {
 					}
 					?>
 					</select></td><td>&nbsp;&nbsp;
-					<img src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/main/<?php echo $wpca_settings['page_image']; ?>" name="avatar" align="absmiddle"><br>
-					<span class="smallTxt"><?php echo $lang['J_REPIMGCAT']; ?>./wp-content/plugins/wpcareers/images/main/</span>
+					<img src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/<?php echo $wpca_settings['page_image']; ?>" name="avatar" align="absmiddle"><br>
+					<span class="smallTxt"><?php echo $lang['J_REPIMGCAT']; ?>./wp-content/plugins/wpcareers/images/</span>
 				</td></tr></table>
 				</td></tr>
 			<tr>
@@ -665,7 +677,7 @@ class WP_Careers {
 
 	function add_admin_pages() {
 		add_menu_page($this->menu_name , $this->menu_name ,'administrator', __FILE__, array(&$this, 'welcome'), 
-				'../wp-content/plugins/wpcareers/images/main/wpj.jpg');
+				'../wp-content/plugins/wpcareers/images/wpj.jpg');
 		add_submenu_page(__FILE__, 'wpcareers_settings', 'wpcareers_settings', 'administrator', 'wpcareers_settings', array(&$this, 'process_option_settings'));
 		for ($i=0; $i<count($this->admin_pages); $i++){
 			$link = $this->admin_pages[$i];

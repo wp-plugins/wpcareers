@@ -12,7 +12,8 @@
 */
 
 function wpcareers_list_jobs($message='', $lcid){
-   global $_GET, $_POST, $table_prefix, $wpdb, $lang, $_FILES, $user_ID, $job_mustlogin;
+   global $_GET, $_POST, $table_prefix, $wpdb, $lang, $_FILES, $user_ID, 
+		$job_mustlogin, $wpcareers;
 
 	$permission = jp_check_permission();
    $tpl = wpcareers_display_header($message);
@@ -32,7 +33,7 @@ function wpcareers_list_jobs($message='', $lcid){
 
       $photo = false;
       if (strlen($result->l_photo) > 3)
-      $photo = '<div class="logo"><img src="' .get_bloginfo('wpurl').'/wp-content/plugins/wpcareers/public/' . $result->l_photo . '" style="width:40px;"></a></div>';
+      $photo = '<div class="logo"><img src="' . $wpcareers->public_url . '/images/' . $result->l_photo . '" style="width:40px;"></a></div>';
 
 		$viewJob=wpcareers_create_link("jview", array("name"=>$title, "id"=>$result->l_id));
 		$viewJobDetail=wpcareers_create_link("jview", array("name"=> $lang['J_VIEW_ICON'] . ' View', "id"=>$result->l_id));

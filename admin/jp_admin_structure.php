@@ -150,7 +150,7 @@ function wpj_job_view_from_category($lcid){
 	 <P>
 	 <table>
 		<tr>
-			<th><img border=0 src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/post/edit.png"> Title</th>
+			<th><img border=0 src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/edit.png"> Title</th>
 			<th width="150">Local</th>
 			<th>Status</th>
 			<th>Delete</th>
@@ -167,7 +167,7 @@ function wpj_job_view_from_category($lcid){
 			 <?php echo $viewJoblink; ?></td>
 			 <td style=""><?php echo $job[town]; ?></td>
 			 <td style="background-color:#E9E9E9"><?php echo $job[valid]; ?></td>
-			 <td><a style="text-decoration: none;" href="javascript:deleteCategory('<?php echo rawurlencode($job[title] . " " . $job[town] );?>', '<?php echo $PHP_SELF;?>?page=wpcareers_structure&admin_action=deleteJobCategory&c_id=<?php echo $id;?>');"><img border=0 src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/post/delete.png"></a></td></tr>
+			 <td><a style="text-decoration: none;" href="javascript:deleteCategory('<?php echo rawurlencode($job[title] . " " . $job[town] );?>', '<?php echo $PHP_SELF;?>?page=wpcareers_structure&admin_action=deleteJobCategory&c_id=<?php echo $id;?>');"><img border=0 src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/delete.png"></a></td></tr>
 			<?php
 			}
 			?>
@@ -212,7 +212,7 @@ function wpj_res_view_from_category($rcid){
 	<P>
 	<table>
 	<tr>
-		<th><img border=0 src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/post/edit.png"> Title</th>
+		<th><img border=0 src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/edit.png"> Title</th>
 		<th width="150">Local</th>
 		<th>Status</th>
 		<th>Delete</th>
@@ -229,7 +229,7 @@ function wpj_res_view_from_category($rcid){
 			<?php echo $viewReslink; ?></td>
 			<td style=""><?php echo $res[town]; ?></td>
 			<td style="background-color:#E9E9E9"><?php echo $res[valid]; ?></td>
-			<td><a style="text-decoration: none;" href="javascript:deleteCategory('<?php echo rawurlencode($res[title] . " " . $res[town] );?>', '<?php echo $PHP_SELF;?>?page=wpcareers_structure&admin_action=deleteResCategory&c_id=<?php echo $id;?>');"><img border=0 src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/post/delete.png"></a></td></tr>
+			<td><a style="text-decoration: none;" href="javascript:deleteCategory('<?php echo rawurlencode($res[title] . " " . $res[town] );?>', '<?php echo $PHP_SELF;?>?page=wpcareers_structure&admin_action=deleteResCategory&c_id=<?php echo $id;?>');"><img border=0 src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/delete.png"></a></td></tr>
 			<?php
 		}
 		?>
@@ -292,7 +292,7 @@ function wpj_job_edit_category($id) {
 		}
 	}
 
-	echo "</select>&nbsp;&nbsp;<img src=\"".get_bloginfo('wpurl')."/wp-content/plugins/wpcareers/images/main/".$wpj_categories['c_img']. "\" name=\"avatar\" align=\"absmiddle\"></td></tr><tr><td>&nbsp;</td><td style='background-color:#fff'>".$lang['J_REPIMGCAT']." /wp-content/plugins/wpcareers/images/main/</td></tr>";
+	echo "</select>&nbsp;&nbsp;<img src=\"".get_bloginfo('wpurl')."/wp-content/plugins/wpcareers/images/".$wpj_categories['c_img']. "\" name=\"avatar\" align=\"absmiddle\"></td></tr><tr><td>&nbsp;</td><td style='background-color:#fff'>".$lang['J_REPIMGCAT']." /wp-content/plugins/wpcareers/images/</td></tr>";
 	
 	echo "<tr><td>".$lang['J_DISPLPRICE']." </td><td style='background-color:#fff'><input type=\"radio\" name=\"wpcareers[c_affprice]\" value=\"1\" checked>".$lang['J_OUI']."&nbsp;&nbsp; <input type=\"radio\" name=\"wpcareers[c_affprice]\" value=\"0\">".$lang['J_NON']." (".$lang['J_INTHISCAT'].")</td></tr>";
 	echo "<tr><td>".$lang['J_ORD']." </td><td style='background-color:#fff'><input type=\"text\" name=\"wpcareers[c_sort]\" size=\"4\" value=\"".$wpj_categories['c_sort']. "\"></td></tr><tr><td><td style='background-color:#fff'><br /><input type=\"submit\" value=\"".$lang['J_SUBMIT']."\"></td> &nbsp;&nbsp;</tr>";
@@ -359,7 +359,7 @@ function wpj_res_edit_category($id) {
 		}
 	}
 
-	echo "</select>&nbsp;&nbsp;<img src=\"".get_bloginfo('wpurl')."/wp-content/plugins/wpcareers/images/main/".$wpj_categories['rc_img']. "\" name=\"avatar\" align=\"absmiddle\"></td></tr><tr><td>&nbsp;</td><td style='background-color:#fff'>".$lang['J_REPIMGCAT']." /wp-content/plugins/wpcareers/images/main/</td></tr>";
+	echo "</select>&nbsp;&nbsp;<img src=\"".get_bloginfo('wpurl')."/wp-content/plugins/wpcareers/images/".$wpj_categories['rc_img']. "\" name=\"avatar\" align=\"absmiddle\"></td></tr><tr><td>&nbsp;</td><td style='background-color:#fff'>".$lang['J_REPIMGCAT']." /wp-content/plugins/wpcareers/images/</td></tr>";
 	
 	echo "<tr><td>".$lang['J_DISPLPRICE']." </td><td><input type=\"radio\" name=\"wpcareers[rc_affprice]\" value=\"1\" checked>".$lang['J_OUI']."&nbsp;&nbsp; <input type=\"radio\" name=\"wpcareers[rc_affprice]\" value=\"0\">".$lang['J_NON']." (".$lang['J_INTHISCAT'].")</td></tr>";
 	echo "<tr><td>".$lang['J_ORD']." </td><td><input type=\"text\" name=\"wpcareers[rc_sort]\" size=\"4\" value=\"".$wpj_categories['rc_sort']. "\"></td></tr><tr><td><td style='background-color:#fff'><br /><input type=\"submit\" value=\"".$lang['J_SUBMIT']."\"></td> &nbsp;&nbsp;</tr>";
@@ -379,7 +379,7 @@ function wpj_view_category($id) {
 	$wpca_settings = get_option('wpcareers');
 	$categoy_status = array('active'=>'Open','inactive'=>'Closed','readonly'=>'Read-Only');
 	?>
-	<img src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/post/delete.png"><?php echo $lang['J_DELJOBCAT']; ?><p> 
+	<img src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/delete.png"><?php echo $lang['J_DELJOBCAT']; ?><p> 
 	<P>
 	<div class="wpca">
 	 <fieldset><legend><?php echo $lang['J_CATEGORY'] ?></legend>
@@ -387,7 +387,7 @@ function wpj_view_category($id) {
 	 <P>
 	 <table>
 		<tr style="background-color:#ccc">
-			<th width="500"><img border=0 src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/post/edit.png"> Title</th>
+			<th width="500"><img border=0 src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/edit.png"> Title</th>
 			<th width="150">Number of links</th>
 			<th>Delete</th>
 			</tr>
@@ -400,7 +400,7 @@ function wpj_view_category($id) {
 	<P>
 	<table>
 		<tr style="background-color:#ccc">
-			<th width="500"><img border=0 src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/post/edit.png"> Title</th>
+			<th width="500"><img border=0 src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/edit.png"> Title</th>
 			<th width="150">Number of links</th>
 			<th>Delete</th>
 		</tr>
@@ -474,7 +474,7 @@ function wpj_job_cats($parent, $lev, $orderby, $how) {
 		<?php
 		echo '<td style="background-color:#E9E9E9">(<a href="'.$PHP_SELF.'?page=wpcareers_structure&admin_action=viewJobFromCategory&c_id='.$category->c_id.'">'.$linksNum.'</a>)</td>';
 		?>
-		<td style="background-color:#E9E9E9"><a style="text-decoration: none;" href="javascript:deleteCategory('<?php echo rawurlencode($category->c_title." " .$category->c_name );?>', '<?php echo $PHP_SELF;?>?page=wpcareers_structure&admin_action=deleteJobCategory&c_id=<?php echo $id;?>');"><img border=0 src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/post/delete.png"></a></td></tr>
+		<td style="background-color:#E9E9E9"><a style="text-decoration: none;" href="javascript:deleteCategory('<?php echo rawurlencode($category->c_title." " .$category->c_name );?>', '<?php echo $PHP_SELF;?>?page=wpcareers_structure&admin_action=deleteJobCategory&c_id=<?php echo $id;?>');"><img border=0 src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/delete.png"></a></td></tr>
 		<?php $print = wpj_job_cats($id,$lev + 1,'c_title', 'ASC');
 	}
 	return $out;
@@ -513,7 +513,7 @@ function wpj_res_cats($parent, $lev, $orderby, $how) {
 		<?php
 		echo '<td style="background-color:#E9E9E9">(<a href="'.$PHP_SELF.'?page=wpcareers_structure&admin_action=viewResFromCategory&c_id=' .$category->rc_id. '">'. $linksNum .'</a>)</td>';
 		?>
-		<td style="background-color:#E9E9E9"><a style="text-decoration: none;" href="javascript:deleteCategory('<?php echo rawurlencode($category->rc_title . " " . $category->rc_name );?>', '<?php echo $PHP_SELF;?>?page=wpcareers_structure&admin_action=deleteResCategory&c_id=<?php echo $id;?>');"><img border=0 src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/post/delete.png"></a></td></tr>
+		<td style="background-color:#E9E9E9"><a style="text-decoration: none;" href="javascript:deleteCategory('<?php echo rawurlencode($category->rc_title . " " . $category->rc_name );?>', '<?php echo $PHP_SELF;?>?page=wpcareers_structure&admin_action=deleteResCategory&c_id=<?php echo $id;?>');"><img border=0 src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/delete.png"></a></td></tr>
 		<?php
 		$print = wpj_res_cats($id,$lev + 1, 'rc_title', 'ASC'); 
 	}

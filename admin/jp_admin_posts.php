@@ -235,7 +235,7 @@ function wpcareers_approve_post($id, $action) {
 					?>
 					<tr <?php echo $color; ?> onMouseOver="this.bgColor='#FFF';" onMouseOut="this.bgColor='#F4F4F4';"><td>
 					<a href="<?php echo $linkb; ?>&admin_action=japprove&id=<?php echo $row->l_id;?>">
-					<img border="0" src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/post/ok.gif"></a></td>
+					<img border="0" src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/ok.gif"></a></td>
 					<?php 
 					print "<td>".$row->l_title."</td>";
 					print "<td>".$row->l_date."</td>";
@@ -243,7 +243,7 @@ function wpcareers_approve_post($id, $action) {
 					$category=$wpdb->get_var($sql);
 					print "<td>".$category."</td>";
 					print "<td>".$row->l_email."</td>"; ?><td>
-					<a href="<?php echo $linkb ?>&admin_action=jdelete&id=<?php echo $row->l_id?>"><img border="0" src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/post/delete.png"></a></td></tr>
+					<a href="<?php echo $linkb ?>&admin_action=jdelete&id=<?php echo $row->l_id?>"><img border="0" src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/delete.png"></a></td></tr>
 					<?php
 				}
 				echo '</table><hr />';
@@ -281,7 +281,7 @@ function wpcareers_approve_post($id, $action) {
 					?>
 					<tr <?php echo $color; ?> onMouseOver="this.bgColor='#FFF';" onMouseOut="this.bgColor='#F4F4F4';"><td>
 					<a href="<?php echo $linkb; ?>&admin_action=rapprove&id=<?php echo $row->r_id;?>">
-					<img border="0" src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/post/ok.gif"></a></td>
+					<img border="0" src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/ok.gif"></a></td>
 					<?php
 					print "<td>".$row->r_title."</td>";
 					// TODO
@@ -290,7 +290,7 @@ function wpcareers_approve_post($id, $action) {
 					$category=$wpdb->get_var($sql);
 					print "<td>".$category."</td>";
 					print "<td>".$row->r_email."</td>"; ?><td>
-					<a href="<?php echo $linkb ?>&admin_action=rdelete&id=<?php echo $row->r_id?>"><img border="0" src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/post/delete.png"></a></td></tr><?php
+					<a href="<?php echo $linkb ?>&admin_action=rdelete&id=<?php echo $row->r_id?>"><img border="0" src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/delete.png"></a></td></tr><?php
 				} 
 				echo '</table></div><BR />';
 			} else {
@@ -402,12 +402,12 @@ function wpcareers_admin_main_job($id, $action){
 						$color="style='background-color:#fff;'";
 					}
 					$rank++;
-					$modImg = '<img src="' . JP_PLUGIN_URL .'/images/post/edit.png" border=0 alt="$lang[J_MODIFANN]">';
+					$modImg = '<img src="' . JP_PLUGIN_URL .'/images/edit.png" border=0 alt="$lang[J_MODIFANN]">';
 					$modifyJoblink=wpcareers_create_link("jmodify",array("name"=>$modImg, "id"=>$row->l_id));
 					echo "<tr ".$color. " onMouseOver=\"this.bgColor='#FFFFFF';\" onMouseOut=\"this.bgColor='#F4F4F4';\"> ";
 					echo "<td>".$modifyJoblink."</td>";
 					echo "<td>".$row->l_title."</td>"; print "<td nowrap>".$row->l_date."</td>";
-					echo "<td>". "<a href=\"". $linkb ."&admin_action=main&action=jdelete&id=".$row->l_id ."\"><img border=0 src=\"" .get_bloginfo('wpurl'). "/wp-content/plugins/wpcareers/images/post/delete.png\"</a>"; 
+					echo "<td>". "<a href=\"". $linkb ."&admin_action=main&action=jdelete&id=".$row->l_id ."\"><img border=0 src=\"" .get_bloginfo('wpurl'). "/wp-content/plugins/wpcareers/images/delete.png\"</a>"; 
 					?> </td></tr>
 					<?php
 				} //for main links

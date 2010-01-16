@@ -102,13 +102,13 @@ function wpcareers_post_resume($message, $mode){
 			}
 
 			if (isset($_POST['remove_photo'])){
-				$file = dirname(__FILE__) . "/public/" . $oldFileName;
+				$file = $wpcareers->public_dir . '/images/' . $oldFileName;
 				unlink($file);
 				$oldFileName = '';
 			}
 
 			if (isset($_POST['remove_upload'])){
-				$file = dirname(__FILE__) . "/resume/". $oldUploadName;
+				$file = $wpcareers->public_dir . '/resume/'. $oldUploadName;
 				unlink($file);
 				$oldUploadName = '';
 			}
@@ -155,10 +155,10 @@ function wpcareers_post_resume($message, $mode){
 						$fp = @fopen($_FILES['photo']['tmp_name'], "r");
 						$content = @fread($fp, $_FILES['photo']['size']);
 						@fclose($fp);
-						$fp = fopen(dirname(__FILE__) . "/public/" . (int)$user_ID."-".$_FILES['photo']['name'], "w");
+						$fp = fopen( $wpcareers->public_dir . '/images/' . (int)$user_ID."-".$_FILES['photo']['name'], "w");
 						@fwrite($fp, $content);
 						@fclose($fp);
-						@chmod(fopen(dirname(__FILE__) . "/public/" . (int)$user_ID."-".$_FILES['photo']['name']), 0777);
+						@chmod(fopen( $wpcareers->public_dir . '/images/' . (int)$user_ID."-".$_FILES['photo']['name']), 0777);
 						$filename = (int)$user_ID."-".$_FILES['photo']['name'];
 					}
 				}
@@ -177,10 +177,10 @@ function wpcareers_post_resume($message, $mode){
 						$fp = @fopen($_FILES['upload']['tmp_name'], "r");
 						$content = @fread($fp, $_FILES['upload']['size']);
 						@fclose($fp);
-						$fp = fopen(dirname(__FILE__) . "/resume/".(int)$user_ID."-".$_FILES['upload']['name'], "w");
+						$fp = fopen( $wpcareers->public_dir . "/resume/".(int)$user_ID."-".$_FILES['upload']['name'], "w");
 						@fwrite($fp, $content);
 						@fclose($fp);
-						@chmod(dirname(__FILE__)."/resume/".(int)$user_ID."-".$_FILES['upload']['name'], 0777);
+						@chmod(  $wpcareers->public_dir . "/resume/".(int)$user_ID."-".$_FILES['upload']['name'], 0777 );
 						$uploadfile = (int)$user_ID."-".$_FILES['upload']['name'];
 					}
 				}
@@ -317,10 +317,10 @@ function wpcareers_post_resume($message, $mode){
 				$title=$result->r_title;
 				$tpl->assign('title',$title);
 				if (strlen($result->r_photo) > 3)
-					$_photo = '&nbsp;&nbsp;<div class="logo"><img src="' . get_bloginfo('wpurl') . '/wp-content/plugins/wpcareers/public/' . $result->r_photo . '" style="width:40px;" /></div>';
+					$_photo = '&nbsp;&nbsp;<div class="logo"><img src="' . $wpcareers->public_url . '/images/' . $result->r_photo . '" style="width:40px;" /></div>';
 
 				if (strlen($result->r_resume) > 3)
-					$_upload = '&nbsp;&nbsp;<a target="_blank" href="' . get_bloginfo('wpurl') . '/wp-content/plugins/wpcareers/resume/' . $result->r_resume . '" return false;"><div class="logo"><img src="' . get_bloginfo('wpurl') . '/wp-content/plugins/wpcareers/images/post/doc.jpg" style="width:40px;" /></div></a></div>';
+					$_upload = '&nbsp;&nbsp;<a target="_blank" href="' . $wpcareers->public_url . '/resume/' . $result->r_resume . '" return false;"><div class="logo"><img src="' . get_bloginfo('wpurl') . '/wp-content/plugins/wpcareers/images/doc.jpg" style="width:40px;" /></div></a></div>';
 
 				if ($result->r_resume > 0) $private = 1;
 				$startDate=$result->r_startDate;

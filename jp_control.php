@@ -23,6 +23,8 @@ Jan 09, 2010
     - All administrator pages finished.
 
 */ 
+//error_reporting(E_ALL);
+//ini_set('display_errors', '1');
 
 
 
@@ -35,7 +37,6 @@ if (!$table_prefix){$table_prefix = $wpdb->prefix;}
  * Constants
  */
 define('VERSION', '1.0-a');
-
 define('JP_PLUGIN_DIR', ABSPATH .  'wp-content/plugins/wpcareers');
 define('JP_PLUGIN_URL', plugins_url('wpcareers'));
 
@@ -66,12 +67,14 @@ require_once(dirname(__FILE__) . '/jp_view_resume.php');
  * get_language() - Get HTTP header accept languages
 */
 $locale = get_locale();
-list ($lng, $loc) = explode('_', $locale);
-$languageFile = JP_PLUGIN_DIR . '/language/lang_'. $lng . '.php';
-if (file_exists($languageFile)) {
-   require_once($languageFile);
+if(!empty($locale)) {
+	$lng = preg_split ('/_/', $locale );
+	$languageFile = JP_PLUGIN_DIR . '/language/lang_'. $lng[0] . '.php';
+}
+if (!empty($languageFile) && file_exists($languageFile)) {
+	require_once($languageFile);
 } else {
-   require_once(JP_PLUGIN_DIR . '/language/lang_en.php');
+	require_once(JP_PLUGIN_DIR . '/language/lang_en.php');
 }
 
 

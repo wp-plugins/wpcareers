@@ -111,7 +111,7 @@ function wpcareers_post_job($message, $mode){
 			}
 
 			if (isset($_POST['remove_photo'])){
-				$file = dirname(__FILE__) . "/public/" . $oldFileName;
+				$file = $wpcareers->public_dir . "/images/" . $oldFileName;
 				unlink($file);
 				$oldFileName = '';
 			}
@@ -142,10 +142,10 @@ function wpcareers_post_job($message, $mode){
 						$fp = @fopen($_FILES['photo']['tmp_name'], "r");
 						$content = @fread($fp, $_FILES['photo']['size']);
 						@fclose($fp);
-						$fp = fopen(dirname(__FILE__) . "/public/" . (int)$user_ID."-".$_FILES['photo']['name'], "w");
+						$fp = fopen( $wpcareers->public_dir . "/images/" . (int)$user_ID."-".$_FILES['photo']['name'], "w" );
 						@fwrite($fp, $content);
 						@fclose($fp);
-						@chmod(fopen(dirname(__FILE__) . "/public/" . (int)$user_ID."-".$_FILES['photo']['name']), 0777);
+						@chmod(fopen(  $wpcareers->public_dir . "/images/" . (int)$user_ID."-".$_FILES['photo']['name'] ), 0777);
 						$filename = (int)$user_ID."-".$_FILES['photo']['name'];
 					}
 				}
@@ -253,7 +253,7 @@ function wpcareers_post_job($message, $mode){
 				$title=$result->l_title;
 				$tpl->assign('title',$title);
 				if (strlen($result->l_photo) > 3)
-					$photo = '<div class="logo"><img src="' . get_bloginfo('wpurl') . '/wp-content/plugins/wpcareers/public/' . $result->l_photo . '" style="width:40px;"></a></div>';
+					$photo = '<div class="logo"><img src="' . $wpcareers->public_url . '/images/' . $result->l_photo . '" style="width:40px;"></a></div>';
 				$tpl->assign('lid',$result->l_id);
 				$tpl->assign('categorySelected', $result->lc_id);
 				$tpl->assign('typeSelected', $result->l_type);
