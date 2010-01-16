@@ -116,7 +116,7 @@ function process_structure(){
 
 
 function wpj_job_view_from_category($lcid){
-	global $_GET, $_POST, $table_prefix, $wpdb, $lang, $_FILES;
+	global $_GET, $_POST, $table_prefix, $wpdb, $lang, $_FILES, $wpcareers;
 
 	$wpca_settings=get_option('wpcareers');
 	$sql="SELECT * FROM {$table_prefix}wpj_job WHERE lc_id=".$lcid;
@@ -144,35 +144,38 @@ function wpj_job_view_from_category($lcid){
 	}
 	?>
 	<P>
-	<div class="wpca">
-	 <fieldset><legend><?php echo $lang['JH_CATEGORY'] ?></legend>
-	 <input type="button" value="<?php echo $lang['J_ADDCATPRINC'] ?>" onclick="document.location.href='<?php echo $PHP_SELF;?>?page=wpcareers_structure&admin_action=editJobCategory&c_id=0';">
-	 <P>
-	 <table>
-		<tr>
-			<th><img border=0 src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/edit.png"> Title</th>
-			<th width="150">Local</th>
-			<th>Status</th>
-			<th>Delete</th>
+	<div class="wrap"><h2><?php echo $lang['JH_CATEGORY'] ?></h2><p>
+		<div class="wpca">
+		 <fieldset><legend>&nbsp;</legend>
+		 <input type="button" value="<?php echo $lang['J_ADDCATPRINC'] ?>" onclick="document.location.href='<?php echo $PHP_SELF;?>?page=wpcareers_structure&admin_action=editJobCategory&c_id=0';">
+		 <P>
+		 <table>
+			<tr>
+				<th><img border=0 src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/edit.png"> Title</th>
+				<th width="150">Local</th>
+				<th>Status</th>
+				<th>Delete</th>
 			</tr>
 			<?php
 			for ($i=0; $i<count($jobs); $i++){
-			 $job = $jobs[$i];
-			 $id = $job[lid];
-			 $title = $job[title];
-			 echo '<tr>'; 
-			 echo '<td style="background-color:#E9E9E9">&nbsp;'.$space;
-			 $viewJoblink=wpcareers_create_link("jview", array("name"=>$title, "id"=>$id));
-			 ?>
-			 <?php echo $viewJoblink; ?></td>
-			 <td style=""><?php echo $job[town]; ?></td>
-			 <td style="background-color:#E9E9E9"><?php echo $job[valid]; ?></td>
-			 <td><a style="text-decoration: none;" href="javascript:deleteCategory('<?php echo rawurlencode($job[title] . " " . $job[town] );?>', '<?php echo $PHP_SELF;?>?page=wpcareers_structure&admin_action=deleteJobCategory&c_id=<?php echo $id;?>');"><img border=0 src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/delete.png"></a></td></tr>
-			<?php
+				 $job = $jobs[$i];
+				 $id = $job[lid];
+				 $title = $job[title];
+				echo '<tr>'; 
+					echo '<td style="background-color:#E9E9E9">&nbsp;'.$space;
+					$viewJoblink=wpcareers_create_link("jview", array("name"=>$title, "id"=>$id));
+					?>
+					<?php echo $viewJoblink; ?></td>
+					<td style=""><?php echo $job[town]; ?></td>
+					<td style="background-color:#E9E9E9"><?php echo $job[valid]; ?></td>
+					<td><a style="text-decoration: none;" href="javascript:deleteCategory('<?php echo rawurlencode($job[title] . " " . $job[town] );?>', '<?php echo $PHP_SELF;?>?page=wpcareers_structure&admin_action=deleteJobCategory&c_id=<?php echo $id;?>');"><img border=0 src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/delete.png"></a></td>
+				</tr>
+				<?php
 			}
 			?>
-		</table>
-		<br></fieldset>
+			</table>
+			<br></fieldset>
+		</div>
 	</div>
 	<?php
 } //wpj_job_view_from_category

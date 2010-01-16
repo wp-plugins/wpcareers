@@ -123,13 +123,16 @@ function wpcareers_get_breadcrumbs($sidebar){
 
 function wpcareers_create_link($action, $vars){
 	global $wpdb, $table_prefix, $wp_rewrite, $wpcareers;
+
 	$wpca_settings = get_option('wpcareers');
-	$page_id = $wpcareers->pageinfo['ID'];
+	$page_info = $wpcareers->get_pageinfo();
+	$page_id = $page_info['ID'];
 	if($wp_rewrite->using_permalinks()) $delim = "?";
 	else $delim = "&amp;";
-	$perm = get_permalink($page_id);
-	$main_link = $perm . $delim;
+	
+	$page = get_permalink($page_id);
 
+	$main_link = $page . $delim;
 	if (isset($vars['name'])) $name = trim($vars["name"]);
 	if (isset($vars['id'])) $id = trim($vars["id"]);
 	switch ($action){

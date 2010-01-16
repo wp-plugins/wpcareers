@@ -23,7 +23,6 @@ class WP_Careers {
 	var $compile_dir;
 	var $cache_dir;
 	var $config_dir;
-	var $pageinfo;
 	var $plugin_home_url;
 	var $public_url;
 	var $public_dir;
@@ -45,7 +44,7 @@ class WP_Careers {
 		$this->password = get_option('wpca_password');  // TODO
 		$this->public_dir = ABSPATH . 'wp-content/public/wpcareers/';
 		$this->public_url = get_option('siteurl') . '/wp-content/public/wpcareers/';
-
+		
 		/**
 		* config_page() - Add WordPress action to show the admin configuration page
 		*/
@@ -104,7 +103,7 @@ class WP_Careers {
 
 	function add_admin_head() {
 		?>
-		<link rel="stylesheet" href="<?php echo get_bloginfo( "wpurl" ); ?>/wp-content/plugins/wpcareers/<?php echo JPTHEME ?>/css/admin.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo JP_PLUGIN_URL; ?>/themes/default/css/admin.css" type="text/css" />
 		<?php
 		$this->tinymce();
 	}
@@ -146,10 +145,11 @@ class WP_Careers {
 					$_POST['wpcareers']['installed'] = 'y';
 					$jp_new_slug = $_POST['wpcareers']['slug'];
 					// new installation
-					$page_title = $this->get_pageinfo();
+					$page_info = $this->get_pageinfo();
+					$post_title = $page_info[post_title];
 					if ( empty($page_title) ){
-						$page_title = $this->create_page();
-					}  
+						$this->create_page();
+					}
 					$sql = "SELECT post_name FROM {$table_prefix}posts WHERE post_name = '".$wpdb->escape($jp_new_slug)."'";
 					$check4update = $wpdb->get_results($sql);
 					if($jp_new_slug != $wpca_settings['slug']) {
@@ -664,7 +664,7 @@ class WP_Careers {
 
 	function get_pageinfo() {
 		global $wpdb, $table_prefix;
-		return $wpdb->get_var("SELECT post_title FROM {$table_prefix}posts WHERE post_title = '[[WPCAREERS]]'");
+		return $wpdb->get_row("SELECT * FROM {$table_prefix}posts WHERE post_title = '[[WPCAREERS]]'", ARRAY_A);
 	}
 
 	function create_page() {
@@ -753,6 +753,5 @@ class WP_Careers {
 	}
 
 }
-
 
 ?>
