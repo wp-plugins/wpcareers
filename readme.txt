@@ -87,7 +87,7 @@ Manual Process
 You will have to:
 
 * Download the latest plugin version
-* Uncompress the file (it is usually in ZIP format)
+* Uncompress the file 
 * Deactivate the plugin you currently have on your website (Admin Dashboard->Plugins->Deactivate)
 * Upload/Replace the plugin in your wp-content->plugins
 * Reactivate the plugin
@@ -102,10 +102,13 @@ This is a the initial version of plugin.
 
 bugfix release
 
-fixed for plugin auto-upgrade 
-moved directories public resources to wp-content
-fixed some bugs in administrator’s interface (redirect ...)
 
+fixed for plugin auto-upgrade 
+Note: This bugfix release hove to install Manually.
+- fixed for the plugin auto-upgrade. (must test with the next coming version)
+- moved directories public resources to wp-content
+- fixed some bugs in administrator’s interface (redirect, brocken links …)
+- the dashboard will show only for users with rolle >1
 
 = 1.0 =
 
