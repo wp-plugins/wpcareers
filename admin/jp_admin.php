@@ -17,24 +17,24 @@ function wpcareers_admin_page(){
 
    get_currentuserinfo();
 
-   $wpca_ssettings = get_option('wpcareer');
-   if (!isset($_REQUEST['admin_page_arg'])) $_REQUEST['admin_page_arg']='wpcareer_settings';
+   $wpca_ssettings = get_option('wpcareers');
+   if (!isset($_REQUEST['admin_page_arg'])) $_REQUEST['admin_page_arg']='wpcareers_settings';
    ?>
    <div class="wrap">
    <h2><?php echo $pagelabel;?></h2>
    <?php
    switch ($_REQUEST['admin_page_arg']){
-      case "wpcareer_settings":
+      case "wpcareers_settings":
          default:
          $wpcareers->process_option_settings();
       break;
-      case "wpcareer_structure":
+      case "wpcareers_structure":
          process_structure();
       break;
-      case "wpcareer_posts":
+      case "wpcareers_posts":
          process_posts();
       break;
-      case "wpcareer_utilities":
+      case "wpcareers_utilities":
          process_utilities();
       break;
    }
@@ -49,7 +49,7 @@ function wpcareers_admin_menu(){
   global $wpcareers, $PHP_SELF;
   $head = '<div class="wrap"><h2>Wordpress Career</h2><p>';
   $head .= '<div style="text-align: right;"><a href="http://www.forgani.com/">Support this software</a><br>Read my opinion</div>';
-  $menu = '<a href=' . $PHP_SELF . '?page=' . 'wpcareer_settings' . '>Settings & Options</a> | ';
+  $menu = '<a href=' . $PHP_SELF . '?page=' . 'wpcareers_settings' . '>Settings & Options</a> | ';
   for ($i=0; $i<count($wpcareers->admin_menu); $i++){
     $tlink = $wpcareers->admin_menu[$i];
     if (!isset($_GET['adm_arg'])) $_GET['adm_arg']='';
