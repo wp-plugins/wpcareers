@@ -1,5 +1,5 @@
 === WPCareers ===
-name: Wordpress Careers plugin version 1.0-a
+name: Wordpress Careers plugin version 1.0.1a
 Contributors: Mohammad Forgani
 Donate link: http://www.forgani.com/root/wordpress-careers-plugin/
 Tags: job portal, careers, wpcareers, career, Career Portal, JobPortal
@@ -81,6 +81,7 @@ For Uninstalling the plugin please run the plugin Uninstaller utility
 
 == Upgrade Notice ==
 
+
 Manual Process
 
 You will have to:
@@ -96,6 +97,15 @@ This is a the initial version of plugin.
 
 
 == Changelog ==
+
+== 1.0.1 ==
+
+bugfix release
+
+fixed for plugin auto-upgrade 
+moved directories public resources to wp-content
+fixed some bugs in administrator’s interface (redirect ...)
+
 
 = 1.0 =
 
