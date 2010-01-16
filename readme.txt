@@ -61,6 +61,12 @@ You will need to make the following folders writeable (chmod 777) :
 
 == Frequently Asked Questions ==
 
+= Is this compatible with the WP plugin auto-upgrade feature? =
+
+No. the WP plugin auto-upgrade does not do this. For this reason, please follow the manual Process.
+
+
+
 For Uninstalling the plugin please run the plugin Uninstaller utility
 
 
@@ -72,6 +78,17 @@ For Uninstalling the plugin please run the plugin Uninstaller utility
 
 
 == Upgrade Notice ==
+
+Manual Process
+
+You will have to:
+
+* Download the latest plugin version
+* Uncompress the file (it is usually in ZIP format)
+* Deactivate the plugin you currently have on your website (Admin Dashboard->Plugins->Deactivate)
+* Upload/Replace the plugin in your wp-content->plugins
+* Reactivate the plugin
+
 
 This is a the initial version of plugin.
 
