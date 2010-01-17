@@ -98,9 +98,7 @@ This is a the initial version of plugin.
 
 == Changelog ==
 
-== 1.1 ==
-
-bugfix release
+= bugfix version 1.1-a =
 
 
 fixed for plugin auto-upgrade 
@@ -110,7 +108,7 @@ Note: This bugfix release hove to install Manually.
 - fixed some bugs in administrator’s interface (redirect, brocken links …)
 - the dashboard will show only for users with rolle >1
 
-= 1.0 =
+= version 1.0 =
 
 * User friendly registration system
 * Apply for jobs and submit resumes. 
@@ -122,4 +120,4 @@ Note: This bugfix release hove to install Manually.
 
 == To Do ==
 
-The WP plugin auto-upgrade 
+The WP plugin auto-upgrade
