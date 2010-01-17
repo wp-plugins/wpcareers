@@ -255,25 +255,29 @@ function jp_create_navigation($id,$links,$addJobLink, $desc){
 }
 
 function wpcareers_do_login(){
-	global $wpdb, $error, $wp_query, $_REQUEST, $_GET, $_POST, $lang, $wpcareers, $wp_rewrite;
+	global $wpdb, $error, $wp_query, $_REQUEST, $_GET, $_POST, $lang, $wpcareers, $wp_rewrite, $wpcareers;
 	$tpl = wpcareers_display_header($message);
 	if (!is_array($wp_query->query_vars))	$wp_query->query_vars = array();
 	$wpca_settings = get_option('wpcareers');
-	$action = '';
+
 	$message = '';
+	$error = '';
 	$home = wpcareers_create_link("indexLink", 'undef');
+	if ($wp_rewrite->get_page_permastruct() != '') {
+		$selflink = get_option('home') . '/' . $wpca_settings['slug'];
+	} else {
+		# fixed for xampp
+		$page_info = $wpcareers->get_pageinfo();
+		$page_id = $page_info['ID'];
+		$selflink = get_option('home') . "/?page_id=" . $page_id;
+	}
 	
-	if ($wp_rewrite->get_page_permastruct()=="") 
-		$selflink = "/index.php?pagename=".$wpca_settings['slug'];
-	else $selflink =  $wpca_settings['slug'];
-	
-	if (isset($_REQUEST['action'])) { 
+	if (!empty($_REQUEST['action'])) { 
 		$action = $_REQUEST['action'];
-	} 	else {
-		wp_redirect('/' . $selflink . '/');
+	} else {
+		wp_redirect( $selflink );
 		exit();
 	}
-	$error = '';
 	nocache_headers();
 	
 	switch($action) {
@@ -282,7 +286,7 @@ function wpcareers_do_login(){
 		wp_clearcookie();
 		do_action('wp_logout');
 		nocache_headers();
-		wp_redirect('/' . $selflink . '/');
+		wp_redirect( $selflink );
 		exit();
 	break;
 	case 'lostpassword':
@@ -440,7 +444,7 @@ function wpcareers_do_login(){
 		return $error;
 	break;
 	default:
-		wp_redirect('/' . $selflink . '/');
+		wp_redirect( $selflink );
 	break;
 	} 
 	exit();
