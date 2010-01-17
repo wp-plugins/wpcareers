@@ -134,12 +134,13 @@ function wpcareers_uninstall_db(){
 }
 
 function jp_ShowImg($form, $element) {
+	global $wpcareers;
 	$wpca_settings = get_option('wpcareers');
 	echo "<script type=\"text/javascript\">\n";
 	echo "<!--\n\n";
 	echo "function showImage(dir) {\n";
 	echo "document.".$form.".avatar.src=\n";
-	echo "'".get_bloginfo('wpurl')."/wp-content/plugins/wpcareers/images/' + dir + '/' + document.".$form.".image.options[document.".$form.".image.selectedIndex].value;\n";
+	echo "'". $wpcareers->plugin_url . "/images' + dir + '/' + document.".$form.".image.options[document.".$form.".image.selectedIndex].value;\n";
 	echo "document.".$form.".elements['wpcareers[".$element."]'].value = document.".$form.".image.options[document.".$form.".image.selectedIndex].value;";
 	echo "}\n\n";
 	echo "//-->\n";

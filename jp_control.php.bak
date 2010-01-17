@@ -6,7 +6,7 @@ Plugin Name: wpcareers
 Plugin URI: http://www.forgani.com/root/wordpress-careers-plugin/
 Description: Note -> This bugfix release hove to install Manually.
 Author: Mohammad forgani
-Version: 1.1-a
+Version: 1.0-a
 Author URI: http://www.forgani.com
 
 Copyright 2010 Mohammad Forgani 
@@ -17,17 +17,6 @@ Demo:  http://www.wpcareers.com
 
 /**
 Changes:
-
-
-
-Jan 18, 2010
-fixed for plugin auto-upgrade 
-Note: This bugfix release hove to install Manually.
-- fixed for the plugin auto-upgrade. (must test with the next coming version)
-- moved directories public resources to wp-content
-- fixed some bugs in administrator’s interface (redirect, brocken links …)
-- the dashboard will show only for users with rolle >1
-
 
 Jan 09, 2010
     - Released v1.0

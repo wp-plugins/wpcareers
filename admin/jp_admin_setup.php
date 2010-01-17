@@ -78,7 +78,7 @@ class WP_Careers {
 	function add_head() {
 		global $locale;
 		$wpca_settings = get_option('wpcareers');
-		echo "<link rel=\"stylesheet\" href=\"" . JP_PLUGIN_URL . "/themes/default/css/default.css\" type=\"text/css\" media=\"screen\">";
+		echo "<link rel=\"stylesheet\" href=\"" . $this->plugin_url . "/themes/default/css/default.css\" type=\"text/css\" media=\"screen\">";
 		if($wpca_settings['edit_style']==null || $wpca_settings['edit_style']=='plain') {
 			// nothing
 		} elseif($wpca_settings['edit_style']=='tinymce') {
@@ -103,7 +103,7 @@ class WP_Careers {
 
 	function add_admin_head() {
 		?>
-		<link rel="stylesheet" href="<?php echo JP_PLUGIN_URL; ?>/themes/default/css/admin.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo $this->plugin_url; ?>/themes/default/css/admin.css" type="text/css" />
 		<?php
 		$this->tinymce();
 	}
@@ -146,7 +146,8 @@ class WP_Careers {
 					$jp_new_slug = $_POST['wpcareers']['slug'];
 					// new installation
 					$page_info = $this->get_pageinfo();
-					$post_title = $page_info[post_title];
+					$page_title = $page_info['post_title'];
+
 					if ( empty($page_title) ){
 						$this->create_page();
 					}
@@ -260,9 +261,9 @@ class WP_Careers {
 				<td>
 				<table><tr><td valign="top">
 					<input type="hidden" name="wpcareers[page_image]" value="<?php echo $wpca_settings['page_image'];?>">
-					<select name="image" onChange="showImage('main')">
+					<select name="image" onChange="showImage('/')">
 					<?php
-					$rep = JP_PLUGIN_DIR . "/images/main";
+					$rep = $this->plugin_dir . "/images";
 					$handle=opendir($rep);
 					while ($file = readdir($handle)) {$filelist[] = $file;}
 					asort($filelist);
@@ -279,8 +280,8 @@ class WP_Careers {
 					}
 					?>
 					</select></td><td>&nbsp;&nbsp;
-					<img src="<?php echo get_bloginfo('wpurl'); ?>/wp-content/plugins/wpcareers/images/<?php echo $wpca_settings['page_image']; ?>" name="avatar" align="absmiddle"><br>
-					<span class="smallTxt"><?php echo $lang['J_REPIMGCAT']; ?>./wp-content/plugins/wpcareers/images/</span>
+					<img src="<?php echo $this->plugin_url ?>/images/<?php echo $wpca_settings['page_image']; ?>" name="avatar" align="absmiddle"><br>
+					<span class="smallTxt"><?php echo $lang['J_REPIMGCAT']; ?>/wp-content/plugins/wpcareers/images/</span>
 				</td></tr></table>
 				</td></tr>
 			<tr>
