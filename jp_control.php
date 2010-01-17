@@ -8,11 +8,7 @@ Description: Note -> This bugfix release hove to install Manually.
 Author: Mohammad forgani
 Version: 1.1-a
 Author URI: http://www.forgani.com
-
 Copyright 2010 Mohammad Forgani 
-
-Demo:  http://www.wpcareers.com
-
 */
 
 /**
