@@ -20,25 +20,25 @@ function wpcareers_post_job($message, $mode){
 	$error = '';
 	$tpl = wpcareers_display_header($message);
 
-	if (isset($_POST['wpcareers']['title'])) {
-		$email=$_POST['wpcareers']['email'];
-		$title = strip_tags($_POST['wpcareers']['title']);
-		$expire = strip_tags($_POST['wpcareers']['expire']);
-		$type = $_POST['wpcareers']['type'];
-		$company = strip_tags($_POST['wpcareers']['company']);
-		$desctext = jp_remove_weblink($_POST['wpcareers']['desctext']);
-		$requirements = strip_tags($_POST['wpcareers']['requirements']);
-		$tel = trim(strip_tags($_POST['wpcareers']['tel']));
-		$fax = trim(strip_tags($_POST['wpcareers']['fax']));
-		$category = strip_tags($_POST['wpcareers']['category']);
-		$price = strip_tags($_POST['wpcareers']['price']);
-		$pricetype = $_POST['wpcareers']['pricetype'];
-		$contactinfo = strip_tags($_POST['contactinfo']);
-		$submitter = strip_tags($_POST['wpcareers']['submitter']);
-		$town = strip_tags($_POST['wpcareers']['town']);
-		$state = strip_tags($_POST['wpcareers']['state']);
-		$oldFileName = $_POST['wpcareers']['oldFileName'];  
-	}
+	
+	$email= trim($_POST['wpcareers']['email']);
+	$title = trim(strip_tags($_POST['wpcareers']['title']));
+	$expire = strip_tags($_POST['wpcareers']['expire']);
+	$type = $_POST['wpcareers']['type'];
+	$company = trim(strip_tags($_POST['wpcareers']['company']));
+	$desctext = jp_remove_weblink($_POST['wpcareers']['desctext']);
+	$requirements = trim( strip_tags($_POST['wpcareers']['requirements']) );
+	$tel = trim(strip_tags($_POST['wpcareers']['tel']));
+	$fax = trim(strip_tags($_POST['wpcareers']['fax']));
+	$category = strip_tags($_POST['wpcareers']['category']);
+	$price = trim(strip_tags($_POST['wpcareers']['price']));
+	$pricetype = $_POST['wpcareers']['pricetype'];
+	$contactinfo = strip_tags($_POST['contactinfo']);
+	$submitter = trim(strip_tags($_POST['wpcareers']['submitter']));
+	$town = trim(strip_tags($_POST['wpcareers']['town']));
+	$state = trim(strip_tags($_POST['wpcareers']['state']));
+	$oldFileName = $_POST['wpcareers']['oldFileName'];
+	
 
 	$date = date("F j, Y");
 	$ip = getenv('REMOTE_ADDR');
@@ -195,10 +195,10 @@ function wpcareers_post_job($message, $mode){
 				$displayform=true;
 			}
 		}
-		if ($displayform==true){
+		if ($displayform==true) {
 			if ( strlen($error) > 10 ) $message = $lang['J_VALIDERORMSG'] . $error;
 			$space="";
-			if($wpca_settings['confirmation_code']=='y'){ 
+			if($wpca_settings['confirmation_code']=='y') {
 				$oVisualCaptcha=new _jp_captcha();
 				$captcha=rand(1, 50).".png";
 				$oVisualCaptcha->create($wpcareers->cache_dir ."/".$captcha);
@@ -211,7 +211,7 @@ function wpcareers_post_job($message, $mode){
 			$results=$wpdb->get_results($sql);
 			$categoryId = array();
 			$categoryTitle = array();
-			if (!empty($results)) {
+			if ( !empty($results) ) {
 				foreach ($results as $result) {
 					array_push($categoryId, $result->c_id);
 					array_push($categoryTitle, $result->c_title);
@@ -246,7 +246,7 @@ function wpcareers_post_job($message, $mode){
 			$tpl->assign('priceId', $priceId);
 			$tpl->assign('priceTitle', $priceTitle);
 			// someone try to modify the post
-			if (isset($lid) && $lid > 0) {
+			if (isset($lid) && $lid > 0) { 
 				$sql="SELECT * FROM {$table_prefix}wpj_job WHERE l_id='".$lid."'";
 				$results=$wpdb->get_results($sql);
 				$result=$results[0];
@@ -275,6 +275,24 @@ function wpcareers_post_job($message, $mode){
 				$tpl->assign('_photo',$photo);
 				$tpl->assign('company',$result->l_company);
 				$tpl->assign('fax',$result->l_fax);
+			} else {
+				$tpl->assign('town',$town);
+				$tpl->assign('title',$title);
+				$tpl->assign('state',$state);
+				$tpl->assign('contactinfo',$contactinfo);
+				$tpl->assign('submitter',$submitter);
+				$tpl->assign('price',$price);
+				$tpl->assign('expire',$expire);
+				$tpl->assign('priceSelected', $type);
+				$tpl->assign('desctext',$desctext);
+				$tpl->assign('requirements',$requirements);
+				$tpl->assign('price',$price);
+				$tpl->assign('tel',$tel);
+				$tpl->assign('date',$date);
+				$tpl->assign('email',$email);
+				$tpl->assign('_photo',$photo);
+				$tpl->assign('company',$company);
+				$tpl->assign('fax',$fax);
 			}
 			$tpl->assign('message',$message);
 			wpcareers_footer($tpl);

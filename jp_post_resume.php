@@ -23,25 +23,29 @@ function wpcareers_post_resume($message, $mode){
 	$tpl = wpcareers_display_header($message);
 
 	$private = (isset($_POST['wpcareers']['private'])? 1 : 0);
-	if (isset($_POST['wpcareers']['title'])) {
-		$email = $_POST['wpcareers']['email'];
-		$title = strip_tags($_POST['wpcareers']['title']);
-		$startDate = strip_tags($_POST['wpcareers']['startDate']);
-		$expire = strip_tags($_POST['wpcareers']['expire']);
-		$typesalary = $_POST['wpcareers']['typesalary'];
-		$name = strip_tags($_POST['wpcareers']['name']);
-		$desctext = jp_remove_weblink($_POST['wpcareers']['desctext']);
-		$tel = trim(strip_tags($_POST['wpcareers']['tel']));
-		$fax = trim(strip_tags($_POST['wpcareers']['fax']));
-		$category = $_POST['wpcareers']['category'];
-		$salary = strip_tags($_POST['wpcareers']['salary']);
-		$information = strip_tags($_POST['contactinfo']);
-		//$submitter = $_POST['wpcareers']['submitter'];
-		$town = strip_tags($_POST['wpcareers']['town']);
-		$oldFileName = $_POST['wpcareers']['oldFileName'];
-		$oldUploadName = $_POST['wpcareers']['oldUploadName'];
-		$state = $_POST['wpcareers']['state'];
-	}
+
+	$email= trim($_POST['wpcareers']['email']);
+	$title = trim(strip_tags($_POST['wpcareers']['title']));
+	$expire = strip_tags($_POST['wpcareers']['expire']);
+	$type = $_POST['wpcareers']['type'];
+	$company = trim(strip_tags($_POST['wpcareers']['company']));
+	$desctext = jp_remove_weblink($_POST['wpcareers']['desctext']);
+	$requirements = trim( strip_tags($_POST['wpcareers']['requirements']) );
+	$tel = trim(strip_tags($_POST['wpcareers']['tel']));
+	$fax = trim(strip_tags($_POST['wpcareers']['fax']));
+	$category = strip_tags($_POST['wpcareers']['category']);
+	$submitter = trim(strip_tags($_POST['wpcareers']['submitter']));
+	$town = trim(strip_tags($_POST['wpcareers']['town']));
+	$state = trim(strip_tags($_POST['wpcareers']['state']));
+	$oldFileName = $_POST['wpcareers']['oldFileName'];
+	//
+	$startDate = strip_tags($_POST['wpcareers']['startDate']);
+	$typesalary = $_POST['wpcareers']['typesalary'];
+	$name = trim(strip_tags($_POST['wpcareers']['name']));
+	$salary = strip_tags($_POST['wpcareers']['salary']);
+	$information = trim (strip_tags($_POST['contactinfo']));
+	$oldUploadName = $_POST['wpcareers']['oldUploadName'];
+
 	$date = date("F j, Y");
 	$ip = getenv('REMOTE_ADDR');
 
@@ -346,6 +350,27 @@ function wpcareers_post_resume($message, $mode){
 				$tpl->assign('name',$result->r_name);
 				$tpl->assign('fax',$result->r_fax);
 				$tpl->assign('information',$result->r_contactinfo);
+				$tpl->assign('private',$private);
+			} else {
+				$tpl->assign('town',$town);
+				$tpl->assign('title',$title);
+				$tpl->assign('state',$state);
+				$tpl->assign('information',$contactinfo);
+				$tpl->assign('submitter',$submitter);
+				$tpl->assign('expire',$expire);
+				$tpl->assign('salarySelected', $typesalary);
+				$tpl->assign('salary',$salary);
+				$tpl->assign('desctext',$desctext);
+				$tpl->assign('requirements',$requirements);
+				$tpl->assign('tel',$tel);
+				$tpl->assign('date',$date);
+				$tpl->assign('email',$email);
+				$tpl->assign('_photo',$photo);
+				$tpl->assign('company',$company);
+				$tpl->assign('fax',$fax);
+				$tpl->assign('_upload',$_upload);
+				$tpl->assign('oldUploadName',$resume);
+				$tpl->assign('name',$name);
 				$tpl->assign('private',$private);
 			}
 
