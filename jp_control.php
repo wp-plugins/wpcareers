@@ -21,7 +21,7 @@ fixed for plugin auto-upgrade
 Note: This bugfix release hove to install Manually.
 - fixed for the plugin auto-upgrade. (must test with the next coming version)
 - moved directories public resources to wp-content
-- fixed some bugs in administrator’s interface (redirect, brocken links …)
+- fixed some bugs in administratos interface (redirect, brocken links)
 - the dashboard will show only for users with rolle >1
 
 
