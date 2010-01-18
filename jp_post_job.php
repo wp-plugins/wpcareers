@@ -363,17 +363,17 @@ function wpcareers_send_job($message){
 		}
 		if ($sendAd == true) {
 			$displayform=false;
-			$subject = "".$lang[J_SUBJET]." ".get_bloginfo('wpurl')."";
-			$message .= "".$lang[J_HELLO]." $fname,\n\n$yourname ".$lang[J_MESSAGE]."\n\n";
+			$subject = "".$lang['J_SUBJET']." ".get_bloginfo('wpurl')."";
+			$message = "".$lang['J_HELLO']." $fname,\n\n$yourname ".$lang['J_MESSAGE']."\n\n";
 			$message .= "$title : $type\n$desctext\n\n";
 			if ($price == 1) {
-				$message .= "".$lang[J_PRICE]." ". $price . $typeprice . "\n";
+				$message .= "".$lang['J_PRICE']." ". $price . $typeprice . "\n";
 			}
 			if ($tel) {
-				$message .= "".$lang[J_TEL]." $tel\n";
+				$message .= "".$lang['J_TEL']." $tel\n";
 			}
 			if ($town) {
-				$message .= "".$lang[J_TOWN]." $town\n";
+				$message .= "".$lang['J_TOWN']." $town\n";
 			}
 			$message = $message . '<P>'. $maildesc;
 			$email_status=jp_send_email($mailto, $subject, $message, $mailfrom); 
