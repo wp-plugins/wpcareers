@@ -385,10 +385,10 @@ function wpj_view_category($id) {
 	<img src="<?php echo $wpcareers->plugin_url; ?>/images/delete.png"><?php echo $lang['J_DELJOBCAT']; ?><p>
 	<P>
 	<div class="wpca">
-	 <fieldset><legend><?php echo $lang['J_CATEGORY'] ?></legend>
-	 <input type="button" value="<?php echo $lang['J_ADDCATPRINC'] ?>" onclick="document.location.href='<?php echo $PHP_SELF;?>?page=wpcareers_structure&admin_action=editJobCategory&c_id=0';">
-	 <P>
-	 <table>
+	<fieldset><legend><?php echo $lang['J_CATEGORY'] ?></legend>
+	<input type="button" value="<?php echo $lang['J_ADDCATPRINC'] ?>" onclick="document.location.href='<?php echo $PHP_SELF;?>?page=wpcareers_structure&admin_action=editJobCategory&c_id=0';">
+	<P>
+	<table>
 		<tr style="background-color:#ccc">
 			<th width="500"><img border=0 src="<?php echo $wpcareers->plugin_url; ?>/images/edit.png"> Title</th>
 			<th width="150">Number of links</th>
@@ -407,8 +407,8 @@ function wpj_view_category($id) {
 			<th width="150">Number of links</th>
 			<th>Delete</th>
 		</tr>
-			<?php wpj_res_cats($id,0,'rc_title', 'ASC');?>
-		</table></td>
+		<?php wpj_res_cats($id,0,'rc_title', 'ASC');?>
+	</table></td>
 	</tr></table>
 	<br></fieldset>
 	</div>
@@ -463,10 +463,9 @@ function wpj_job_cats($parent, $lev, $orderby, $how) {
 	} elseif ($lev == 0) {print "\n";}
 	$sql = "SELECT * FROM {$table_prefix}wpj_categories WHERE cp_id = $parent ORDER BY $orderby $how";
 	$categories = $wpdb->get_results($sql);
-	$linksNum = 0;
 	for ($i=0; $i<count($categories); $i++){
 		$category = $categories[$i];
-		$linksCnt = $wpdb->get_row("SELECT count(lc_id) as count FROM {$table_prefix}wpj_job WHERE lc_id = '".$category->c_id."'", ARRAY_A);
+		$linksCnt = $wpdb->get_row("SELECT count(lc_id) as count FROM {$table_prefix}wpj_job WHERE lc_id=".$category->c_id, ARRAY_A);
 		$linksNum = $linksCnt['count'];
 		$id = $category->c_id;
 		$title = $category->c_title;
@@ -501,14 +500,15 @@ function wpj_res_cats($parent, $lev, $orderby, $how) {
 	<?php
 	for($x=0;$x<$lev;$x++){$space .= "&nbsp;&nbsp;&nbsp;&nbsp;";}
 	$sql = "SELECT * FROM {$table_prefix}wpj_res_categories WHERE rcp_id = $parent ORDER BY $orderby $how";
-	$linksNum = 0;
-	$categories = $wpdb->get_results($sql); 
+	$categories = $wpdb->get_results($sql);
+	
 	for ($i=0; $i<count($categories); $i++){
 		$category = $categories[$i];
-		$linksCnt = $wpdb->get_row("SELECT count(rc_id) as count FROM {$table_prefix}wpj_resume WHERE rc_id = '".$category->rc_id."'", ARRAY_A);
+		$sql = "SELECT count(rc_id) as count FROM {$table_prefix}wpj_resume WHERE rc_id=".$category->rc_id;
+		$linksCnt = $wpdb->get_row($sql, ARRAY_A);
 		$linksNum = $linksCnt['count'];
 		$id = $category->rc_id;
-		$title = $category->rc_title;		
+		$title = $category->rc_title;
 		echo '<tr>';
 		echo '<td style="background-color:#E9E9E9">&nbsp;'.$space;
 		?>	
