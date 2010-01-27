@@ -166,7 +166,8 @@ class WP_Careers {
 					$wpca_settings = $_POST['wpcareers'];
 					update_option('wpcareers', $wpca_settings);
 					$wp_rewrite->flush_rules();
-					if(!$wpdb->get_results("SHOW TABLES LIKE '%".$table_prefix."wpj_%'")) {
+					if(!$wpdb->get_results("SHOW TABLES LIKE '%wpj_%'")) {
+						echo "SHOW TABLES LIKE '%wpj_%'";
 						$this->create_db();
 					}
 					$msg = "Settings Updated.";
