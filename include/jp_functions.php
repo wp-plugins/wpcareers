@@ -304,7 +304,7 @@ function wpcareers_do_login(){
 		$message .= '<label>Username:</label> <input type="text" name="user_login" id="user_login" value="" size="20" tabindex="1" />';
 		$message .= '<br /><p><label>E-mail:</label> <input type="text" name="email" id="email" value="" size="25" tabindex="2" />';
 		$message .= '<p><label for="captcha">'. $lang['J_COMFIMATION'] .'</label> ';
-		$message .= '<img src="'. $wpcareers->cache_dir .'/cache/'. $captcha .'" alt="ConfirmCode" align="middle"/><br>';
+		$message .= '<img src="'. get_bloginfo('wpurl'). '/wp-content/plugins/wpcareers/cache/' . $captcha .'" alt="ConfirmCode" align="middle"/><br>';
 		$message .= '<span class ="smallTxt">'. $lang["J_VERIFICATION"] .'</span></p>';
 		$message .= '<p><lable></lable> <input type="text" name="wpcareers[jp_captcha]" id="wpcareers[jp_captcha]" size="10"></p>';
 		$message .= '</p><p class="submit"> <input type="submit" name="submit" id="submit" value="Retrieve Password" tabindex="3" /></p>';
@@ -532,7 +532,7 @@ function wpcareers_do_register(){
 		$message .= wp_specialchars($user_email) . '"/></p>';
 		$message .= '<p>A password will be emailed to you.</p>';
 		$message .= '<p><label for="captcha">'. $lang['J_COMFIMATION'] .'</label> ';
-		$message .= '<img src="'. $wpcareers->cache_dir .'/cache/'. $captcha .'" alt="ConfirmCode" align="middle"/><br>';
+		$message .= '<img src="'. get_bloginfo('wpurl') . '/wp-content/plugins/wpcareers/cache/' . $captcha .'" alt="ConfirmCode" align="middle"/><br>';
 		$message .= '<span class ="smallTxt">'. $lang["J_VERIFICATION"] .'</span></p>';
 		$message .= '<p><lable></lable> <input type="text" name="capcc_captchakey" id="capcc_captchakey" size="10"></p>';
 		$message .= '<p class="submit"><input type="submit" value="Register" id="submit" name="submit" /></p>';
