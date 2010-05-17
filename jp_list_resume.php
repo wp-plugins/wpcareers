@@ -29,7 +29,7 @@ function wpcareers_list_resumes($message=''){
       
       $photo = false;
       if (strlen($result->r_photo) > 3)
-         $photo = '<div class="logo"><img src="' . $wpcareers->public_dir . '/images/' . $result->r_photo . '" style="width:40px;" /></a></div>';
+         $photo = '<div class="logo"><img src="' . $wpcareers->public_url . '/images/' . $result->r_photo . '" style="width:40px;" /></a></div>';
 
 		$viewResume=wpcareers_create_link("rview", array("name"=>$title, "id"=>$result->r_id));
 		$viewResumeDetail=wpcareers_create_link("rview", array("name"=> $lang['J_VIEW_ICON'] . ' View', "id"=>$result->r_id));
