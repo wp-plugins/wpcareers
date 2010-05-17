@@ -14,7 +14,7 @@
                   <tr><td>
                      <table>
                         <tr><td><b>Category:</b>&nbsp;</td><td>{$item.viewcategory}</td></tr>
-                        <tr><td><b>Title:</b></td><td>{$item.viewjob}&nbsp;&nbsp;<span class ="smallTxt">Added:{$item.date}</span></td></tr>
+                        <tr><td><b>Title:</b></td><td>{$item.viewjob}&nbsp;&nbsp;<span class ="smallTxt">Added: {$item.date}</span></td></tr>
                      </table>
                   </td></tr>
                   <tr><td>
@@ -27,6 +27,8 @@
                </table>
                <BR />--
             {/foreach}
+            {else}
+            <p>{$lang.NOT_MATCH}</p>
             <BR />
             {/if}
             </td>

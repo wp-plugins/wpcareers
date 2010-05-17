@@ -30,7 +30,7 @@
                      <td align="left">
                      jobs:&nbsp;<input type="radio" value="jobs" name="type" checked>&nbsp;&nbsp;
                      Resum:&nbsp;<input type="radio" value="resume" name="type">&nbsp;&nbsp;
-                     All:&nbsp;<input type="radio" value="desc" name="type">&nbsp;&nbsp;
+                     All:&nbsp;<input type="radio" value="all" name="type">&nbsp;&nbsp;
                      </td>   
                   </tr>
                </table>
