@@ -27,7 +27,7 @@
                {if $item.price}
                   <tr><td class="view_left"></td><td class="td_right"><b>{$lang.J_PRICE}</b> {$item.price}&nbsp;{$item.typeprice}</td></tr>
                {/if}
-               <tr><td class="view_left"><span class="red">{$lang.J_REQUIRE}</span></td><td></td></tr>
+               <tr><td class="view_left"><span class="red">{$lang.J_CONTACTINFO}</span></td><td></td></tr>
                <tr><td class="view_left"></td><td class="td_right">{$item.contactinfo}</td></tr>
                <tr><td colspan=2>&nbsp;</td></tr>
                <tr><td class="view_left"></td><td class="td_right"><b>{$lang.J_TOWN}</b> {$item.town}</td></tr>
