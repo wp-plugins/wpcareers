@@ -76,6 +76,7 @@ function wpcareers_view_resume(){
          'sendResumeLink'=> $sendResumeLink,
          'modifyResumeLink' => $modifyResumeLink,
          'deleteResumeLink' => $deleteResumeLink,
+         'viewcategory'=>$linkMain,
          'job_mustlogin'=>$job_mustlogin);
    }
 

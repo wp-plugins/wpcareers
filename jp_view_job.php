@@ -66,13 +66,14 @@ function wpcareers_view_job() {
          'submitter'=>$result->l_submitter,
          'email'=>$result->l_email,
          'photo'=>$photo,
-		 'fax'=>$result->l_fax,
+		   'fax'=>$result->l_fax,
          'company'=>$result->l_company,
          'view'=>$result->l_view . '&nbsp;' . $lang['J_VIEW'],
          'sendJobLink'=> $sendJobLink, 
          'modifyJobLink' => $modifyJobLink,
          'deleteJobLink' => $deleteJobLink,
-         'job_mustlogin'=>$job_mustlogin);
+         'job_mustlogin'=>$job_mustlogin,
+         'viewcategory'=>$linkMain);
    }
 
    $view=$result->l_view+1;

@@ -13,6 +13,7 @@
             {foreach from=$resume item=item key=key}
                <tr><td style="text-align: center;>{$item.photo}</td>
                      <td class="td_right">
+                     <h3>Category: {$item.viewcategory}</h3><BR />
                      <b>{$lang.J_TITLE}</b>&nbsp;{$item.title}&nbsp;&nbsp;&nbsp;<span class="smallTxt">({$item.view}&nbsp;&nbsp;&nbsp;<b>{$lang.J_ADD}</b>&nbsp;{$item.date})</span><br />
                      <b>{$lang.J_SURNAME}</b>&nbsp;{$item.name}<br />
                      {if $item.information}<b>{$lang.R_CAREER}</b>&nbsp;{$item.information}{/if}

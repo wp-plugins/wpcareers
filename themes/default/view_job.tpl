@@ -14,6 +14,7 @@
             {foreach from=$job item=item key=key}
                <tr><td style="text-align: center">{$item.photo}</td>
                   <td valign="top">
+                  <h3>Category: {$item.viewcategory}</h3><BR />
                   <b>{$lang.J_FROM}</b>&nbsp;{$item.submitter}&nbsp;&nbsp;&nbsp;<span class="smallTxt">({$item.view}&nbsp;&nbsp;&nbsp;<b>{$lang.J_ADD}</b>&nbsp;{$item.date})</span><br />
                   <b>{$lang.J_COMPANY}</b>&nbsp;{$item.company}
                   &nbsp;&nbsp;{$jmodify}&nbsp;&nbsp;{$jdelete}</td>
