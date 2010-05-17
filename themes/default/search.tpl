@@ -24,7 +24,6 @@
               <img src="{$plugin_url}/images/refer.gif">{$item.sendjob}&nbsp;&nbsp;{$item.modifyJobLink}
               </td></tr>
            </table>
-           <BR />--
          {/foreach}
          {else}
          <p>{$lang.NOT_MATCH}</p>

@@ -12,7 +12,7 @@
 
 
 function wpcareers_post_job($message, $mode){
-	global $_GET, $_POST, $table_prefix, $wpdb, $lang, $_FILES, $user_ID, $wpcareers;
+	global $_GET, $_POST, $table_prefix, $wpdb, $lang, $_FILES, $user_ID, $wpcareers, $permission, $anonymous;
 	
 	$wpca_settings=get_option('wpcareers');
 	if (isset($_GET['id'])) $lid=$_GET['id'];
@@ -20,7 +20,6 @@ function wpcareers_post_job($message, $mode){
 	$error = '';
 	$tpl = wpcareers_display_header($message);
 
-	
 	$email= trim($_POST['wpcareers']['email']);
 	$title = trim(strip_tags($_POST['wpcareers']['title']));
 	$expire = strip_tags($_POST['wpcareers']['expire']);
@@ -47,7 +46,7 @@ function wpcareers_post_job($message, $mode){
 	} else {
 		$anonymous = 1;
 	}
-	if ( $permission >= 1 || $anonymous >= 1) {
+	if ($permission >= 1 || $anonymous >= 1) {
 		if (isset($_POST['wpcareers_post_topic']) && $_POST['wpcareers_post_topic']=='yes' ) {
 			$makepost=true;
 			if (!isset($_POST['wpcareers']['agree'])){
@@ -103,7 +102,7 @@ function wpcareers_post_job($message, $mode){
 				$error .= "- ". $lang['J_VALIDTOWN']."<br>";
 				$makepost=false;
 			}
-			if($wpca_settings['confirmation_code']=='y'){ 
+			if($wpca_settings['confirmation_code']=='y'){
 				if (! _jp_captcha::Validate($_POST['wpcareers']['jp_captcha'])) {
 					$error .= "- " . $lang['J_VALIDCOMFIMATION'] . "<br>";
 					$makepost=false;
@@ -416,7 +415,7 @@ function wpcareers_send_job($message){
 }
 
 function wpcareers_delete_job() {
-	global $_GET, $_POST, $table_prefix, $wpdb, $lang, $_FILES;
+	global $_GET, $_POST, $table_prefix, $wpdb, $lang, $_FILES, $permission;
 
 	$wpca_settings=get_option('wpcareers');
 	$id=(int)$_GET['id'];
@@ -428,26 +427,26 @@ function wpcareers_delete_job() {
 	}
 
 	$permission = jp_check_permission();
-		$tpl = wpcareers_display_header();
-		if ($permission < 5) {
-			$tpl->assign('job_mustlogin',$lang['J_PERMISSION']);
-		}
-		if ($_POST['YesOrNo'] > 0){
-			$sql = "DELETE FROM {$table_prefix}wpj_job WHERE l_id =" . $id;
-			$wpdb->query($sql);
-			$message = '<h3><span class="green">' . $lang['J_JOBDEL'] . '</span></h3>';
-			$_GET=array();
-			wpcareers_list_jobs($message, $lc_id);
-		} else {
-			$deleteJobLinkForm=wpcareers_create_link("jdeleteform", array("id"=>$id));
-			$message = '<h3><span class="red">'.$lang['J_CONFDEL'].'</span></h3>';
-			$message .= '<b>' . $lang['J_TITLE'] . '</b>&nbsp;&nbsp;'. $title ;
-			$message .= '<p><form method="post" id="delete_conform" name="delete_conform" action="'.$deleteJobLinkForm.'">';
-			$message .= '<input type="hidden" name="YesOrNo" value="'.$id.'"><b>' . $lang['J_SURDELANN'] . '</b><br />';
-			$message .= '<input type=submit value="'.$lang['J_YES'].'"> <input type=button value="'.$lang['J_NO'].'" onclick="history.go(-1);">';
-			$message .= '</form></p>';
-			wpcareers_list_jobs($message, $lc_id);
-		}
+	$tpl = wpcareers_display_header();
+	if ($permission < 5) {
+		$tpl->assign('job_mustlogin',$lang['J_PERMISSION']);
+	}
+	if ($_POST['YesOrNo'] > 0){
+		$sql = "DELETE FROM {$table_prefix}wpj_job WHERE l_id =" . $id;
+		$wpdb->query($sql);
+		$message = '<h3><span class="green">' . $lang['J_JOBDEL'] . '</span></h3>';
+		$_GET=array();
+		wpcareers_list_jobs($message, $lc_id);
+	} else {
+		$deleteJobLinkForm=wpcareers_create_link("jdeleteform", array("id"=>$id));
+		$message = '<h3><span class="red">'.$lang['J_CONFDEL'].'</span></h3>';
+		$message .= '<b>' . $lang['J_TITLE'] . '</b>&nbsp;&nbsp;'. $title ;
+		$message .= '<p><form method="post" id="delete_conform" name="delete_conform" action="'.$deleteJobLinkForm.'">';
+		$message .= '<input type="hidden" name="YesOrNo" value="'.$id.'"><b>' . $lang['J_SURDELANN'] . '</b><br />';
+		$message .= '<input type=submit value="'.$lang['J_YES'].'"> <input type=button value="'.$lang['J_NO'].'" onclick="history.go(-1);">';
+		$message .= '</form></p>';
+		wpcareers_list_jobs($message, $lc_id);
+	}
 }
 
 ?>
