@@ -36,14 +36,15 @@ Jan 09, 2010
 
 
 global $table_prefix, $wpdb;
-if (!$table_prefix){$table_prefix = $wpdb->prefix;}
+//if (!$wpj_table_prefix) 
+	$table_prefix = $wpdb->prefix;
 
 
 
 /**
  * Constants
  */
-define('VERSION', '1.1-a');
+define('VERSION', '1.1-b');
 define('JP_PLUGIN_DIR', ABSPATH .  'wp-content/plugins/wpcareers');
 define('JP_PLUGIN_URL', plugins_url('wpcareers'));
 
