@@ -254,4 +254,9 @@ $lang['J_OUI'] = "Yes";
 $lang['J_NON'] = "No";
 $lang['J_ORD'] = "Sort Order:";
 
+
+//
+
+$lang['NOT_MATCH'] = "<b>Your search</b> did not match any documents.";
+
 ?>
