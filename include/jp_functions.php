@@ -183,7 +183,7 @@ function wpcareers_process(){
 	$page_id = get_query_var('page_id');
 	$action = get_query_var('op');
 	$wpca_settings = get_option('wpcareers');
-	if ($_GET['id']) $id = $_GET['id'];
+	if (isset($_GET['id'])) $id = $_GET['id'];
 	switch ($action){
 	default:
 	case "main":
