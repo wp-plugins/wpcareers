@@ -60,7 +60,6 @@ $contents .= "<description>" . jpRssFilter($rssDescription) ."</description>\n";
 $contents .= "<generator>" . jpRssFilter($rssGenerator) ."</generator>\n";
 $contents .= "<language>" .  get_option('rss_language') . "</language>\n";
 $contents .= '<pubDate>' .  date("r") . '</pubDate>';
-echo $contents;
 
 $filename = $wpcareers->cache_dir .'/wpcareers.xml';
 $fp = fopen($filename, 'w');
