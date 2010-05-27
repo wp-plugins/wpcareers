@@ -38,7 +38,9 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 		$results=$wpdb->get_results($sql); 
 		for ($i=0; $i<count($results); $i++){
 			$result=$results[$i];
-			$viewJob=wpcareers_create_link("jview", array("name"=>$result->l_title, "id"=>$result->l_id));
+			$title = substr($result->l_title, 0, 32) . '..';
+			$viewJob=wpcareers_create_link("jview", array("name"=>$title, "id"=>$result->l_id));
+			
 			$ljobs[]=array (
 				'title'=>$title,
 				'l_view'=>$result->l_view,
@@ -50,7 +52,8 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 		$results=$wpdb->get_results($sql); 
 		for ($i=0; $i<count($results); $i++){
 			$result=$results[$i];
-			$viewResume=wpcareers_create_link("rview", array("name"=>$result->r_title, "id"=>$result->r_id));
+			$title = substr($result->r_title, 0, 32) . '..';
+			$viewResume=wpcareers_create_link("rview", array("name"=>$title, "id"=>$result->r_id));
 			$lresume[]=array (
 				'title'=>$title,
 				'r_view'=>$result->r_view,
@@ -66,15 +69,15 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
    $tpl->assign('siteurl', get_bloginfo('wpurl'));
    $tpl->assign('user_identity', $user_identity);
    $tpl->assign('user_level', $user_level);
-	$permission = jp_check_permission();
-	$tpl->assign('permission', $permission);
+   $permission = jp_check_permission();
+   $tpl->assign('permission', $permission);
    $tpl->assign('wpca_settings',$wpca_settings);
    if ($message) $tpl->assign('message', $message);
    $searchform=wpcareers_create_link("searchform", array());
    $tpl->assign('search_link', $searchform);
 
    $main_link=wpcareers_create_link("index", array("name"=>$lang['J_MAIN']));
-	$mainLink=wpcareers_create_link("indexLink", 'undef');
+   $mainLink=wpcareers_create_link("indexLink", 'undef');
 
    $tpl->assign('main_link', $main_link);
    $tpl->assign('mainLink', $mainLink);
@@ -154,6 +157,7 @@ function wpcareers_display_index($message){
 function wpcareers_footer($tpl){
    global $lang, $wpdb, $table_prefix, $version, $wpcareers;
    $wpca_settings = get_option('wpcareers');
+   include_once ( $wpcareers->plugin_dir . '/include/jp_rss.php');
 
    if (isset($wpca_settings['wpcareers_show_credits']) &&
       $wpca_settings['wpcareers_show_credits']=='y'){
@@ -199,12 +203,40 @@ function wpcareers_footer($tpl){
    $tpl->assign('resume_total',number_format($resume_total)); 
 
    // TODO
-   $rssurl = "";
+
+   $filename = $wpcareers->cache_url .'wpcareers.xml';
+   ?>
+   <script type="text/javascript">
+      function pop (file,name){
+      rsswindow = window.open (file,name,"location=1,status=1,scrollbars=1,width=680,height=800");
+      rsswindow.moveTo(0,0);
+      rsswindow.focus();
+      return false;
+      }
+   </script>
+   <?php
+   $rssurl = '<b><a href="'. $filename . '" target="_blank" onclick="return pop('.$filename.',' .  $wpca_settings['slug'] . ');"><img src="' . $wpcareers->plugin_url . '/images/rss.png"/>';
+   $rssurl .= '&nbsp;RSS </a></b>';
    $tpl->assign('rssurl', $rssurl);
    if ($wpca_settings['show_credits'] == 'y') {
       $credit='Powered by <a href="http://www.forgani.com/" target="_blank">4gani</a> version '. VERSION;
       $tpl->assign('credit', $credit);
    }
+}
+
+function jpRssFilter($text){echo convert_chars(ent2ncr($text));} 
+
+function jpRssLink($vars) {
+	global $wpdb, $table_prefix, $wp_rewrite, $wpcareers;
+	$wpca_settings = get_option('wpcareers');
+	$pageinfo = $wpcareers->get_pageinfo();
+	if($wp_rewrite->using_permalinks()) $delim = "?";
+	else $delim = "&amp;";
+	$page_id = $pageinfo['ID']; 
+	$perm = get_permalink($page_id);
+
+	$main_link = $perm.$delim;
+	return $main_link."op=jview&amp;id=".$vars["id"];
 }
 
 ?>

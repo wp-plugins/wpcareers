@@ -66,6 +66,8 @@ table{padding:0;margin:0;border-spacing:0px;}
 .clearfix{display:inline-block;}/* Hides from IE-mac \*/ 
 * html .clearfix{height:1%;}/* End hide from IE-mac */ 
 .columnsf-1{width:480px;margin:5px 0 5px 15px; float:left;}
+.columnsf-voll{width:640px;margin:5px 0 5px 15px; float:left;}
+
 .columnsf-2{width:255px;margin:5px 0 5px 15px; float:left;}
 .columnsf-3{width:165px;margin:5px 0 5px 15px; float:right;}
 .columns-2{margin:0 auto;float:right;}

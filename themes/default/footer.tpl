@@ -20,7 +20,7 @@
       <dd>Jobs: {$jobs_total}</dd>
       <dd>Resume: {$resume_total}</dd>
    </dl>
-   <dl class="columnsf-1">
+   <dl class="columnsf-voll">
       <dt>{$wpca_settings.new_links} {$lang.J_LASTADD}</dt>
       {foreach from=$new_jobs item=item key=key}
          <dd>{$item.previewlink}&nbsp;&nbsp;<span class="gray">({$item.category}&nbsp;{$item.date})</span></dd>
@@ -29,16 +29,19 @@
          <dd>{$item.previewlink}&nbsp;&nbsp;<span class="gray">({$item.category}&nbsp;{$item.date})</span></dd>
       {/foreach}
    </dl>
+   {*
    <dl class="columnsf-3 last">
       <dt>Terms &amp; Conditions</dt>
       <dd><a href="/content/terms_of_service/">Terms of service</a></dd>
       <dd><a href = "/content/contact-us/">contact us</a></dd>
    </dl>
+   *}
 </div>
 <br />
 
 <div class="rss_footer">
-   <p><img src="{$plugin_url}/images/rss.png"/>{$rssurl} WPCareers {$credit}</p>
+   
+   <p>{$rssurl} WPCareers {$credit}</p>
 </div>
 
 {$java}

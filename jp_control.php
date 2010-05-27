@@ -6,7 +6,7 @@ Plugin Name: wpcareers
 Plugin URI: http://www.forgani.com/root/wordpress-careers-plugin/
 Description: Note -> This bugfix release hove to install Manually.
 Author: Mohammad forgani
-Version: 1.1-a
+Version: 1.1.1-a
 Author URI: http://www.forgani.com
 Copyright 2010 Mohammad Forgani 
 */
@@ -26,8 +26,14 @@ Note: This bugfix release hove to install Manually.
 
 
 Jan 09, 2010
-    - Released v1.0
+    - Release 1.0.0-a
     - All administrator pages finished.
+
+May 25, 2010
+  Release 1.1.1-a
+- fixed a bug in search routine,
+- replace the CAPTCHA module. The old captcha module has not worked well with the firefox
+- u.s.w
 
 */ 
 //error_reporting(E_ALL);
@@ -37,14 +43,14 @@ Jan 09, 2010
 
 global $table_prefix, $wpdb;
 //if (!$wpj_table_prefix) 
-	$table_prefix = $wpdb->prefix;
+  $table_prefix = $wpdb->prefix;
 
 
 
 /**
  * Constants
  */
-define('VERSION', '1.1-b');
+define('VERSION', '1.1.1-a');
 define('JP_PLUGIN_DIR', ABSPATH .  'wp-content/plugins/wpcareers');
 define('JP_PLUGIN_URL', plugins_url('wpcareers'));
 
@@ -53,7 +59,7 @@ define('JP_PLUGIN_URL', plugins_url('wpcareers'));
  * @brief Autoload files.
  */
 require_once(dirname(__FILE__) . '/include/jp_functions.php');
-require_once(dirname(__FILE__) . '/include/jp_captcha.php');
+require_once(dirname(__FILE__) . '/include/jp_securimage.php');
 require_once(dirname(__FILE__) . '/include/jp_GADlink.php');
 require_once(dirname(__FILE__) . '/admin/jp_admin_posts.php');
 require_once(dirname(__FILE__) . '/admin/jp_admin.php');
@@ -85,19 +91,15 @@ if (!empty($languageFile) && file_exists($languageFile)) {
 	require_once(JP_PLUGIN_DIR . '/language/lang_en.php');
 }
 
-
-
 /**
  * Initialize the plugin
 */
-
 add_action('plugins_loaded', create_function('$a', 'global $wpcareers; $wpcareers = new WP_careers();'));
 add_filter('the_content', 'wpcareers_page_handle_content');
 add_filter('the_title', 'wpcareers_page_handle_title');
 add_filter('wp_list_pages', 'wpcareers_page_handle_titlechange');
 add_filter('single_post_title', 'wpcareers_page_handle_pagetitle');
 add_filter('query_vars', 'wpcareers_query_vars');
-
 
 /**
  * Assigns each respective variable.

@@ -23,7 +23,6 @@ class WP_Careers {
 	var $compile_dir;
 	var $cache_dir;
 	var $config_dir;
-	var $plugin_home_url;
 	var $public_url;
 	var $public_dir;
 	var $userId;
@@ -31,7 +30,6 @@ class WP_Careers {
 
 	function WP_Careers() {
 		// initialize all the variables
-		$this->plugin_home_url = 'http://www.forgani.com/wpcareers';
 		$this->plugin_url = get_option('siteurl').'/wp-content/plugins/wpcareers';
 		$this->plugin_dir = JP_PLUGIN_DIR . '/';
 		$this->version = VERSION;
@@ -44,6 +42,7 @@ class WP_Careers {
 		$this->password = get_option('wpca_password');  // TODO
 		$this->public_dir = ABSPATH . 'wp-content/public/wpcareers/';
 		$this->public_url = get_option('siteurl') . '/wp-content/public/wpcareers/';
+      $this->cache_url = get_option('siteurl') . '/wp-content/plugins/wpcareers/cache/';
 		
 		/**
 		* config_page() - Add WordPress action to show the admin configuration page
@@ -132,8 +131,7 @@ class WP_Careers {
 	}
 
 	function process_option_settings() {
-		global $_GET, $_POST, $wp_rewrite, $PHP_SELF, $wpdb, $table_prefix, 
-		$wp_version, $lang;
+		global $_GET, $_POST, $wp_rewrite, $PHP_SELF, $wpdb, $table_prefix, $wp_version, $lang;
 		
 		$wpca_settings = get_option('wpcareers');
 		if (isset($_GET['admin_action'])) {
@@ -690,14 +688,17 @@ class WP_Careers {
 
 	function login_register_init() {
 		global $pagenow;
-		switch ($pagenow) {
-			case "wp-login.php":
-				wpcareers_do_login();
-			break;
-			case "wp-register.php":
-				wpcareers_do_register();
-			break;
-		}
+      $wpca_settings = get_option('wpcareers');
+      if ($wpca_settings['installed'] == 'y') {
+        switch ($pagenow) {
+          case "wp-login.php":
+              wpcareers_do_login();
+          break;
+          case "wp-register.php":
+              wpcareers_do_register();
+          break;
+        }
+      }
 	}
 
 	// TODO

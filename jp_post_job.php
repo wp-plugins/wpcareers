@@ -10,6 +10,7 @@
  */
 
 
+@session_start(); 
 
 function wpcareers_post_job($message, $mode){
 	global $_GET, $_POST, $table_prefix, $wpdb, $lang, $_FILES, $user_ID, $wpcareers, $permission, $anonymous;
@@ -19,6 +20,7 @@ function wpcareers_post_job($message, $mode){
 	$displayform=true;
 	$error = '';
 	$tpl = wpcareers_display_header($message);
+	$securimage = new jp_securimage();
 
 	$email= trim($_POST['wpcareers']['email']);
 	$title = trim(strip_tags($_POST['wpcareers']['title']));
@@ -103,9 +105,9 @@ function wpcareers_post_job($message, $mode){
 				$makepost=false;
 			}
 			if($wpca_settings['confirmation_code']=='y'){
-				if (! _jp_captcha::Validate($_POST['wpcareers']['jp_captcha'])) {
-					$error .= "- " . $lang['J_VALIDCOMFIMATION'] . "<br>";
-					$makepost=false;
+				if (!$securimage->check($_POST['wpcareers']['jp_captcha'])) {
+              $error .= "- " . $lang['J_VALIDCOMFIMATION'] . "<br>";
+              $makepost=false;
 				}
 			}
 
@@ -198,14 +200,12 @@ function wpcareers_post_job($message, $mode){
 			if ( strlen($error) > 10 ) $message = $lang['J_VALIDERORMSG'] . $error;
 			$space="";
 			if($wpca_settings['confirmation_code']=='y') {
-				$oVisualCaptcha=new _jp_captcha();
-				$captcha=rand(1, 50).".png";
-				$oVisualCaptcha->create($wpcareers->cache_dir ."/".$captcha);
-				$confirm='<tr bgcolor="#F4F4F4"><td class="td_left">'.$lang['J_COMFIMATION'].'</td><td><img src="'.get_bloginfo('wpurl').'/wp-content/plugins/wpcareers/cache/' .$captcha.'" alt="ConfirmCode" align="middle"/>';
+				$confirm='<tr bgcolor="#F4F4F4"><td class="td_left">'.$lang['J_COMFIMATION'].'</td><td>';
+				$confirm .= '<img id="siimage" alt="ConfirmCode" align="middle" src="'.get_bloginfo('wpurl') .'/wp-content/plugins/wpcareers/include/jp_securimage_show.php?sid='. md5(time()) .'" />';
 				$confirm .= '<br><span class ="smallTxt">'.$lang["J_VERIFICATION"].'</span><br><input type="text" name="wpcareers[jp_captcha]" id="wpcareers[jp_captcha]" size="10"></td></tr>';
 				$tpl->assign('confirm',$confirm);
 			}
-			$sql="SELECT * FROM {$table_prefix}wpj_categories ORDER BY c_title ASC";
+			$sql="SELECT * FROM {$table_prefix}wpj_categories ORDER BY c_id ASC";
 			$wpj_categories = $wpdb->get_results($sql);
 			$results=$wpdb->get_results($sql);
 			$categoryId = array();
@@ -213,6 +213,7 @@ function wpcareers_post_job($message, $mode){
 			if ( !empty($results) ) {
 				foreach ($results as $result) {
 					array_push($categoryId, $result->c_id);
+               if ($result->cp_id > 0) $result->c_title = "&nbsp;&nbsp;&nbsp;-&nbsp;" . $result->c_title;
 					array_push($categoryTitle, $result->c_title);
 				}
 			}
@@ -316,6 +317,8 @@ function wpcareers_send_job($message){
 	$wpca_settings=get_option('wpcareers');
 	$id=$_GET['id'];
 	$displayform=true;
+   $securimage = new jp_securimage();
+
 	$sql="SELECT * FROM {$table_prefix}wpj_job WHERE l_id=".$id;
 	$results=$wpdb->get_results($sql); 
 	if (!empty($results)) {
@@ -354,9 +357,9 @@ function wpcareers_send_job($message){
 			$sendAd=false;
 		}
 	
-		if($wpca_settings['confirmation_code']=='y'){ 
-			if (! _jp_captcha::Validate($_POST['wpcareers']['jp_captcha'])) {
-				$message .= "- " . $lang['J_VALIDCOMFIMATION'] . "<br>";
+		if($wpca_settings['confirmation_code']=='y'){
+         if (!$securimage->check($_POST['wpcareers']['jp_captcha'])) {
+            $message .= "- " . $lang['J_VALIDCOMFIMATION'] . "<br>";
 				$sendAd=false;
 			}
 		}
@@ -380,19 +383,18 @@ function wpcareers_send_job($message){
 				$message=$email_status[1];
 				$sendAd=false;
 			} else {
-				wpcareers_display_index($email_status[1]);
-			}	 
+            $message = '<h3><font color="green">' .$email_status[1]. "</font></h3>";
+            $displayform==false;
+			}
 		}
 	} else {
 		$displayform=true;
 	}
 	if ($displayform==true) {
 		$tpl = wpcareers_display_header($message);
-		if($wpca_settings['confirmation_code']=='y'){ 
-			$oVisualCaptcha=new _jp_captcha();
-			$captcha=rand(1, 50).".png";
-			$oVisualCaptcha->create($wpcareers->cache_dir ."/".$captcha);
-			$confirm='<tr><td class="td_left">'.$lang['J_COMFIMATION'].'</td><td><img src="'.get_bloginfo('wpurl').'/wp-content/plugins/wpcareers/cache/' .$captcha.'" alt="ConfirmCode" align="middle"/>';
+		if($wpca_settings['confirmation_code']=='y'){
+			$confirm='<tr><td class="td_left">'.$lang['J_COMFIMATION'].'</td><td>';
+         $confirm .= '<img id="siimage" alt="ConfirmCode" align="middle" src="'.get_bloginfo('wpurl') .'/wp-content/plugins/wpcareers/include/jp_securimage_show.php?sid='. md5(time()) .'" />';
 			$confirm .= '<br><span class ="smallTxt">'.$lang["J_VERIFICATION"].'</span><br><input type="text" name="wpcareers[jp_captcha]" id="wpcareers[jp_captcha]" size="10"></td></tr>';
 			$tpl->assign('confirm',$confirm);
 		}

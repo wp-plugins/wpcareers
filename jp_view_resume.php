@@ -49,7 +49,6 @@ function wpcareers_view_resume(){
       $photo = false;
       if (strlen($result->r_photo) > 3)
          $photo = '<div class="logo"><img src="' . $wpcareers->public_url . "images/" . $result->r_photo . '"></a></div>';
-
       if (strlen($result->r_resume) > 3)
          $_upload = '&nbsp;&nbsp;<a target="_blank" href="' . $wpcareers->public_url . '/resume/' . $result->r_resume . '" return false;"><div class="logo"><img src="' . get_bloginfo('wpurl') . '/wp-content/plugins/wpcareers/images/doc.jpg"></div></a><br />&nbsp;&nbsp;<b>Included File: </b>' . $result->r_resume;
       $resume[]=array (

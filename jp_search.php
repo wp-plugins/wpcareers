@@ -40,6 +40,7 @@ function wpcareers_display_search(){
       $tpl->assign('results', $list);
       //$jp_advanced = wpcareers_create_link("searchlink", array("name"=>'Advanced'));
       //$tpl->assign('jp_advanced', $jp_advanced);
+      wpcareers_footer($tpl);
       $tpl->display('search.tpl');
    }
 }

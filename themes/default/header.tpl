@@ -30,13 +30,13 @@
                {if $ljobs}
                   {assign var=cnt value=0}
                   {foreach from=$ljobs item=item key=key}
-                     <span class="smallTxt">{$item.viewjob} was viewed {$item.l_view}</span><br />
+                     <span class="smallTxt">{$item.viewjob} viewed {$item.l_view}</span><br />
                   {/foreach}
                {/if}
                {if $lresume}
                   {assign var=cnt value=0}
                   {foreach from=$lresume item=item key=key}
-                     <span class="smallTxt">{$item.viewResume} was viewed {$item.r_view}</span><br />
+                     <span class="smallTxt">{$item.viewResume} viewed {$item.r_view}</span><br />
                   {/foreach}
                {/if}
             {/if}
