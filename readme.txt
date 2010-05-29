@@ -44,22 +44,20 @@ Please test the plugin on your local machine before you install it in your produ
 Once again, I take no responsibility...
 
 The below section describes how to install the plugin and get it to work.
-Please test the plugin with your theme on a develop machine or a local machine,
-if the test is successful then install it on the production machine.
 
-e.g.
+Please test the plugin with your theme on a test machine or a local machine,
+if the test is successful then install it on the production machine.
 
 1. Extract files
 2. Upload 'wpcareers/' folder to your './wp-content/plugins/' directory
-3. Login to the administration and go to "admin panel/plugins" and activate the plugin
+3. Login as administrator and go to "admin panel/plugins" and activate the plugin
 4. Go to the "Manage" tab of your WP.
+
 You have now there a new tab called "wpcareers" to configure the plugin.
 
 You will need to make the following folders writeable (chmod 777) :
 
-= NEW in THIS RELEASE =
-
-Add a public directory and upload the resume and images resources (the public folder must have write permission)
+Add a public directory for uploading the resumes and images (the public folder must have write permission for all users)
 
 wp-content/public/wpcareers/resume
 wp-content/public/wpcareers/public
@@ -68,11 +66,11 @@ wp-content/public/wpcareers/public
 
 = Is this compatible with the WP plugin auto-upgrade feature? =
 
-For Uninstalling the plugin please run the plugin Uninstaller utility
+Yes, but to uninstall the plugin, please use the plugin Uninstaller utility
 
 == Screenshots ==
 
-1. Screenshot input Area
+1. Screenshot input area
 2. Screenshot main
 
 
@@ -96,7 +94,7 @@ This is a the initial version of plugin.
 
 = version 1.1.1-a =
 - fixed the bug in search by keywords,
-- replace the CAPTCHA module. The old captcha module has not worked well with the firefox
+- replaced the CAPTCHA module. The old captcha module does not worked well with the firefox
 
 = bugfix version 1.1-a =
 
