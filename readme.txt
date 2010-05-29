@@ -10,17 +10,17 @@ Stable tag: 1.1
 
 == Description ==
 
-The plugin allows you to build an online jobs/resume website, where the applicants will be able to search, update, add/remove, and add or edit their resumes/profiles.
+The plugin allows you to build an online jobs/resume website, where the applicants will be able to search, update, add/remove or edit their resumes/profiles.
 This plugin is for standalone WordPress sites.
-In addition, user can also add/delete/change descriptions, upload images/photos.
+In addition, users can also add/delete/change the descriptions in addition to uploading images/photos.
 
 * In Admin Area the administrator will be able to:
 * View and manage records in terms of add/modify/remove of entries
 * Approve or deny the posts.
-* Inactive Applicants Convert to Active
-* Delete Users profile, Delete Employer profiles
+* Convert the inactive Applicants to active
+* Manage the jobs seekers as well as the employer profiles
 
-It is a complete ready to use as Job Board System
+It can be used completely as a Job Board System
 
 == Examples ==
 
@@ -28,21 +28,22 @@ You can see the plugin in action here: http://wpcareers.com
 
 
 IMPORTANT NOTE:
-We strongly recommend  you using themes that the front page will be displayed in one column otherwise you use our theme wpcareers.
+We strongly recommend you to use themes whose front page consisted only of one column, otherwise you should use our developed theme.
 This plugin is for a standalone WordPress site.
 
 
 == Installation ==
 
 IMPORTANT NOTE:
-We strongly recommend you using themes that the front page will be displayed in one column otherwise you use our theme wpcareers.
+We strongly recommend you to use themes whose front page consisted only of one column, otherwise you should use our developed theme.
 This plugin is for a standalone WordPress site.
 
-Please made a backup of files and database and test once before using in production.
-Using a local environment and test the plugin before install it on your production environment.
+Please make a backup of files and database and test this plugin before using it in production.
+Please test the plugin on your local machine before you install it in your production environment.
+
 Once again, I take no responsibility...
 
-This section describes how to install the plugin and get it working.
+The below section describes how to install the plugin and get it to work.
 Please test the plugin with your theme on a develop machine or a local machine,
 if the test is successful then install it on the production machine.
 
