@@ -113,8 +113,9 @@ class WP_Careers {
 		<div style="float:left;width:70%;">
 		<div class="wrap">
 		<h2>Welcome to Wordpress wpCareers (Job Portal)</h2>
-		<p>The plugin allows you to build an online jobs/resume website, where the applicants will be able to search, update, add/remove, and add or edit their resumes/profiles. 
-		<p>In addition, user can also add/delete/change descriptions, upload images/photos.</p>
+		<p>The plugin allows you to build an online jobs/resume website, where the applicants will be able to search, update, add/remove or edit their resumes/profiles.
+This plugin is for standalone WordPress sites.</p>
+		<p>In addition, users can also add/delete/change the descriptions in addition to uploading images/photos.</p>
 		<br />In the admin area the administrator will be able to:<br />
 		<ul>
 		<li>View and manage records in terms of add/modify/remove of entries </li>
@@ -122,10 +123,11 @@ class WP_Careers {
 		<li>Inactive Applicants Convert to Active</li>
 		<li>Delete Users profile, Delete Employer profiles</li>
 		</ul>
-		<p><b>Important Note:</b> We strongly recommend you use our theme wpCareers otherwise you using themes that contains one column.</p>
+		<p><b>Important Note:</b> We strongly recommend you to use themes whose front page consisted only of one column, otherwise you should use our developed theme.
+This plugin is for a standalone WordPress site.</p>
 		<p>To install and configure this plugin, please click on <b><a href="<?php echo $PHP_SELF; ?>?page=wpcareers_settings">installation and configuration</a>.</b></p>
 		This plugin is under active development. If you experience problems, please first make sure you have installed the latest version. <br />
-		For Uninstalling the plugin please run the plugin Uninstaller utility.
+		For remove the plugin please use the plugin Uninstaller utility.
 		<p>&nbsp;</p>
 		<?php
 	}
