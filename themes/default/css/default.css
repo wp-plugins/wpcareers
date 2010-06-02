@@ -170,7 +170,7 @@ div.jp_message{
 }
 .smallTxt{
 	font-size:80%;
-	color:#555;
+	color:#444;
 	display:inline;
 }
 .fieldset{
@@ -229,7 +229,6 @@ div.jp_message{
 	padding:3px 0;
 	width:100%;
 	border-top:1px solid #d4e7ed;
-	font-size:80%;
 	background-color:#fff;
 }
 .rss_footer{
@@ -246,7 +245,8 @@ div.jp_message{
 .jp_footer a:focus{text-decoration:underline;}
 .jp_footer dt{
 	font-weight:bold;
-	color:#999999;
+   font-size:11pt;
+	color:#333;
 	margin-top:6px;
 }
 .jp_footer dd{
@@ -309,6 +309,6 @@ div.jp_message{
 	color:#993300;
 	font-weight:bold;
 }
-.gray{font-weight:normal;color:#999;}
+.gray{font-weight:normal;color:#555;}
 .red{color:#993300;margin-bottom:0.5em;font-weight:bold;}
 .green{color:#006600;margin-bottom:0.5em;font-weight:bold;}
