@@ -13,7 +13,7 @@ $lang=array();
 $lang['J_DETAIL'] = "Job Details:";
 $lang['R_DETAIL'] = "Resume Details:";
 $lang['J_CATLIST'] = "Organizations and Jobs by Categories";
-$lang['R_CATLIST'] = "Organizations and Resumes by Categories";
+$lang['R_CATLIST'] = "Organizations and Jobs by Categories";
 $lang['J_MAIN'] = "Main";
 $lang['J_ADDJOB'] = "POST A NEW JOB";
 $lang['J_ADDRESUME'] = "POST YOUR RESUME FREE";
@@ -66,7 +66,7 @@ $lang['J_VALIDJOB'] = "Job Description is required.";
 $lang['J_VALIDREQ'] = "Job Requirements are required.";
 $lang['J_VALIDTOWN'] = "Location is required.";
 $lang['J_VALIDEMAIL'] = "Email is required.";
-$lang['J_VALIDMSG'] = "Please correct the errors and try to save the post again.";
+$lang['J_VALIDMSG'] = "Please correct these errors to save the post.";
 
 $lang['J_GO'] = "Go";
 $lang['J_SENDBY'] = "Submitted By:";
@@ -126,11 +126,11 @@ $lang['J_OK'] = "Approve";
 $lang['J_POSTAPPROVED'] = "The Job has been approved.";
 $lang['R_POSTAPPROVED'] = "The Resume has been approved.";
 
-$lang['J_HOWLONG'] = "Display Duration:";
+$lang['J_HOWLONG'] = "How long will it take to display:";
 // $lang['J_HOWLONG'] = "How long do you want your Job to be shown. (in days)";#
 
-$lang['J_FRIENDSEND'] = "SENDIND THE TO A FRIEND";
-$lang['PRIVATE_POLICY'] = "We do not collect names or eMail addresses.<br>Please see our Privacy Policy for more information.";
+$lang['J_FRIENDSEND'] = "SEND THIS TO A FRIEND";
+$lang['PRIVATE_POLICY'] = "We do not collect names or e-mail addresses.<br>Please see our Privacy Policy for more information.";
 $lang['MARKED_OPTION'] = "<span class='red'>*</span> Indicates Required Field"; // indicates required information
 
 $lang['J_SURDELANN'] = "ATTENTION: Are you sure you want to delete this Job ";
@@ -152,10 +152,10 @@ $lang['R_SUBMITTED4REVIEW'] = "<h3>Your Resume was sucessfully submitted. Thank 
 $lang['R_SUBMITALREADY'] = '<span class="jp_error">Sorry, This Resume already exists in the directory, You may not accept it.</span><br />';
 
 $lang['J_WAIT'] = "Listing Jobs waiting to be approved";
-$lang['R_WAIT'] = "Listing Resume waiting to be approved";
+$lang['R_WAIT'] = "Listing Resumes waiting to be approved";
 
 $lang['J_MODERAT'] = "<h3>Moderate Jobs ...</h3>";
-$lang['R_MODERAT'] = "<h3>Moderate Resume ...</h3>";
+$lang['R_MODERAT'] = "<h3>Moderate Resumes ...</h3>";
 
 $lang['J_DELSELECTED'] = "Selected Job has been deleted";
 $lang['R_DELSELECTED'] = "Selected Resume has been deleted";
@@ -179,8 +179,8 @@ $lang['J_VALIDCOMFIMATION'] = "Confirmation code didn't matched.";
 $lang['J_VIEWLISTING'] = "View Jobs";
 $lang['R_VIEWLISTING'] = "View Resume";
 
-$lang['J_MUSTLOGIN'] = '<span class="jp_error">Sorry, You must be registered and logged before posting</span><br />If you are having problem registering, please contact the administrator.';
-$lang['J_PERMISSION'] = '<span class="jp_error">Sorry, You don\'t have permission to modify the posts</span><br />If you have any problem, please contact the administrator.';
+$lang['J_MUSTLOGIN'] = '<span class="jp_error">Sorry, You must registered and logged before posting</span><br />If you are having trouble registering please contact the administrator.';
+$lang['J_PERMISSION'] = '<span class="jp_error">Sorry, You don\'t have permission to modify the posts</span><br />If you are having trouble using please contact the administrator.';
 
 $lang['J_INVALIDIMG'] = "Invalid image size. Go back and try again";
 $lang['J_DISPLPRICE'] = "Display price:";
@@ -202,7 +202,7 @@ $lang['J_VIEW'] = "<b>Viewed</b>";
 $lang['J_ACCESADMIN'] = "Administration";
 $lang['J_FROM'] = "Submitted by:";
 
-$lang['J_SENDTO'] = "<b>Send this Job to a friend</b><br /><br />You send Listing No. ";
+$lang['J_SENDTO'] = "<b>Send this Job to a friend</b><br /><br />You can send Listing No. ";
 $lang['J_FRIEND'] = "to a friend:";
 $lang['J_NAME'] = "Your Name:";
 $lang['J_MAIL'] = "Your Email:";
@@ -238,10 +238,10 @@ $lang['J_CATADD'] = "Category added";
 $lang['J_SUBCATADD'] = "Subcategory added";
 $lang['J_MOD'] = "Job has been changed";
 
-$lang['J_NOMODACTIV'] = "Moderationis not active, no Jobs to approve";
+$lang['J_NOMODACTIV'] = "Moderatio nis not active, no Job s to approve";
 
-$lang['J_MODANN'] = "Modify a Job ";
-$lang['J_ALLMODANN'] = "(All Jobs can be modified by the Jobs administrator.)";
+$lang['J_MODANN'] = "Change a Job ";
+$lang['J_ALLMODANN'] = "(All Job s can be modified by the Jobs administrator.)";
 $lang['J_NUMANN'] = "Listing No.:";
 
 
