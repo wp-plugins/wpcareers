@@ -10,7 +10,7 @@
  */
 
 
-if (!isset($_SESSION)) session_start();
+if (!isset($_SESSION)) @session_start(); 
 if (!defined('AUTOLOAD_SMARTY')) { define('AUTOLOAD_SMARTY', true); }
 
 if (AUTOLOAD_SMARTY) {
@@ -259,7 +259,7 @@ function wpcareers_do_login(){
 	$tpl = wpcareers_display_header($message);
 	if (!is_array($wp_query->query_vars))	$wp_query->query_vars = array();
 	$wpca_settings = get_option('wpcareers');
-
+   $securimage = new jp_securimage();
 	$message = '';
 	$error = '';
 	$home = wpcareers_create_link("indexLink", 'undef');
@@ -292,10 +292,7 @@ function wpcareers_do_login(){
 	case 'lostpassword':
 		//do_action('lost_password');
 		get_header();
-		$oVisualCaptcha=new _jp_captcha();
-		$captcha=rand(1, 50).".png";
-		$oVisualCaptcha->create($wpcareers->cache_dir ."/" . $captcha);
-			$message .= '<p>Please enter your information here. We will send you a new password</p>';
+		$message .= '<p>Please enter your information here. We will send you a new password</p>';
 		if ($error) { 
 			$message .= "<div id='login_error'>$error</div>"; 
 		} 
@@ -304,7 +301,7 @@ function wpcareers_do_login(){
 		$message .= '<label>Username:</label> <input type="text" name="user_login" id="user_login" value="" size="20" tabindex="1" />';
 		$message .= '<br /><p><label>E-mail:</label> <input type="text" name="email" id="email" value="" size="25" tabindex="2" />';
 		$message .= '<p><label for="captcha">'. $lang['J_COMFIMATION'] .'</label> ';
-		$message .= '<img src="'. get_bloginfo('wpurl'). '/wp-content/plugins/wpcareers/cache/' . $captcha .'" alt="ConfirmCode" align="middle"/><br>';
+      $message .= '<img id="siimage" alt="ConfirmCode" align="middle" src="'.get_bloginfo('wpurl') .'/wp-content/plugins/wpcareers/include/jp_securimage_show.php?sid='. md5(time()) .'" />';
 		$message .= '<span class ="smallTxt">'. $lang["J_VERIFICATION"] .'</span></p>';
 		$message .= '<p><lable></lable> <input type="text" name="wpcareers[jp_captcha]" id="wpcareers[jp_captcha]" size="10"></p>';
 		$message .= '</p><p class="submit"> <input type="submit" name="submit" id="submit" value="Retrieve Password" tabindex="3" /></p>';
@@ -456,6 +453,7 @@ function wpcareers_do_register(){
 
 	$tpl = wpcareers_display_header($message);
 	$home = wpcareers_create_link("indexLink", 'undef');
+   $securimage = new jp_securimage();
 
 	if (!is_array($wp_query->query_vars)) $wp_query->query_vars = array();
 	switch( $_REQUEST["action"] ) {
@@ -491,10 +489,10 @@ function wpcareers_do_register(){
 			
 		$hash = $_POST['capcc_captchakey'];
 		$text =$_POST['capcc_captcha'];
+      if (!$securimage->check($_POST['capcc_captchakey'])) {
+        $errors['error']='<span class="jp_error">ERROR</span>: The key you are attempting to use has expired.';
+      }
 
-		if (! _jp_captcha::Validate($_POST['capcc_captchakey'])) {
-			$errors['error']='<span class="jp_error">ERROR</span>: The key you are attempting to use has expired.';
-		}
 		if ( 0 == count($errors) ) {
 			$password = substr( md5( uniqid( microtime() ) ), 0, 7);
 			$user_id = wp_create_user( $user_login, $password, $user_email );
@@ -518,10 +516,7 @@ function wpcareers_do_register(){
 		if ( isset($errors) ) : 
 			$message .= '<div class="error">';
 			foreach($errors as $error) $message .= "<br />$error</div>";
-		endif; 
-		$oVisualCaptcha=new _jp_captcha();
-		$captcha=rand(1, 50).".png";
-		$oVisualCaptcha->create($wpcareers->cache_dir ."/" . $captcha);
+		endif;
 		$message .= '<form style="margin-top: 20px" method="post" action="wp-register.php" id="registerform">';
 		$message .= '<p><input type="hidden" name="action" value="register" />';
 		$message .= '<label for="user_login">Username:</label> ';
@@ -532,7 +527,7 @@ function wpcareers_do_register(){
 		$message .= wp_specialchars($user_email) . '"/></p>';
 		$message .= '<p>A password will be emailed to you.</p>';
 		$message .= '<p><label for="captcha">'. $lang['J_COMFIMATION'] .'</label> ';
-		$message .= '<img src="'. get_bloginfo('wpurl') . '/wp-content/plugins/wpcareers/cache/' . $captcha .'" alt="ConfirmCode" align="middle"/><br>';
+      $message .= '<img id="siimage" alt="ConfirmCode" align="middle" src="'.get_bloginfo('wpurl') .'/wp-content/plugins/wpcareers/include/jp_securimage_show.php?sid='. md5(time()) .'" />';
 		$message .= '<span class ="smallTxt">'. $lang["J_VERIFICATION"] .'</span></p>';
 		$message .= '<p><lable></lable> <input type="text" name="capcc_captchakey" id="capcc_captchakey" size="10"></p>';
 		$message .= '<p class="submit"><input type="submit" value="Register" id="submit" name="submit" /></p>';
