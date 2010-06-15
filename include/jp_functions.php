@@ -302,7 +302,7 @@ function wpcareers_do_login(){
 		$message .= '<br /><p><label>E-mail:</label> <input type="text" name="email" id="email" value="" size="25" tabindex="2" />';
 		$message .= '<p><label for="captcha">'. $lang['J_COMFIMATION'] .'</label> ';
       $message .= '<img id="siimage" alt="ConfirmCode" align="middle" src="'.get_bloginfo('wpurl') .'/wp-content/plugins/wpcareers/include/jp_securimage_show.php?sid='. md5(time()) .'" />';
-		$message .= '<span class ="smallTxt">'. $lang["J_VERIFICATION"] .'</span></p>';
+		$message .= '<br><span class ="smallTxt">'. $lang["J_VERIFICATION"] .'</span></p>';
 		$message .= '<p><lable></lable> <input type="text" name="wpcareers[jp_captcha]" id="wpcareers[jp_captcha]" size="10"></p>';
 		$message .= '</p><p class="submit"> <input type="submit" name="submit" id="submit" value="Retrieve Password" tabindex="3" /></p>';
 		$message .= '</form><ul>';
@@ -528,7 +528,7 @@ function wpcareers_do_register(){
 		$message .= '<p>A password will be emailed to you.</p>';
 		$message .= '<p><label for="captcha">'. $lang['J_COMFIMATION'] .'</label> ';
       $message .= '<img id="siimage" alt="ConfirmCode" align="middle" src="'.get_bloginfo('wpurl') .'/wp-content/plugins/wpcareers/include/jp_securimage_show.php?sid='. md5(time()) .'" />';
-		$message .= '<span class ="smallTxt">'. $lang["J_VERIFICATION"] .'</span></p>';
+		$message .= '<br><span class ="smallTxt">'. $lang["J_VERIFICATION"] .'</span></p>';
 		$message .= '<p><lable></lable> <input type="text" name="capcc_captchakey" id="capcc_captchakey" size="10"></p>';
 		$message .= '<p class="submit"><input type="submit" value="Register" id="submit" name="submit" /></p>';
 		$message .= '</form><ul>';
@@ -773,6 +773,6 @@ function jp_remove_weblink($text){
 }
 
 
-
+z
 
 ?>

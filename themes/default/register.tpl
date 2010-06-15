@@ -23,5 +23,5 @@
          </tbody></table>
       </div>
    </div>
-   {include file='footer.tpl'}
+   {include file='footerLogin.tpl'}
 </div>

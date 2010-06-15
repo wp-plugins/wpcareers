@@ -703,6 +703,8 @@ This plugin is for a standalone WordPress site.</p>
       }
 	}
 
+
+
 	// TODO
 	/**
 	* registers the widget, the widget will die if wordpress version doesn't support

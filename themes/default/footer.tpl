@@ -25,7 +25,7 @@
       <br />
       <b>Jobs</b>
       {foreach from=$new_jobs|@sortby:date item=item key=key}
-         <dd>{$item.previewlink}&nbsp;&nbsp;<span class="gray">({$item.category}&nbsp;{$item.date})</span></dd>
+        <dd>{$item.previewlink}&nbsp;&nbsp;<span class="gray">({$item.category}&nbsp;{$item.date})</span></dd>
       {/foreach}
       <br />
       <b>Resumes</b>
