@@ -6,7 +6,7 @@ Plugin Name: wpcareers
 Plugin URI: http://www.forgani.com/root/wordpress-careers-plugin/
 Description: Note -> This bugfix release hove to install Manually.
 Author: Mohammad forgani
-Version: 1.1.1-a
+Version: 1.1.1-c
 Author URI: http://www.forgani.com
 Copyright 2010 Mohammad Forgani 
 */
@@ -35,6 +35,10 @@ May 25, 2010
 - replace the CAPTCHA module. The old captcha module has not worked well with the firefox
 - u.s.w
 
+
+Jul 08, 2010
+fixed for Wordpress 3.0
+
 */ 
 //error_reporting(E_ALL);
 //ini_set('display_errors', '1');
@@ -50,7 +54,7 @@ global $table_prefix, $wpdb;
 /**
  * Constants
  */
-define('VERSION', '1.1.1-b');
+define('VERSION', '1.1.1-c');
 define('JP_PLUGIN_DIR', ABSPATH .  'wp-content/plugins/wpcareers');
 define('JP_PLUGIN_URL', plugins_url('wpcareers'));
 
@@ -91,6 +95,8 @@ if (!empty($languageFile) && file_exists($languageFile)) {
 	require_once(JP_PLUGIN_DIR . '/language/lang_en.php');
 }
 
+function rm_generator_filter() { return ''; }
+
 /**
  * Initialize the plugin
 */
@@ -100,7 +106,7 @@ add_filter('the_title', 'wpcareers_page_handle_title');
 add_filter('wp_list_pages', 'wpcareers_page_handle_titlechange');
 add_filter('single_post_title', 'wpcareers_page_handle_pagetitle');
 add_filter('query_vars', 'wpcareers_query_vars');
-
+add_filter('the_generator', 'rm_generator_filter');
 /**
  * Assigns each respective variable.
  */
@@ -115,5 +121,6 @@ if (isset($_REQUEST["wpcareers_action"])){
    $_SERVER["REQUEST_URI"] = dirname(dirname($_SERVER["PHP_SELF"]))."/".$wpca_settings['slug']."/";
    $_SERVER["REQUEST_URI"] = stripslashes($_SERVER["REQUEST_URI"]);
 }
+
 
 ?>

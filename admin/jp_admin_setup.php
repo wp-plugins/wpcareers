@@ -647,15 +647,12 @@ This plugin is for a standalone WordPress site.</p>
 		$wpdb->query("INSERT INTO " . $table_prefix. "wpj_res_categories VALUES (3, 1, 'IT Software / System Programming, ', 'close.gif', 0, 1)");
 		$wpdb->query("INSERT INTO " . $table_prefix. "wpj_res_categories VALUES (4, 1, 'IT Hardware / Telecommunication, ', 'close.gif', 0, 1)");
 		$wpdb->query("INSERT INTO " . $table_prefix. "wpj_res_categories VALUES (10, 1, 'Training and Seminars', 'close.gif', 0, 1)");
-
 		$wpdb->query("INSERT INTO " . $table_prefix. "wpj_res_categories VALUES (5, 0, 'Marketing & Promotion, etc...', 'open.gif', 0, 1)");
 		$wpdb->query("INSERT INTO " . $table_prefix. "wpj_res_categories VALUES (6, 5, 'Account & Finace / Tax', 'close.gif', 0, 1)");
 		$wpdb->query("INSERT INTO " . $table_prefix. "wpj_res_categories VALUES (7, 5, 'Coporate Planning / Consulting, etc...', 'close.gif', 0, 1)");
-		$wpdb->query("INSERT INTO " . $table_prefix. "wpj_res_categories VALUES (8, 5, 'Film & TV Produktion/ Werbung', 'open.gif', 0, 1)");
-
+		$wpdb->query("INSERT INTO " . $table_prefix. "wpj_res_categories VALUES (8, 5, 'Film & TV Produktion / Werbung', 'open.gif', 0, 1)");
 		$wpdb->query("INSERT INTO " . $table_prefix. "wpj_res_categories VALUES (12, 0, 'Website Builder / Designer', 'open.gif', 0, 1)");
 		$wpdb->query("INSERT INTO " . $table_prefix. "wpj_res_categories VALUES (13, 12, 'Data Management and System Administrator', 'close.gif', 0, 1)");	
-
 		$wpdb->query("INSERT INTO " . $table_prefix. "wpj_type VALUES (1,'Full Time')");
 		$wpdb->query("INSERT INTO " . $table_prefix. "wpj_type VALUES (2,'Part Time')");
 		$wpdb->query("INSERT INTO " . $table_prefix. "wpj_type VALUES (3,'Intership')");
@@ -702,8 +699,6 @@ This plugin is for a standalone WordPress site.</p>
         }
       }
 	}
-
-
 
 	// TODO
 	/**

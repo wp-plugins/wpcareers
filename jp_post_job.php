@@ -10,7 +10,7 @@
  */
 
 
-@session_start(); 
+if (!isset($_SESSION)) @session_start(); 
 
 function wpcareers_post_job($message, $mode){
 	global $_GET, $_POST, $table_prefix, $wpdb, $lang, $_FILES, $user_ID, $wpcareers, $permission, $anonymous;

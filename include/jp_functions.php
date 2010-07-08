@@ -773,6 +773,5 @@ function jp_remove_weblink($text){
 }
 
 
-z
 
 ?>
