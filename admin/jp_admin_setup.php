@@ -329,7 +329,7 @@ This plugin is for a standalone WordPress site.</p>
 				if (!isset($wpca_settings['GADcolor_url'])) $wpca_settings['GADcolor_url']= 'FF0000';
 				if (!isset($wpca_settings['GADposition'])) $wpca_settings['GADposition']= 'btn';
 				if (!isset($wpca_settings['GADproduct'])) $wpca_settings['GADproduct']= 'link';
-				if (!isset($wpca_settings['googleID'])) $wpca_settings['googleID'] = 'pub-2844370112691023';
+				if (!isset($wpca_settings['googleID'])) $wpca_settings['googleID'] = 'pub-xxx443701126xxxxx';
 				$GADpos = array ('top' => 'top','btn' => 'bottom', 'bth' => 'both','no' => 'none');
 				?>
 			<tr>

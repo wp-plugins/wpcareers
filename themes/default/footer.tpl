@@ -4,6 +4,9 @@
  * Footer_Templates
 *}
 
+{* begin of third column on right of the page 
+ * the column dissappiers, by removing the following section. 
+*}
 <div class="columns-2">
    <table class="otherTable col2"><tbody>
       <tr><td>
@@ -11,6 +14,10 @@
       </td></tr>
    </table>
 </div>
+{* end of third column on right of the page *}
+
+
+
 <!--columns-2-->
 <p>{if $googlebtn}<div class="jp_googleAd">{$jp_googleAd}</div>{/if}</p>
 <div class="jp_footer">
