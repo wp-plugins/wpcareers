@@ -167,7 +167,6 @@ This plugin is for a standalone WordPress site.</p>
 					update_option('wpcareers', $wpca_settings);
 					$wp_rewrite->flush_rules();
 					if(!$wpdb->get_results("SHOW TABLES LIKE '%wpj_%'")) {
-						echo "SHOW TABLES LIKE '%wpj_%'";
 						$this->create_db();
 					}
 					$msg = "Settings Updated.";
@@ -329,13 +328,13 @@ This plugin is for a standalone WordPress site.</p>
 				if (!isset($wpca_settings['GADcolor_url'])) $wpca_settings['GADcolor_url']= 'FF0000';
 				if (!isset($wpca_settings['GADposition'])) $wpca_settings['GADposition']= 'btn';
 				if (!isset($wpca_settings['GADproduct'])) $wpca_settings['GADproduct']= 'link';
-				if (!isset($wpca_settings['googleID'])) $wpca_settings['googleID'] = 'pub-xxx443701126xxxxx';
+				if (!isset($wpca_settings['googleID'])) $wpca_settings['googleID'] = 'pub-xxxxx';
 				$GADpos = array ('top' => 'top','btn' => 'bottom', 'bth' => 'both','no' => 'none');
 				?>
 			<tr>
 				<th align="right" valign="top"><a href='https://www.google.com/adsense/' target='google'>Google AdSense Account ID: </a></th>
 				<td><input type='text' name='wpcareers[googleID]' id='wpcareers[googleID]' size='30' value="<?php echo $wpca_settings['googleID']; ?>" /><br>
-				<span class="smallTxt"> example: no, pub-2844370112691023 or ...</span></td>
+				<span class="smallTxt"> example: no, pub-xxxxxx or ...</span></td>
 			</tr>
 			<tr>
 				<th align="right" valign="top">Google Ad Position: </th>
@@ -429,7 +428,7 @@ This plugin is for a standalone WordPress site.</p>
 			$wpca_settings['description'] = 
 '<p>Post your job in <strong>our free online wpCareers service</strong>.<br />You can browse jobs or search by job title and apply online.<br />Recruiters have also apportunity to add the avaliable jobs and update the job status.</p><br />If you have any question or feature request, please mail us.</p>';
 			$wpca_settings['keywords'] = 'dummy'; 
-			$wpca_settings['googleID'] = 'pub-2844370112691023';
+			$wpca_settings['googleID'] = 'pub-xxxxx';
 			$wpca_settings['GADproduct'] = 'link';
 			$wpca_settings['GADLformat'] = '468x15';
 			$wpca_settings['GADtype'] = 'text';
@@ -490,7 +489,7 @@ This plugin is for a standalone WordPress site.</p>
 			rc_id int(11) NULL,
 			r_name varchar(128) NOT NULL default '',
 			r_title varchar(128) NOT NULL default '',
-			r_status int(3) NOT NULL default,
+			r_status int(3) NOT NULL default 0,
 			r_exp int(3) NULL,
 			r_expire int(3) NULL,
 			r_private int(3) NULL,
