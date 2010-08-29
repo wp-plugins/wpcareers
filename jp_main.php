@@ -17,10 +17,9 @@ function wpcareers_display_header($message=''){
    $tpl=new wpca_smarty_compiler_class();
 
 	$wpcareers->ip_cleanUp();
-
-   $g120_600 ='<script type="text/javascript"><!--
-google_ad_client = "pub-2844370112691023";
-/* 120x600, created 5/19/08 */
+/*
+$g120_600 ='<script type="text/javascript"><!--
+google_ad_client = "pub-xxxxx";
 google_ad_slot = "2965935555";
 google_ad_width = 120;
 google_ad_height = 600;
@@ -29,7 +28,7 @@ google_ad_height = 600;
 <script type="text/javascript"
 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>';
-
+*/
    $ug = wp_specialchars(stripslashes($user_login), 1);
 	$tpl->assign('user_login', $ug);
    
