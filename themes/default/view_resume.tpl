@@ -11,7 +11,7 @@
       <tr><td colspan=2><h2>{$main_link}</h2><HR /><h2>{$lang.R_DETAIL}</h2></td></tr>
             {if $resume}
             {foreach from=$resume item=item key=key}
-               <tr><td style="text-align: center;>{$item.photo}</td>
+               <tr><td style="text-align: center;">{$item.photo}</td>
                      <td class="td_right">
                      <h3>Category: {$item.viewcategory}</h3><BR />
                      <b>{$lang.J_TITLE}</b>&nbsp;{$item.title}&nbsp;&nbsp;&nbsp;<span class="smallTxt">({$item.view}&nbsp;&nbsp;&nbsp;<b>{$lang.J_ADD}</b>&nbsp;{$item.date})</span><br />
