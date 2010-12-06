@@ -54,7 +54,7 @@ global $table_prefix, $wpdb;
 /**
  * Constants
  */
-define('VERSION', '1.1.1-c');
+define('VERSION', '1.1.1-d');
 define('JP_PLUGIN_DIR', ABSPATH .  'wp-content/plugins/wpcareers');
 define('JP_PLUGIN_URL', plugins_url('wpcareers'));
 
