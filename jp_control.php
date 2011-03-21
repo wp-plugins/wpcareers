@@ -25,6 +25,7 @@ Note: This bugfix release hove to install Manually.
 - the dashboard will show only for users with rolle >1
 
 
+    
 Jan 09, 2010
     - Release 1.0.0-a
     - All administrator pages finished.
@@ -38,6 +39,11 @@ May 25, 2010
 
 Jul 08, 2010
 fixed for Wordpress 3.0
+
+
+Jul 08, 2010
+fixed redirect to home if login failed
+
 
 */ 
 //error_reporting(E_ALL);
@@ -54,7 +60,7 @@ global $table_prefix, $wpdb;
 /**
  * Constants
  */
-define('VERSION', '1.1.1-d');
+define('VERSION', '1.1.2-a');
 define('JP_PLUGIN_DIR', ABSPATH .  'wp-content/plugins/wpcareers');
 define('JP_PLUGIN_URL', plugins_url('wpcareers'));
 

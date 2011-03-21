@@ -10,15 +10,15 @@
 | <a href = "/content/contact-us/">CONTACT US</a> 
 | <a href = "/content/terms-of-service/">Terms Of Service</a></div>
 
+
 <div class="post" id="post-01">
    <div class="loginform">
       <table>
       <tr><td width=670>
-      {if $message}
-         {$headpic}<div class="jp_message">{$message}</div>
-      {else}
-         {$headpic}&nbsp;{$headtxt}
-      {/if}
+         {if $error} <div class="jp_message">{$error}</div> {/if} 
+         {if $message} {$headpic}<div class="jp_message">{$message}</div>
+         {else} {$headpic}&nbsp;{$headtxt}
+         {/if}
       </td>
       <td>
       <div class="jp_login">

@@ -254,6 +254,30 @@ function jp_create_navigation($id,$links,$addJobLink, $desc){
 	}
 }
 
+
+function jp_getHtml($error) {
+   global $wpdb, $wp_query, $lang;
+   $message .= '<p>Please enter your information here. We will send you a new password</p>';
+	if ($error) { 
+		$message .= "<div id='login_error'><p>$error</p></div>"; 
+	} 
+   $message .= '<form name="lostpass" action="wp-login.php" method="post" id="lostpass">';
+	$message .= '<p><input type="hidden" name="action" value="retrievepassword" />';
+	$message .= '<label>Username:</label> <input type="text" name="user_login" id="user_login" value="" size="20" tabindex="1" />';
+	$message .= '<br /><p><label>E-mail:</label> <input type="text" name="email" id="email" value="" size="25" tabindex="2" />';
+	$message .= '<p><label for="captcha">'. $lang['J_COMFIMATION'] .'</label> ';
+   $message .= '<img id="siimage" alt="ConfirmCode" align="middle" src="'.get_bloginfo('wpurl') .'/wp-content/plugins/wpcareers/include/jp_securimage_show.php?sid='. md5(time()) .'" />';
+	$message .= '<br><span class ="smallTxt">'. $lang["J_VERIFICATION"] .'</span></p>';
+	$message .= '<p><lable></lable> <input type="text" name="wpcareers[jp_captcha]" id="wpcareers[jp_captcha]" size="10"></p>';
+	$message .= '</p><p class="submit"> <input type="submit" name="submit" id="submit" value="Retrieve Password" tabindex="3" /></p>';
+	$message .= '</form><ul>';
+	$message .= '<li><a href="'. $home . '" title="Are you lost?">Home</a></li>';
+	$message .= '<li><a href="'. get_bloginfo('wpurl') .'/wp-register.php" title="Register">Register</a></li>';
+   $message .= '<input type="hidden" name="redirect_to" value="'.$home.'" />';
+   $message .= '</ul>';
+   return $message;
+}
+      
 function wpcareers_do_login(){
 	global $wpdb, $error, $wp_query, $_REQUEST, $_GET, $_POST, $lang, $wpcareers, $wp_rewrite, $wpcareers;
 	$tpl = wpcareers_display_header($message);
@@ -263,6 +287,7 @@ function wpcareers_do_login(){
 	$message = '';
 	$error = '';
 	$home = wpcareers_create_link("indexLink", 'undef');
+   // TODO
 	if ($wp_rewrite->get_page_permastruct() != '') {
 		$selflink = get_option('home') . '/' . $wpca_settings['slug'];
 	} else {
@@ -271,7 +296,8 @@ function wpcareers_do_login(){
 		$page_id = $page_info['ID'];
 		$selflink = get_option('home') . "/?page_id=" . $page_id;
 	}
-	
+   // TODO
+	$selflink = get_option('home');
 	if (!empty($_REQUEST['action'])) { 
 		$action = $_REQUEST['action'];
 	} else {
@@ -286,29 +312,13 @@ function wpcareers_do_login(){
 		wp_clearcookie();
 		do_action('wp_logout');
 		nocache_headers();
-		wp_redirect( $selflink );
+		wp_redirect( $home );
 		exit();
 	break;
 	case 'lostpassword':
 		//do_action('lost_password');
 		get_header();
-		$message .= '<p>Please enter your information here. We will send you a new password</p>';
-		if ($error) { 
-			$message .= "<div id='login_error'>$error</div>"; 
-		} 
-		$message .= '<form name="lostpass" action="wp-login.php" method="post" id="lostpass">';
-		$message .= '<p><input type="hidden" name="action" value="retrievepassword" />';
-		$message .= '<label>Username:</label> <input type="text" name="user_login" id="user_login" value="" size="20" tabindex="1" />';
-		$message .= '<br /><p><label>E-mail:</label> <input type="text" name="email" id="email" value="" size="25" tabindex="2" />';
-		$message .= '<p><label for="captcha">'. $lang['J_COMFIMATION'] .'</label> ';
-      $message .= '<img id="siimage" alt="ConfirmCode" align="middle" src="'.get_bloginfo('wpurl') .'/wp-content/plugins/wpcareers/include/jp_securimage_show.php?sid='. md5(time()) .'" />';
-		$message .= '<br><span class ="smallTxt">'. $lang["J_VERIFICATION"] .'</span></p>';
-		$message .= '<p><lable></lable> <input type="text" name="wpcareers[jp_captcha]" id="wpcareers[jp_captcha]" size="10"></p>';
-		$message .= '</p><p class="submit"> <input type="submit" name="submit" id="submit" value="Retrieve Password" tabindex="3" /></p>';
-		$message .= '</form><ul>';
-		$message .= '<li><a href="'. $home . '" title="Are you lost?">Home</a></li>';
-		$message .= '<li><a href="'. get_bloginfo('wpurl') .'/wp-register.php" title="Register">Register</a></li>';
-		$message .= '</ul>';
+		$message .= jp_getHtml($error);
 		$tpl->assign('title', 'Retrieve Password');
 		$tpl->assign('form', $message);
 		$tpl->display('register.tpl');
@@ -384,7 +394,7 @@ function wpcareers_do_login(){
 			$message .= ('<span class="jp_error"><h3>Problem</h3></span>');
 			$message .= '<p>' . __('The e-mail could not be sent.') . "<br /></p>\n";
 		} else {
-		$message .= ('<h1>Success!</h1>');
+         $message .= ('<h1>Success!</h1>');
 			$message .= '<p>' . sprintf(__('Your new password is in the mail.'), $user_login) . '<br />';
 			$message .= "<a href='wp-login.php' title='" . __('Check your e-mail first, of course') . "'>" . __('Click here to login!') . '</a></p>';
 			// send a copy of password change notification to the admin
@@ -416,8 +426,8 @@ function wpcareers_do_login(){
 					$user_pass = $cookie_login['password'];
 				}
 			} elseif ( !empty($_COOKIE) ) {
-			if ( !empty($_COOKIE[USER_COOKIE]) )
-				$user_login = $_COOKIE[USER_COOKIE];
+            if ( !empty($_COOKIE[USER_COOKIE]) )
+               $user_login = $_COOKIE[USER_COOKIE];
 				if ( !empty($_COOKIE[PASS_COOKIE]) ) {
 					$user_pass = $_COOKIE[PASS_COOKIE];
 					$using_cookie = true;
@@ -430,18 +440,25 @@ function wpcareers_do_login(){
 			if ( wp_login($user_login, $user_pass, $using_cookie) ) {
 				if ( !$using_cookie ) wp_setcookie($user_login, $user_pass, false, '', '', $rememberme);
 				do_action('wp_login', $user_login);
-				wp_redirect($redirect_to);
+				wp_redirect($selflink);
 				exit;
 			} else {
-				if ( $using_cookie ) $error = __('Your session has expired.');
+				if ( $using_cookie ) {
+               $error = __('<strong><span style="color:red">Error</span></strong>: Your session has expired.');
+            }
 			}
 		} else if ( $user_login || $user_pass ) {
-			$error = __('<strong>Error</strong>: The password field is empty.');
+			$error = __('<strong><span style="color:red">Error</span></strong>: The password or login field is empty.');         
 		}
-		return $error;
+      get_header();
+      $message .= jp_getHtml($error);
+      $tpl->assign('title', 'Login');
+      $tpl->assign('form', $message);
+      $tpl->display('register.tpl');
+      die();
 	break;
 	default:
-		wp_redirect( $selflink );
+		wp_redirect($selflink);
 	break;
 	} 
 	exit();
