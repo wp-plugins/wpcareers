@@ -342,8 +342,8 @@ function wpcareers_do_login(){
 		$mail .= get_option('siteurl') . "\r\n\r\n";
 		$mail .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";
 		$mail .= __('To reset your password visit the following address, otherwise just ignore this email and nothing will happen.') . "\r\n\r\n";
-		$mail .= get_settings('siteurl') . "/wp-login.php?action=resetpass&key=$key\r\n";
-		$m = wp_mail($user_email, sprintf(__('[%s] Password Reset'), get_settings('blogname')), $mail);
+		$mail .= get_option('siteurl') . "/wp-login.php?action=resetpass&key=$key\r\n";
+		$m = wp_mail($user_email, sprintf(__('[%s] Password Reset'), get_option('blogname')), $mail);
 		$message .= "<div id=\"login\">\n";
 		if ($m == false) {
 			$message .= ('<span class="jp_error"><h3>Problem</h3></span>');
@@ -388,8 +388,8 @@ function wpcareers_do_login(){
 		wp_cache_delete($user->user_login, 'userlogins');	
 		$message	.= sprintf(__('Username: %s'), $user->user_login) . "&nbsp;";
 		$message .= sprintf(__('Password: %s'), $new_pass) . "&nbsp;";
-		$message .= get_settings('siteurl') . "/wp-login.php\r\n";
-		$m = wp_mail($user->user_email, sprintf(__('[%s] Your new password'), get_settings('blogname')), $message);
+		$message .= get_option('siteurl') . "/wp-login.php\r\n";
+		$m = wp_mail($user->user_email, sprintf(__('[%s] Your new password'), get_option('blogname')), $message);
 		if ($m == false) {
 			$message .= ('<span class="jp_error"><h3>Problem</h3></span>');
 			$message .= '<p>' . __('The e-mail could not be sent.') . "<br /></p>\n";
@@ -399,7 +399,7 @@ function wpcareers_do_login(){
 			$message .= "<a href='wp-login.php' title='" . __('Check your e-mail first, of course') . "'>" . __('Click here to login!') . '</a></p>';
 			// send a copy of password change notification to the admin
 			$message .= sprintf(__('Password Lost and Changed for user: %s'), $user->user_login) . "\r\n";
-			wp_mail(get_settings('admin_email'), sprintf(__('[%s] Password Lost/Change'), get_settings('blogname')), $message);
+			wp_mail(get_option('admin_email'), sprintf(__('[%s] Password Lost/Change'), get_option('blogname')), $message);
 		} 
 		$message .= "</div>\n";
 		$tpl->assign('title', 'Retrieve Password');
@@ -514,14 +514,14 @@ function wpcareers_do_register(){
 			$password = substr( md5( uniqid( microtime() ) ), 0, 7);
 			$user_id = wp_create_user( $user_login, $password, $user_email );
 			if ( !$user_id )	
-				$errors['user_id'] = sprintf(__('<span class="jp_error">ERROR</span>: Couldn&#8217;t register you... please contact the <a href="mailto:%s">webmaster</a> !'), get_settings('admin_email'));
+				$errors['user_id'] = sprintf(__('<span class="jp_error">ERROR</span>: Couldn&#8217;t register you... please contact the <a href="mailto:%s">webmaster</a> !'), get_option('admin_email'));
 			else wp_new_user_notification($user_id, $password);
 		} 
 		if ( 0 == count($errors) ) {//continues after the break; 
 			get_header();
-			$message .= '<p>Username: <strong>' . wp_specialchars($user_login) . '</strong>';
+			$message .= '<p>Username: <strong>' . esc_html($user_login) . '</strong>';
 			$message .= '&nbsp;Password: <strong>' . __('emailed to you') . '</strong><br />';
-			$message .= 'E-mail: <strong>' . wp_specialchars($user_email) . '</strong></p>';
+			$message .= 'E-mail: <strong>' . esc_html($user_email) . '</strong></p>';
 			$tpl->assign('title', 'Registration Complete');
 			$tpl->assign('form', $message);
 			$tpl->display('register.tpl');
@@ -538,10 +538,10 @@ function wpcareers_do_register(){
 		$message .= '<p><input type="hidden" name="action" value="register" />';
 		$message .= '<label for="user_login">Username:</label> ';
 		$message .= '<input type="text" name="user_login" id="user_login" size="20" maxlength="20" value="';
-		$message .= wp_specialchars($user_login) .'"/><br /></p>';
+		$message .= esc_html($user_login) .'"/><br /></p>';
 		$message .= '<p><label for="user_email">E-mail:</label> ';
 		$message .= '<input type="text" name="user_email" id="user_email" size="25" maxlength="100" value="';
-		$message .= wp_specialchars($user_email) . '"/></p>';
+		$message .= esc_html($user_email) . '"/></p>';
 		$message .= '<p>A password will be emailed to you.</p>';
 		$message .= '<p><label for="captcha">'. $lang['J_COMFIMATION'] .'</label> ';
       $message .= '<img id="siimage" alt="ConfirmCode" align="middle" src="'.get_bloginfo('wpurl') .'/wp-content/plugins/wpcareers/include/jp_securimage_show.php?sid='. md5(time()) .'" />';
@@ -562,7 +562,7 @@ function wpcareers_do_register(){
 		<div id="login">
 		<h2><?php _e('Registration Disabled') ?></h2>
 		<p><?php _e('User registration is currently not allowed.') ?><br />
-		<a href="<?php echo get_settings('home'); ?>/" title="<?php _e('Go back to the blog') ?>"><?php _e('Home') ?></a></p>
+		<a href="<?php echo get_option('home'); ?>/" title="<?php _e('Go back to the blog') ?>"><?php _e('Home') ?></a></p>
 		</div>
 		<?php 
 	break;

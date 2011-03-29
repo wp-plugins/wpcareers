@@ -46,14 +46,13 @@ if($posts) {
 		$rssItem[]=$item;
 	}
 }
-/*
+
 if (empty($wp)) {
     require_once('wp-config.php');
     wp('feed=rss2');
 }
-*/
 
-$contents = '<?xml version="1.0" encoding="' .  get_settings('blog_charset') . '"?>';
+$contents = '<?xml version="1.0" encoding="' .  get_option('blog_charset') . '"?>';
 $contents .= '<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" ' .  do_action('rss2_ns') . ">\n";
 $contents .= "<channel>\n<title>$rssTitle</title>\n";
 $contents .= "<link>". $wpcareers->cache_url . "wpcareers.xml</link>\n";

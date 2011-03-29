@@ -17,9 +17,10 @@ function wpcareers_display_header($message=''){
    $tpl=new wpca_smarty_compiler_class();
 
 	$wpcareers->ip_cleanUp();
-/*
-$g120_600 ='<script type="text/javascript"><!--
-google_ad_client = "pub-xxxxx";
+
+   $g120_600 ='<script type="text/javascript"><!--
+google_ad_client = "pub-xxxxxx";
+/* 120x600, created 5/19/08 */
 google_ad_slot = "2965935555";
 google_ad_width = 120;
 google_ad_height = 600;
@@ -28,8 +29,8 @@ google_ad_height = 600;
 <script type="text/javascript"
 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>';
-*/
-   $ug = wp_specialchars(stripslashes($user_login), 1);
+
+   $ug = esc_html(stripslashes($user_login), 1);
 	$tpl->assign('user_login', $ug);
    
 	if (isset($user_ID)) {
@@ -154,7 +155,7 @@ function wpcareers_display_index($message){
 
 
 function wpcareers_footer($tpl){
-   global $lang, $wpdb, $table_prefix, $version, $wpcareers;
+   global $lang, $wpdb, $table_prefix, $wpcareers;
    $wpca_settings = get_option('wpcareers');
    include_once ( $wpcareers->plugin_dir . '/include/jp_rss.php');
 

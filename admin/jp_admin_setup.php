@@ -703,14 +703,14 @@ This plugin is for a standalone WordPress site.</p>
 	// TODO
 	/**
 	* registers the widget, the widget will die if wordpress version doesn't support
-	* register_sidebar_widget
+	* wp_register_sidebar_widget
 	*
 	*/
 	function widget_init() {
 		// Check for required functions
-		if (!function_exists('register_sidebar_widget'))
+		if (!function_exists('wp_register_sidebar_widget'))
 			die('sidebar function does not exist, this is required for use with this plugin');
-			register_sidebar_widget('wpCareers Search',array(&$this, 'widget_wpca'));
+			wp_register_sidebar_widget('wpCareers Search',array(&$this, 'widget_wpca'));
 	}
 
 
