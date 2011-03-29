@@ -47,7 +47,7 @@ function wpcareers_admin_page(){
 
 function wpcareers_admin_menu(){
   global $wpcareers, $PHP_SELF;
-  $head = '<div class="wrap"><h2>Wordpress Career</h2><p>';
+  $head = '<div class="wrap"><h2>Wordpress Careers</h2><p>';
   $head .= '<div style="text-align: right;"><a href="http://www.forgani.com/">Support this software</a><br>Read my opinion</div>';
   $menu = '<a href=' . $PHP_SELF . '?page=' . 'wpcareers_settings' . '>Settings & Options</a> | ';
   for ($i=0; $i<count($wpcareers->admin_menu); $i++){
