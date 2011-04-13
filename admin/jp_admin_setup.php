@@ -62,7 +62,7 @@ class WP_Careers {
 			array('name'=>'Utilities','arg'=>'wpcareers_utilities')
 		);
 
-		add_action('widgets_init', array(&$this, 'widget_init'));
+		//add_action('widgets_init', array(&$this, 'widget_init'));
 		add_action('init', array(&$this, 'login_register_init'));
 		add_action('admin_menu', array(&$this, 'add_admin_pages'));
 		add_action('admin_head', array(&$this, 'add_admin_head'));
@@ -706,12 +706,54 @@ This plugin is for a standalone WordPress site.</p>
 	* wp_register_sidebar_widget
 	*
 	*/
-	function widget_init() {
-		// Check for required functions
-		if (!function_exists('wp_register_sidebar_widget'))
-			die('sidebar function does not exist, this is required for use with this plugin');
-			wp_register_sidebar_widget('wpCareers Search',array(&$this, 'widget_wpca'));
-	}
+   function widget_init() {
+      if ( !function_exists('wp_register_sidebar_widget') || !function_exists('register_widget_control') ) return;
+      function widget($args) {
+         extract($args);
+         $wpca_settings = get_option('wpcareers');
+         echo $before_widget;
+         echo $before_title . $wpca_settings['widget_title'] . $after_title;
+
+         $fieldsPre="wpc_";
+         $before_tag=stripslashes(get_option($fieldsPre.'before_Tag'));
+         $after_tag=stripslashes(get_option($fieldsPre.'after_Tag'));
+         echo '<p><ul>' . widget_display($wpca_settings['widget_format']) . '</ul></p>'; 
+      }
+
+      function widget_control() {
+         $wpca_settings = $newoptions = get_option('wpcareers');
+         if ( $_POST["wpCareers-submit"] ) {
+            $newoptions['widget_title'] = strip_tags(stripslashes($_POST['widget_title']));
+            $newoptions['widget_format'] = $_POST['widget_format'];
+            if ( empty($newoptions['widget_title']) ) $newoptions['widget_title'] = 'Last Classifieds Ads';
+         }
+         if ( $wpca_settings != $newoptions ) {
+            $wpca_settings = $newoptions;
+            update_option('wpcareers', $wpca_settings);
+         }
+         $title = htmlspecialchars($wpca_settings['widget_title'], ENT_QUOTES);
+         if ( empty($newoptions['widget_title']) ) $newoptions['widget_title'] = 'Last Careers Posts';
+         if ( empty($newoptions['widget_format']) ) $newoptions['widget_format'] = 'y';
+         ?>
+         <label for="wpCareers-widget_title"><?php _e('Title:'); ?><input style="width: 200px;" id="widget_title" name="widget_title" type="text" value="<?php echo htmlspecialchars($wpca_settings['widget_title']); ?>" /></label></p>
+         <br />
+         <label for="wpCareers-widget_format">
+         <input class="checkbox" id="widget_format" name="widget_format" type="checkbox" value="y"<?php echo ($wpca_settings['widget_format']=='y')?" checked":"";?>>Small Format Output</label><br />
+         <input type="hidden" id="wpCareers-submit" name="wpCareers-submit" value="1" />
+         <?php
+      }
+      
+      function widget_display() {
+        $wpca_settings = get_option('wpcareers');
+        //$out = wpcaLastPosts($wpca_settings['widget_format']);
+        return $out;
+      }
+      
+      wp_register_sidebar_widget('wpCareers', 'widget', null, 'wpCareers');
+      register_widget_control('wpCareers', 'widget_control');
+   }
+
+
 
 
 	/**

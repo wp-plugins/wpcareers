@@ -188,57 +188,56 @@ function wpcareers_footer($tpl){
   }
   $tpl->register_modifier( "sortby", "smarty_modifier_sortby" );
 
+  if (!isset($wpca_settings['new_links'])) $wpca_settings['new_links']=4;
+  $start=0;
+  $tpl->assign("jobsNum", $wpca_settings['new_links']); 
+  $sql = "SELECT * FROM {$table_prefix}wpj_job l, {$table_prefix}wpj_categories c WHERE l.lc_id = c.c_id ORDER BY l.l_date DESC LIMIT ".($start).", ".($wpca_settings['new_links']);
+  $lastPosts=$wpdb->get_results($sql);
+  $new_jobs=array();
+  for ($l=0; $l<count($lastPosts); $l++){
+    $result=$lastPosts[$l];
+    $previewlink=wpcareers_create_link("jview", array("name"=>$result->l_title, "id"=>$result->l_id));
+    $new_jobs[]=array ('date'=>$result->l_date, 'title'=>$result->l_title, 'category'=>$result->c_title, 'previewlink'=>$previewlink); 
+  }
+  $tpl->assign('new_jobs', $new_jobs);
 
-   if (!isset($wpca_settings['new_links'])) $wpca_settings['new_links']=4;
-   $start=0;
-   $tpl->assign("jobsNum", $wpca_settings['new_links']); 
-   $sql = "SELECT * FROM {$table_prefix}wpj_job l, {$table_prefix}wpj_categories c WHERE l.lc_id = c.c_id ORDER BY l.l_date DESC LIMIT ".($start).", ".($wpca_settings['new_links']);
-   $lastAds=$wpdb->get_results($sql);
-   $new_jobs=array();
-   for ($l=0; $l<count($lastAds); $l++){
-      $result=$lastAds[$l];
-      $previewlink=wpcareers_create_link("jview", array("name"=>$result->l_title, "id"=>$result->l_id));
-      $new_jobs[]=array ('date'=>$result->l_date, 'title'=>$result->l_title, 'category'=>$result->c_title, 'previewlink'=>$previewlink); 
-   }
-   $tpl->assign('new_jobs', $new_jobs);
+  $sql = "SELECT * FROM {$table_prefix}wpj_resume l, {$table_prefix}wpj_res_categories c WHERE l.rc_id = c.rc_id ORDER BY l.r_date DESC LIMIT ".($start).", ".($wpca_settings['new_links']);
+  $lastPosts=$wpdb->get_results($sql);
+  $new_resumes=array();
+  for ($l=0; $l<count($lastPosts); $l++){
+    $result=$lastPosts[$l];
+    $previewlink=wpcareers_create_link("rview", array("name"=>$result->r_title, "id"=>$result->r_id));
+    $new_resumes[]=array ('date'=>$result->r_date, 'title'=>$result->r_title, 'category'=>$result->rc_title, 'previewlink'=>$previewlink); 
+  }
+  $tpl->assign('new_resumes', $new_resumes);
 
-   $sql = "SELECT * FROM {$table_prefix}wpj_resume l, {$table_prefix}wpj_res_categories c WHERE l.rc_id = c.rc_id ORDER BY l.r_date DESC LIMIT ".($start).", ".($wpca_settings['new_links']);
-   $lastAds=$wpdb->get_results($sql);
-   $new_resumes=array();
-   for ($l=0; $l<count($lastAds); $l++){
-      $result=$lastAds[$l];
-      $previewlink=wpcareers_create_link("rview", array("name"=>$result->r_title, "id"=>$result->r_id));
-      $new_resumes[]=array ('date'=>$result->r_date, 'title'=>$result->r_title, 'category'=>$result->rc_title, 'previewlink'=>$previewlink); 
-   }
-   $tpl->assign('new_resumes', $new_resumes);
+  $categories_total=$wpdb->get_var("SELECT count(*) FROM {$table_prefix}wpj_categories"); 
+  $tpl->assign('categories_total',number_format($categories_total)); 
+  $jobs_total=$wpdb->get_var("SELECT count(*) FROM {$table_prefix}wpj_job"); 
+  $tpl->assign('jobs_total',number_format($jobs_total)); 
+  $resume_total=$wpdb->get_var("SELECT COUNT(*) as count FROM {$table_prefix}wpj_resume");
+  $tpl->assign('resume_total',number_format($resume_total)); 
 
-   $categories_total=$wpdb->get_var("SELECT count(*) FROM {$table_prefix}wpj_categories"); 
-   $tpl->assign('categories_total',number_format($categories_total)); 
-   $jobs_total=$wpdb->get_var("SELECT count(*) FROM {$table_prefix}wpj_job"); 
-   $tpl->assign('jobs_total',number_format($jobs_total)); 
-   $resume_total=$wpdb->get_var("SELECT COUNT(*) as count FROM {$table_prefix}wpj_resume");
-   $tpl->assign('resume_total',number_format($resume_total)); 
+  // TODO
 
-   // TODO
-
-   $filename = $wpcareers->cache_url .'wpcareers.xml';
-   ?>
-   <script type="text/javascript">
+  $filename = $wpcareers->cache_url .'wpcareers.xml';
+  ?>
+  <script type="text/javascript">
       function pop (file,name){
       rsswindow = window.open (file,name,"location=1,status=1,scrollbars=1,width=680,height=800");
       rsswindow.moveTo(0,0);
       rsswindow.focus();
       return false;
       }
-   </script>
-   <?php
-   $rssurl = '<b><a href="'. $filename . '" target="_blank" onclick="return pop('.$filename.',' .  $wpca_settings['slug'] . ');"><img src="' . $wpcareers->plugin_url . '/images/rss.png"/>';
-   $rssurl .= '&nbsp;RSS </a></b>';
-   $tpl->assign('rssurl', $rssurl);
-   if ($wpca_settings['show_credits'] == 'y') {
+  </script>
+  <?php
+  $rssurl = '<b><a href="'. $filename . '" target="_blank" onclick="return pop('.$filename.',' .  $wpca_settings['slug'] . ');"><img src="' . $wpcareers->plugin_url . '/images/rss.png"/>';
+  $rssurl .= '&nbsp;RSS </a></b>';
+  $tpl->assign('rssurl', $rssurl);
+  if ($wpca_settings['show_credits'] == 'y') {
       $credit='Powered by <a href="http://www.forgani.com/" target="_blank">4gani</a> version '. VERSION;
       $tpl->assign('credit', $credit);
-   }
+  }
 }
 
 function jpRssFilter($text){echo convert_chars(ent2ncr($text));} 
