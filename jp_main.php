@@ -172,7 +172,7 @@ function wpcareers_footer($tpl){
       $tpl->assign('googleAd',$code); 
    }
 
-  function array_sort_by_fields(&$data, $sortby){
+  function jp_array_sort_by_fields(&$data, $sortby){
     if(is_array($sortby)) {$sortby = join(',', $sortby);}
       uasort( $data,
       create_function('$a, $b', '
@@ -183,7 +183,7 @@ function wpcareers_footer($tpl){
 	     return($c);'));
   }
   function smarty_modifier_sortby($arrData, $sortfields) {
-    array_sort_by_fields($arrData, $sortfields);
+    jp_array_sort_by_fields($arrData, $sortfields);
     return $arrData;
   }
   $tpl->register_modifier( "sortby", "smarty_modifier_sortby" );
