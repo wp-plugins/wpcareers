@@ -172,20 +172,28 @@ function wpcareers_footer($tpl){
       $tpl->assign('googleAd',$code); 
    }
 
-  function jp_array_sort_by_fields(&$data, $sortby){
-    if(is_array($sortby)) {$sortby = join(',', $sortby);}
-      uasort( $data,
-      create_function('$a, $b', '
-        $skeys=split(\',\',\''.$sortby.'\');
-        foreach($skeys as $key){
-          if(($c=strcasecmp($a[$key],$b[$key])) != 0 ){return($c);}
-        }
-	     return($c);'));
+   
+   // FIXED Terrence Ward, BSc (Hons.) Mycalgarygeek.com 04/01/2011
+  if(!function_exists('jp_array_sort_by_fields')){
+	 function jp_array_sort_by_fields(&$data, $sortby){
+		if(is_array($sortby)) {$sortby = join(',', $sortby);}
+		uasort( $data,
+		create_function('$a, $b', '$skeys=split(\',\',\''.$sortby.'\');
+		 foreach($skeys as $key){
+			if(($c=strcasecmp($a[$key],$b[$key])) != 0 ){return($c);}
+		 }
+		return($c);'));
+	}
   }
-  function smarty_modifier_sortby($arrData, $sortfields) {
-    jp_array_sort_by_fields($arrData, $sortfields);
-    return $arrData;
+  
+  if(!function_exists('smarty_modifier_sortby')){
+	 function smarty_modifier_sortby($arrData, $sortfields) {
+		jp_array_sort_by_fields($arrData, $sortfields);
+		return $arrData;
+	 }
   }
+  
+  
   $tpl->register_modifier( "sortby", "smarty_modifier_sortby" );
 
   if (!isset($wpca_settings['new_links'])) $wpca_settings['new_links']=4;
