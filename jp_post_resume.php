@@ -541,9 +541,9 @@ function wpcareers_delete_resume() {
 			wpcareers_list_resumes($message);
 			return true;
 		} else {
-			$deleteResumeLinkForm=wpcareers_create_link("jdeleteform", array("id"=>$id));
+			$deleteResumeLinkForm=wpcareers_create_link("rdeleteform", array("id"=>$id));
 			$message .= '<h3>'.$lang['J_CONFDEL'].'</h3>';
-			$message .= '<form method="post" id="delete_conform" name="delete_conform" action="'.$deleteResumeLinkForm.'"><strong><br />';
+			$message .= '<form method="post" id="delete_conform" name="delete_conform" action="'.$deleteResumeLinkForm.'"><strong><br />'; 
 			$message .= '<input type="hidden" name="YesOrNo" value="'.$_GET['id'].'">';
 			$message .= $lang['J_SURDELANN'] . '<br />';
 			$message .= '<input type=submit value="'.$lang['J_YES'].'"> <input type=button value="'.$lang['J_NO'].'" onclick="history.go(-1);">';
