@@ -198,7 +198,7 @@ $lang['J_SURNAME'] = "Name:";
 $lang['J_ADVERTISEMENTS'] = "Listing(s) active";
 $lang['J_MODADMIN'] = "Change this Listings (administrator)";
 $lang['J_AND'] = "and";
-$lang['J_VIEW'] = "<b>Viewed</b>";
+$lang['J_VIEW'] = "<b>Viewed</b>, ";
 $lang['J_ACCESADMIN'] = "Administration";
 $lang['J_FROM'] = "Submitted by:";
 
