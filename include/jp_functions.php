@@ -761,18 +761,18 @@ function jp_is_valid_phone($phone) {
 	$phone = substr($phone, 1); // delete the "+"
 	$number = trim(preg_replace('/\(|\)|\-|\+|\s/', '', $phone));
 	if (!is_numeric($number)){
- return false;
+     return false;
 	}
 	return true;
 }
 
 function jp_is_valid_number($number, $max_len) {
-	if ( ! ereg("^([0-9]+)$", $number) ) {
- $msg = "$number is not a number!";
+	if (!preg_match("/^([0-9]+)$/", $number) ) {
+     $msg = "$number is not a number!";
 	} elseif ( strlen($number) > $max_len ) {
- $msg = "$number too long. Must be less than $max_len";
+     $msg = "$number too long. Must be less than $max_len";
 	} else {
- $msg = false;
+     $msg = false;
 	}
 	return $msg;
 }

@@ -167,7 +167,6 @@ This plugin is for a standalone WordPress site.</p>
 					update_option('wpcareers', $wpca_settings);
 					$wp_rewrite->flush_rules();
 					if(!$wpdb->get_results("SHOW TABLES LIKE '%wpj_%'")) {
-						//echo "SHOW TABLES LIKE '%wpj_%'";
 						$this->create_db();
 					}
 					$msg = "Settings Updated.";
@@ -269,7 +268,7 @@ This plugin is for a standalone WordPress site.</p>
 					while ($file = readdir($handle)) {$filelist[] = $file;}
 					asort($filelist);
 					while (list ($key, $file) = each ($filelist)) {
-						if (!ereg(".gif|.jpg|.png",$file)) {
+						if (!preg_match("/.gif|.jpg|.png/",$file)) {
 							if ($file == "." || $file == "..") $a=1;
 						} else {
 							if ($file == $wpca_settings['page_image']) {

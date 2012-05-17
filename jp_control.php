@@ -45,15 +45,17 @@ Jul 08, 2010
 fixed redirect to home if login failed
 
 
-*/ 
-//error_reporting(E_ALL);
-//ini_set('display_errors', '1');
+*/
+
+/*
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+*/
 
 
 
 global $table_prefix, $wpdb;
-//if (!$wpj_table_prefix) 
-  $table_prefix = $wpdb->prefix;
+$table_prefix = $wpdb->prefix;
 
 
 

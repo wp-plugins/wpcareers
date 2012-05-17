@@ -28,10 +28,11 @@ function process_structure(){
 				$cp_id=$wpdb->escape($_POST['wpcareers']['cp_id']);
 				$catImg=$wpdb->escape($_POST['image']);
 				$affprice=$wpdb->escape($_POST['wpcareers']['c_affprice']);
+				
 				if ($id==0){
 					$check = $wpdb->get_var("SELECT c_title FROM {$table_prefix}wpj_categories WHERE c_title= '".$title."'");
 					if (!$check) {
-						$sql = "INSERT INTO {$table_prefix}wpj_categories (c_title, c_img, c_sort, c_affprice, cp_id) values ('$title',					'".$catImg."','".$sort."',	'".$affprice."','".$cp_id."') ";
+						$sql = "INSERT INTO {$table_prefix}wpj_categories (c_title, c_img, c_sort, c_affprice, cp_id) values ('$title','".$catImg."','".$sort."','".$affprice."','".$cp_id."') ";
 						$wpdb->query($sql);
 						$msg ="Category Saved.";
 					} else {
@@ -262,7 +263,7 @@ function wpj_job_edit_category($id) {
 	$key = $wpj_categories['cp_id'];
 	$jcategories = $wpdb->get_results($sql);
 	echo '<select name="wpcareers[cp_id]">';
-	echo "\n<option value='0'>--</option>\n";
+	echo "\n<option value='0'>&nbsp;top&nbsp;&nbsp;</option>\n";
 	for ($i=0; $i<count($jcategories); $i++){
 		$jcategorie = $jcategories[$i];
 		$title = $jcategorie->c_title;
@@ -284,7 +285,7 @@ function wpj_job_edit_category($id) {
 	}
 	asort($filelist);
 	while (list ($key, $file) = each ($filelist)) {
-		if (!ereg(".gif|.jpg|.png",$file)) {
+		if (!preg_match("/.gif|.jpg|.png/",$file)) {
 			if ($file == "." || $file == "..") $a=1;
 		} else {
 			if ($file == $wpca_settings['page_image']) {
@@ -351,7 +352,7 @@ function wpj_res_edit_category($id) {
 	}
 	asort($filelist);
 	while (list ($key, $file) = each ($filelist)) {
-		if (!ereg(".gif|.jpg|.png",$file)) {
+		if (!preg_match("/.gif|.jpg|.png/",$file)) {
 			if ($file == "." || $file == "..") $a=1;
 		} else {
 			if ($file == $wpca_settings['page_image']) {
