@@ -6,7 +6,7 @@ Plugin Name: wpcareers
 Plugin URI: http://www.forgani.com/root/wordpress-careers-plugin/
 Description: Note -> This bugfix release hove to install Manually.
 Author: Mohammad forgani
-Version: 1.1.1-c
+Version: 1.1.2-c
 Author URI: http://www.forgani.com
 Copyright 2010 Mohammad Forgani 
 */
@@ -44,6 +44,9 @@ fixed for Wordpress 3.0
 Jul 08, 2010
 fixed redirect to home if login failed
 
+
+May 17, 2012
+fixed for php5 and mysql 5
 
 */
 
