@@ -60,7 +60,7 @@ global $table_prefix, $wpdb;
 /**
  * Constants
  */
-define('VERSION', '1.1.2-a');
+define('VERSION', '1.1.2-c');
 define('JP_PLUGIN_DIR', ABSPATH .  'wp-content/plugins/wpcareers');
 define('JP_PLUGIN_URL', plugins_url('wpcareers'));
 
@@ -101,7 +101,7 @@ if (!empty($languageFile) && file_exists($languageFile)) {
 	require_once(JP_PLUGIN_DIR . '/language/lang_en.php');
 }
 
-function rm_generator_filter() { return ''; }
+function jp_rm_generator_filter() { return ''; }
 
 /**
  * Initialize the plugin
@@ -112,7 +112,7 @@ add_filter('the_title', 'wpcareers_page_handle_title');
 add_filter('wp_list_pages', 'wpcareers_page_handle_titlechange');
 add_filter('single_post_title', 'wpcareers_page_handle_pagetitle');
 add_filter('query_vars', 'wpcareers_query_vars');
-add_filter('the_generator', 'rm_generator_filter');
+add_filter('the_generator', 'jp_rm_generator_filter');
 /**
  * Assigns each respective variable.
  */

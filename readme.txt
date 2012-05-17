@@ -1,5 +1,5 @@
 === WPCareers ===
-name: Wordpress Careers plugin version 1.1.1-c
+name: Wordpress Careers plugin version 1.1.2-c
 Contributors: Mohammad Forgani
 Donate link: http://www.forgani.com/root/wordpress-careers-plugin/
 Tags: job portal, careers, wpcareers, career, Career Portal, JobPortal

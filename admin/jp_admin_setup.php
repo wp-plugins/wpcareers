@@ -167,7 +167,7 @@ This plugin is for a standalone WordPress site.</p>
 					update_option('wpcareers', $wpca_settings);
 					$wp_rewrite->flush_rules();
 					if(!$wpdb->get_results("SHOW TABLES LIKE '%wpj_%'")) {
-						echo "SHOW TABLES LIKE '%wpj_%'";
+						//echo "SHOW TABLES LIKE '%wpj_%'";
 						$this->create_db();
 					}
 					$msg = "Settings Updated.";
@@ -483,7 +483,7 @@ This plugin is for a standalone WordPress site.</p>
 			l_author_ip varchar(16) NOT NULL default '',
 			l_fax varchar(32) NULL,
 			PRIMARY KEY (l_id)
-			) TYPE=MyISAM;";
+			)";
 		
 		$wpca_sql[$table_prefix.'wpj_resume'] = "CREATE TABLE IF NOT EXISTS {$table_prefix}wpj_resume (
 			r_id int(11) NOT NULL auto_increment,
@@ -513,7 +513,7 @@ This plugin is for a standalone WordPress site.</p>
 			r_startDate varchar(64) NULL,
 			r_fax varchar(32) NULL,
 			PRIMARY KEY (r_id)
-			) TYPE=MyISAM;";
+			)";
 		
 		$wpca_sql[$table_prefix.'wpj_categories'] = "CREATE TABLE IF NOT EXISTS {$table_prefix}wpj_categories (
 			c_id int(11) NOT NULL auto_increment,
@@ -523,7 +523,7 @@ This plugin is for a standalone WordPress site.</p>
 			c_sort int(5) NOT NULL default 0,
 			c_affprice int(5) NOT NULL default 0,
 			PRIMARY KEY (c_id)
-			) TYPE=MyISAM;";
+			)";
 		
 		$wpca_sql[$table_prefix.'wpj_res_categories'] = "CREATE TABLE IF NOT EXISTS {$table_prefix}wpj_res_categories (
 			rc_id int(11) NOT NULL auto_increment,
@@ -533,20 +533,20 @@ This plugin is for a standalone WordPress site.</p>
 			rc_sort int(5) NOT NULL default '0',
 			rc_affprice int(5) NOT NULL default 0,
 			PRIMARY KEY  (rc_id)
-			) TYPE=MyISAM;";
+			)";
 		
 		$wpca_sql[$table_prefix.'wpj_type'] = "CREATE TABLE IF NOT EXISTS {$table_prefix}wpj_type (
 			t_id int(11) NOT NULL auto_increment,
 			t_nom varchar(150) NOT NULL default '',
 			PRIMARY KEY  (t_id)
-			) TYPE=MyISAM;";
+			)";
 		
 		
 		$wpca_sql[$table_prefix.'wpj_price'] = "CREATE TABLE IF NOT EXISTS {$table_prefix}wpj_price (
 			p_id int(11) NOT NULL auto_increment,
 			p_nom varchar(150) NOT NULL default '',
 			PRIMARY KEY  (p_id)
-			) TYPE=MyISAM;";
+			)";
 		
 		
 		$wpca_sql[$table_prefix.'wpj_companies'] = "CREATE TABLE IF NOT EXISTS {$table_prefix}wpj_companies (
@@ -568,7 +568,7 @@ This plugin is for a standalone WordPress site.</p>
 			c_date_added int(10) NOT NULL default 0,
 			PRIMARY KEY (c_id),
 			KEY c_name (c_name)
-			) TYPE=MyISAM;";
+			)";
 		
 		
 		$wpca_sql[$table_prefix.'wpj_replies'] = "CREATE TABLE IF NOT EXISTS {$table_prefix}wpj_replies (
@@ -584,7 +584,7 @@ This plugin is for a standalone WordPress site.</p>
 			rp_usid int(11) NOT NULL default 0,
 			PRIMARY KEY (rp_id),
 			KEY lid (rl_id)
-			) TYPE=MyISAM;";
+			)";
 		
 		$wpca_sql[$table_prefix.'wpj_created_resumes'] = "CREATE TABLE IF NOT EXISTS {$table_prefix}wpj_created_resumes (
 			cr_id int(11) NOT NULL auto_increment,
@@ -594,7 +594,7 @@ This plugin is for a standalone WordPress site.</p>
 			cr_usid int(11) NOT NULL default 0,
 			PRIMARY KEY (cr_id),
 			KEY cr_id (cr_id)
-			) TYPE=MyISAM;";
+			)";
 
 		
 		$wpca_sql[$table_prefix.'wpj_pictures'] = "CREATE TABLE IF NOT EXISTS {$table_prefix}wpj_pictures (
@@ -606,7 +606,7 @@ This plugin is for a standalone WordPress site.</p>
 			p_uid_owner varchar(50) NOT NULL,
 			p_url text NOT NULL,
 			PRIMARY KEY (p_img)
-			) TYPE=MyISAM;";
+			)";
 		
 		
 		$tabs = $wpdb->get_results("SHOW TABLES", ARRAY_A);

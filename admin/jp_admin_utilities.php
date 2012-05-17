@@ -84,7 +84,7 @@ function process_utilities(){
 				$deactivate_url = wp_nonce_url($deactivate_url, 'deactivate-plugin_wpcareers/jp_control.php');
 			}
 			echo '<div class="wrap">';
-			echo '<h2>Uninstall WPCareers';
+			echo '<h2>Uninstall WPCareers</h2>';
 			echo '<p><strong>'.sprintf(__('<a href="%s">Click Here</a> To Finish The Uninstallation And WPCareers Will Be Deactivated Automatically.', 'wpcareers'), $deactivate_url).'</strong></p>';
 			echo '</div>'; 
 			die();
