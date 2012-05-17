@@ -263,7 +263,7 @@ function wpj_job_edit_category($id) {
 	$key = $wpj_categories['cp_id'];
 	$jcategories = $wpdb->get_results($sql);
 	echo '<select name="wpcareers[cp_id]">';
-	echo "\n<option value='0'>&nbsp;top&nbsp;&nbsp;</option>\n";
+	echo "\n<option value='0'>-</option>\n";
 	for ($i=0; $i<count($jcategories); $i++){
 		$jcategorie = $jcategories[$i];
 		$title = $jcategorie->c_title;
