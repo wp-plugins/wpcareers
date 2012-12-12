@@ -16,17 +16,17 @@ function wpcareers_list_job_categories($tpl, $id){
 
    $categorys=$wpdb->get_results("SELECT * FROM {$table_prefix}wpj_categories WHERE cp_id=".$id." ORDER BY c_id");
    if (!empty($categorys)) {
-		foreach ($categorys as $category) { 
-			$jcounTotal = 0;
-			if($category->cp_id == $id){
-				$title=trim($category->c_title);
-				$category_link=wpcareers_create_link("jlist", array("name"=>$title, "id"=>$category->c_id));
-				$sql="SELECT count(*) FROM {$table_prefix}wpj_job WHERE lc_id=".$category->c_id;
-				$jcount=$wpdb->get_var($sql);
-				$sql="SELECT * FROM {$table_prefix}wpj_categories WHERE cp_id=".$category->c_id;
-				$subCategories=$wpdb->get_results($sql);
+    foreach ($categorys as $category) { 
+      $jcounTotal = 0;
+      if($category->cp_id == $id){
+        $title=trim($category->c_title);
+        $category_link=wpcareers_create_link("jlist", array("name"=>$title, "id"=>$category->c_id));
+        $sql="SELECT count(*) FROM {$table_prefix}wpj_job WHERE lc_id=".$category->c_id;
+        $jcount=$wpdb->get_var($sql);
+        $sql="SELECT * FROM {$table_prefix}wpj_categories WHERE cp_id=".$category->c_id;
+        $subCategories=$wpdb->get_results($sql);
             $catImg='';
-				if (!empty($subCategories)) {
+        if (!empty($subCategories)) {
               $catImg='<div class="icon"><img src="'.JP_PLUGIN_URL.'/images/'.$category->c_img.'" border="0" alt="arrow icon"></div>';
               foreach ($subCategories as $subCategory) {
 
@@ -45,7 +45,7 @@ function wpcareers_list_job_categories($tpl, $id){
                 $jcounTotal = $jcounTotal + $jsubCount;
               }
             }
-				$jcounTotal = $jcounTotal + $jcount;
+            $jcounTotal = $jcounTotal + $jcount;
             if (isset($title)) {
               $jobCategories[]=array (
                 'c_id'=>$category->c_id,
@@ -56,64 +56,62 @@ function wpcareers_list_job_categories($tpl, $id){
                 'jcounTotal'=>$jcounTotal,
                 'category_link'=>$category_link);
             }
-			}
-		}
+      }
+    }
    }
-	$tpl->assign('catImgSrc', JP_PLUGIN_URL . "/images/expand.gif"); 
+  $tpl->assign('catImgSrc', JP_PLUGIN_URL . "/images/expand.gif"); 
    $tpl->assign('jobCategories',$jobCategories); 
    $tpl->assign('jobSubCategories',$jobSubCategories); 
 }
 
-
 function wpcareers_list_res_categories($tpl, $id){
-   global $_GET, $_POST, $table_prefix, $wpdb, $PHP_SELF, $wpca_version;
-   $sql = "SELECT * FROM {$table_prefix}wpj_res_categories WHERE rcp_id=".$id." ORDER BY rc_id";
-   $categorys=$wpdb->get_results($sql);
-   if (!empty($categorys)) {
-		foreach ($categorys as $category) { 
-			$rcounTotal = 0;
-			if($category->rcp_id == $id){
-			$title=trim($category->rc_title);
-			$resume_link=wpcareers_create_link("rlist", array("name"=>$title, "id"=>$category->rc_id));
-			$sql="SELECT count(*) FROM {$table_prefix}wpj_resume WHERE rc_id=".$category->rc_id;
-			$rcount=$wpdb->get_var($sql);
-			$sql="SELECT * FROM {$table_prefix}wpj_res_categories WHERE rcp_id=".$category->rc_id;
-			$subCategories=$wpdb->get_results($sql);
-         $catImg='';
-			if (!empty($subCategories)) {
+  global $_GET, $_POST, $table_prefix, $wpdb, $PHP_SELF, $wpca_version;
+  $sql = "SELECT * FROM {$table_prefix}wpj_res_categories WHERE rcp_id=".$id." ORDER BY rc_id";
+  $categorys=$wpdb->get_results($sql);
+  if (!empty($categorys)) {
+    foreach ($categorys as $category) { 
+      $rcounTotal = 0;
+      if($category->rcp_id == $id){
+        $title=trim($category->rc_title);
+        $resume_link=wpcareers_create_link("rlist", array("name"=>$title, "id"=>$category->rc_id));
+        $sql="SELECT count(*) FROM {$table_prefix}wpj_resume WHERE rc_id=".$category->rc_id;
+        $rcount=$wpdb->get_var($sql);
+        $sql="SELECT * FROM {$table_prefix}wpj_res_categories WHERE rcp_id=".$category->rc_id;
+        $subCategories=$wpdb->get_results($sql);
+        $catImg='';
+        if (!empty($subCategories)) {
           $catImg='<div class="icon"><img src="'.JP_PLUGIN_URL.'/images/'.$category->rc_img.'"></div>';
           foreach ($subCategories as $subCategory) {
-              $title=trim($subCategory->rc_title);
-              $subResume_link=wpcareers_create_link("rlist", array("name"=>$title, "id"=>$subCategory->rc_id));
-              $sql="SELECT count(*) FROM {$table_prefix}wpj_resume WHERE rc_id=".$subCategory->rc_id;
-              $rsubCount=$wpdb->get_var($sql);
-              $catSubImg='<div class="icon"><img src="'.JP_PLUGIN_URL.'/images/'.$category->rc_img.'"></div>';
-              $resSubCategories[]=array (
-                'rc_id'=>$subCategory->rc_id,
-                'rcp_id'=>$subCategory->rcp_id,
-                'rc_title'=>$title,
-                'rcount'=>$rsubCount,
-                'catImg'=>$catSubImg,
-                'subResume_link'=>$subResume_link);
-              $rcounTotal = $rcounTotal + $rsubCount;
+            $title=trim($subCategory->rc_title);
+            $subResume_link=wpcareers_create_link("rlist", array("name"=>$title, "id"=>$subCategory->rc_id));
+            $sql="SELECT count(*) FROM {$table_prefix}wpj_resume WHERE rc_id=".$subCategory->rc_id;
+            $rsubCount=$wpdb->get_var($sql);
+            $catSubImg='<div class="icon"><img src="'.JP_PLUGIN_URL.'/images/'.$category->rc_img.'"></div>';
+            $resSubCategories[]=array (
+             'rc_id'=>$subCategory->rc_id,
+             'rcp_id'=>$subCategory->rcp_id,
+             'rc_title'=>$title,
+             'rcount'=>$rsubCount,
+             'catImg'=>$catSubImg,
+             'subResume_link'=>$subResume_link);
+           $rcounTotal = $rcounTotal + $rsubCount;
           }
         }
 
         $rcounTotal = $rcounTotal + $rcount;
         $resCategories[]=array (
-				'rc_id'=>$category->rc_id,
-				'rcp_id'=>$category->rcp_id,
-				'rc_title'=>$title,
-				'rcount'=>$rcount,
-				'rcounTotal'=>$rcounTotal,
-				'catImg'=>$catImg,
-				'resume_link'=>$resume_link);
-			}
-		}
-   }
-
-   $tpl->assign('resCategories',$resCategories); 
-   $tpl->assign('resSubCategories',$resSubCategories);
+          'rc_id'=>$category->rc_id,
+          'rcp_id'=>$category->rcp_id,
+          'rc_title'=>$title,
+          'rcount'=>$rcount,
+          'rcounTotal'=>$rcounTotal,
+          'catImg'=>$catImg,
+          'resume_link'=>$resume_link);
+      }
+    }
+  }
+  $tpl->assign('resCategories',$resCategories); 
+  $tpl->assign('resSubCategories',$resSubCategories);
 }
 
 ?>
