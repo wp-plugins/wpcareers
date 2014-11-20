@@ -16,7 +16,7 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) {
 }
 
 ob_start();
-
+global $wpcareers;
 $pageinfo = $wpcareers->get_pageinfo();
 
 # Get Data

@@ -18,7 +18,7 @@ function wpcareers_display_header($message=''){
 
   $wpcareers->ip_cleanUp();
 
-   $g120_600 ='<script type="text/javascript"><!--
+  $g120_600 ='<script type="text/javascript"><!--
 google_ad_client = "pub-xxxxxx";
 /* 120x600, created 5/19/08 */
 google_ad_slot = "2965935555";
@@ -240,7 +240,7 @@ function wpcareers_footer($tpl){
       }
   </script>
   <?php
-  $rssurl = '<b><a href="'. $filename . '" target="_blank" onclick="return pop('.$filename.',' .  $wpca_settings['slug'] . ');"><img src="' . $wpcareers->plugin_url . '/images/rss.png"/>';
+  $rssurl = '<b><a href="'. $filename . '" target="_blank" onclick="return pop('.$filename.',' .  $wpca_settings['slug'] . ');"><img src="'. JP_PLUGIN_URL . '/images/rss.png"/>';
   $rssurl .= '&nbsp;RSS </a></b>';
   $tpl->assign('rssurl', $rssurl);
   if ($wpca_settings['show_credits'] == 'y') {
