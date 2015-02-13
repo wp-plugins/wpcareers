@@ -157,7 +157,7 @@ function wpcareers_display_index($message){
 
 
 function wpcareers_footer($tpl){
-  global $lang, $_GET, $_POST, $table_prefix, $wpdb, $PHP_SELF, $wpca_version;
+  global $lang, $_GET, $_POST, $table_prefix, $wpdb, $PHP_SELF, $wpca_version, $wpcareers;
    
   $wpca_settings = get_option('wpcareers');
   include_once ( $wpcareers->plugin_dir . '/include/jp_rss.php');
